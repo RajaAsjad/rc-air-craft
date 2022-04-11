@@ -1,0 +1,35 @@
+a.nav-link.sidebartoggler {
+    display: none;
+}
+.card-outline-info .card-header {
+    background: #f2024c !important;
+}
+table#all_record thead th {
+    font-size: 14px;
+}
+.modal form label {
+    padding-top: 10px;
+}
+.modal input#file {
+    padding: 4px;
+}
+.page-titles {
+    padding: 10px !important;
+}
+.container-fluid {
+    padding: 0 10px 25px 10px !important;
+}
+td.forlinks {
+    display: flex;
+}
+
+td.forlinks a {
+    margin-left: 4px;
+}
+.table thead th {
+    vertical-align: top !important;
+
+}
+.table td {
+    font-size: 13px !important;
+}
