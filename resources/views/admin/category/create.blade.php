@@ -27,7 +27,7 @@
 						<div class="form-group">
 							<label for="" class="col-sm-2 control-label">Description </label>
 							<div class="col-sm-9">
-								<textarea class="form-control" name="description" maxlength="200" style="height:140px;" placeholder="Enter short description max=200c"></textarea>
+								<textarea class="form-control" name="description" maxlength="200" style="height:140px;" placeholder="Enter short description"></textarea>
 								<span style="color: red">{{ $errors->first('description') }}</span>
 							</div>
 						</div>

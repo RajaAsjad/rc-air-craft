@@ -42,206 +42,35 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <ul class="products">
-                            <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
-                                <div class="pic">
-                                    <img src="<?php echo e(asset('public/assets/website')); ?>/images/0c135afc-d363-4a73-99ba-554f9cf6c3fd-300x300.jpg">
-                                </div>
-                                <div class="time-slot">
-                                    <div id="countdown">
-                                        <ul>
-                                            <li><span id="days"></span>days</li>
-                                            <li><span id="hours"></span>Hours</li>
-                                            <li><span id="minutes"></span>Minutes</li>
-                                            <li><span id="seconds"></span>Seconds</li>
-                                        </ul>
+                    <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="col-lg-4 col-md-6">
+                            <ul class="products">
+                                <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
+                                    <div class="pic">
+                                        <img src="<?php echo e(asset('public/admin/assets/images/product')); ?>/<?php echo e($product->image); ?>">
                                     </div>
-                                </div>
-                                <div class="box">
-                                    <p></p>
-                                    <p>HRB Lipo’s</p>
-                                    <p>2 x 6s 4000mah or</p>
-                                    <p>2 x 4s 5000mah or&nbsp;</p>
-                                    <p>3 x 3s 5000 mah Lipos</p>
-                                    <p></p>
-                                </div>
-                                <h5>0 <span>Entries Remaining</span></h5>
-                                <a href="<?php echo e(route ('single-products')); ?>">Enter Now</a>
-                                <h3><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>1.90</bdi>
-                                    </span> <span>Per Entry</span></h3>
-
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <ul class="products">
-                            <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
-                                <div class="pic">
-                                    <img src="<?php echo e(asset('public/assets/website')); ?>/images/0c135afc-d363-4a73-99ba-554f9cf6c3fd-300x300.jpg">
-                                </div>
-                                <div class="time-slot">
-                                    <div id="countdown">
-                                        <ul>
-                                            <li><span id="days"></span>days</li>
-                                            <li><span id="hours"></span>Hours</li>
-                                            <li><span id="minutes"></span>Minutes</li>
-                                            <li><span id="seconds"></span>Seconds</li>
-                                        </ul>
+                                    <div class="time-slot">
+                                        <div id="countdown">
+                                            <ul>
+                                                <li><span id="days"></span>days</li>
+                                                <li><span id="hours"></span>Hours</li>
+                                                <li><span id="minutes"></span>Minutes</li>
+                                                <li><span id="seconds"></span>Seconds</li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="box">
-                                    <p></p>
-                                    <p>HRB Lipo’s</p>
-                                    <p>2 x 6s 4000mah or</p>
-                                    <p>2 x 4s 5000mah or&nbsp;<strong></strong></p>
-                                    <p>3 x 3s 5000 mah Lipos</p>
-                                    <p></p>
-                                </div>
-                                <h5>0 <span>Entries Remaining</span></h5>
-                                <a href="<?php echo e(route ('single-products')); ?>">Enter Now</a>
-                                <h3><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>1.90</bdi>
-                                    </span> <span>Per Entry</span></h3>
-
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <ul class="products">
-                            <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
-                                <div class="pic">
-                                    <img src="<?php echo e(asset('public/assets/website')); ?>/images/0c135afc-d363-4a73-99ba-554f9cf6c3fd-300x300.jpg">
-                                </div>
-                                <div class="time-slot">
-                                    <div id="countdown">
-                                        <ul>
-                                            <li><span id="days"></span>days</li>
-                                            <li><span id="hours"></span>Hours</li>
-                                            <li><span id="minutes"></span>Minutes</li>
-                                            <li><span id="seconds"></span>Seconds</li>
-                                        </ul>
+                                    <div class="box">
+                                        <p><?php echo e($product->name); ?></p>
+                                        <p><?php echo $product->short_description; ?></p>
                                     </div>
-                                </div>
-                                <div class="box">
-                                    <p></p>
-                                    <p>HRB Lipo’s</p>
-                                    <p>2 x 6s 4000mah or</p>
-                                    <p>2 x 4s 5000mah or&nbsp;<strong><span style="color: #ff0000;">NOW SOLD OUT</span></strong></p>
-                                    <p>3 x 3s 5000 mah Lipos</p>
-                                    <p></p>
-                                </div>
-                                <h5>0 <span>Entries Remaining</span></h5>
-                                <a href="<?php echo e(route ('single-products')); ?>">Enter Now</a>
-                                <h3><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>1.90</bdi>
-                                    </span> <span>Per Entry</span></h3>
-
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col-lg-4 col-md-6">
-                        <ul class="products">
-                            <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
-                                <div class="pic">
-                                    <img src="<?php echo e(asset('public/assets/website')); ?>/images/0c135afc-d363-4a73-99ba-554f9cf6c3fd-300x300.jpg">
-                                </div>
-                                <div class="time-slot">
-                                    <div class="main-lottery lottery-time-countdown is-wc_lotery_countdown" data-time="1647734400" data-lotteryid="7431" data-format="yowdHMS"><span class="wc_lotery_countdown-row wc_lotery_countdown-show4">
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">1</span> <br> <span class="wc_lotery_countdown-period">Day</span></span>
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">11</span> <br> <span class="wc_lotery_countdown-period">Hours</span></span><span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">53</span>                                        <br>
-                                        <span class="wc_lotery_countdown-period">Minutes</span>
-                                        </span>
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">52</span> <br> <span class="wc_lotery_countdown-period">Seconds</span></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="box">
-                                    <p></p>
-                                    <p>HRB Lipo’s</p>
-                                    <p>2 x 6s 4000mah or</p>
-                                    <p>2 x 4s 5000mah or&nbsp;</p>
-                                    <p>3 x 3s 5000 mah Lipos</p>
-                                    <p></p>
-                                </div>
-                                <h5>0 <span>Entries Remaining</span></h5>
-                                <a href="<?php echo e(route ('single-products')); ?>">Enter Now</a>
-                                <h3><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>1.90</bdi>
-                                    </span> <span>Per Entry</span></h3>
-
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <ul class="products">
-                            <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
-                                <div class="pic">
-                                    <img src="<?php echo e(asset('public/assets/website')); ?>/images/0c135afc-d363-4a73-99ba-554f9cf6c3fd-300x300.jpg">
-                                </div>
-                                <div class="time-slot">
-                                    <div class="main-lottery lottery-time-countdown is-wc_lotery_countdown" data-time="1647734400" data-lotteryid="7431" data-format="yowdHMS"><span class="wc_lotery_countdown-row wc_lotery_countdown-show4">
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">1</span> <br> <span class="wc_lotery_countdown-period">Day</span></span>
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">11</span> <br> <span class="wc_lotery_countdown-period">Hours</span></span><span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">53</span>                                        <br>
-                                        <span class="wc_lotery_countdown-period">Minutes</span>
-                                        </span>
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">52</span> <br> <span class="wc_lotery_countdown-period">Seconds</span></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="box">
-                                    <p></p>
-                                    <p>HRB Lipo’s</p>
-                                    <p>2 x 6s 4000mah or</p>
-                                    <p>2 x 4s 5000mah or&nbsp;<strong></strong></p>
-                                    <p>3 x 3s 5000 mah Lipos</p>
-                                    <p></p>
-                                </div>
-                                <h5>0 <span>Entries Remaining</span></h5>
-                                <a href="<?php echo e(route ('single-products')); ?>">Enter Now</a>
-                                <h3><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>1.90</bdi>
-                                    </span> <span>Per Entry</span></h3>
-
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <ul class="products">
-                            <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
-                                <div class="pic">
-                                    <img src="<?php echo e(asset('public/assets/website')); ?>/images/0c135afc-d363-4a73-99ba-554f9cf6c3fd-300x300.jpg">
-                                </div>
-                                <div class="time-slot">
-                                    <div class="main-lottery lottery-time-countdown is-wc_lotery_countdown" data-time="1647734400" data-lotteryid="7431" data-format="yowdHMS"><span class="wc_lotery_countdown-row wc_lotery_countdown-show4">
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">1</span> <br> <span class="wc_lotery_countdown-period">Day</span></span>
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">11</span> <br> <span class="wc_lotery_countdown-period">Hours</span></span><span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">53</span>                                        <br>
-                                        <span class="wc_lotery_countdown-period">Minutes</span>
-                                        </span>
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">52</span> <br> <span class="wc_lotery_countdown-period">Seconds</span></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="box">
-                                    <p></p>
-                                    <p>HRB Lipo’s</p>
-                                    <p>2 x 6s 4000mah or</p>
-                                    <p>2 x 4s 5000mah or&nbsp;<strong><span style="color: #ff0000;">NOW SOLD OUT</span></strong></p>
-                                    <p>3 x 3s 5000 mah Lipos</p>
-                                    <p></p>
-                                </div>
-                                <h5>0 <span>Entries Remaining</span></h5>
-                                <a href="<?php echo e(route ('single-products')); ?>">Enter Now</a>
-                                <h3><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>1.90</bdi>
-                                    </span> <span>Per Entry</span></h3>
-
-                            </li>
-
-                        </ul>
-                    </div>
+                                    <h5>0 <span>Entries Remaining</span></h5>
+                                    <a href="<?php echo e(route ('single-products')); ?>">Enter Now</a>
+                                    <h3><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span><?php echo e($product->price); ?></bdi>
+                                        </span> <span>Per Entry</span></h3>
+                                </li>
+                            </ul>
+                        </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
         </div>
@@ -249,7 +78,7 @@
 
     <!-- home-prdcts -->
     <section id="home-products">
-        <div class="category-2" id="mini-competitions">
+        <div class="category-2" <?php echo e($product->category_slug); ?>>
             <div class="container">
                 <div class="text-text">
                     <h2>RC aircraft online</h2>
@@ -258,200 +87,37 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <ul class="products">
-                            <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
-                                <div class="pic">
-                                    <img src="<?php echo e(asset('public/assets/website')); ?>/images/0c135afc-d363-4a73-99ba-554f9cf6c3fd-300x300.jpg">
-                                </div>
-                                <div class="time-slot">
-                                    <div class="main-lottery lottery-time-countdown is-wc_lotery_countdown" data-time="1647734400" data-lotteryid="7431" data-format="yowdHMS"><span class="wc_lotery_countdown-row wc_lotery_countdown-show4">
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">1</span> <br> <span class="wc_lotery_countdown-period">Day</span></span>
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">11</span> <br> <span class="wc_lotery_countdown-period">Hours</span></span><span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">53</span>                                        <br>
-                                        <span class="wc_lotery_countdown-period">Minutes</span>
-                                        </span>
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">52</span> <br> <span class="wc_lotery_countdown-period">Seconds</span></span>
-                                        </span>
+                    <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="col-lg-4 col-md-6">
+                            <ul class="products">
+                                <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
+                                    <div class="pic">
+                                        <img src="<?php echo e(asset('public/admin/assets/images/product')); ?>/<?php echo e($product->image); ?>">
                                     </div>
-                                </div>
-                                <div class="box">
-                                    <p></p>
-                                    <p>HRB Lipo’s</p>
-                                    <p>2 x 6s 4000mah or</p>
-                                    <p>2 x 4s 5000mah or&nbsp;</p>
-                                    <p>3 x 3s 5000 mah Lipos</p>
-                                    <p></p>
-                                </div>
-                                <h5>0 <span>Entries Remaining</span></h5>
-                                <a href="<?php echo e(route ('single-products')); ?>">Enter Now</a>
-                                <h3><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>1.90</bdi>
-                                    </span> <span>Per Entry</span></h3>
-
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <ul class="products">
-                            <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
-                                <div class="pic">
-                                    <img src="<?php echo e(asset('public/assets/website')); ?>/images/0c135afc-d363-4a73-99ba-554f9cf6c3fd-300x300.jpg">
-                                </div>
-                                <div class="time-slot">
-                                    <div class="main-lottery lottery-time-countdown is-wc_lotery_countdown" data-time="1647734400" data-lotteryid="7431" data-format="yowdHMS"><span class="wc_lotery_countdown-row wc_lotery_countdown-show4">
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">1</span> <br> <span class="wc_lotery_countdown-period">Day</span></span>
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">11</span> <br> <span class="wc_lotery_countdown-period">Hours</span></span><span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">53</span>                                        <br>
-                                        <span class="wc_lotery_countdown-period">Minutes</span>
-                                        </span>
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">52</span> <br> <span class="wc_lotery_countdown-period">Seconds</span></span>
-                                        </span>
+                                    <div class="time-slot">
+                                        <div class="main-lottery lottery-time-countdown is-wc_lotery_countdown" data-time="1647734400" data-lotteryid="7431" data-format="yowdHMS"><span class="wc_lotery_countdown-row wc_lotery_countdown-show4">
+                                            <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">1</span> <br> <span class="wc_lotery_countdown-period">Day</span></span>
+                                            <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">11</span> <br> <span class="wc_lotery_countdown-period">Hours</span></span><span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">53</span>                                        <br>
+                                            <span class="wc_lotery_countdown-period">Minutes</span>
+                                            </span>
+                                            <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">52</span> <br> <span class="wc_lotery_countdown-period">Seconds</span></span>
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="box">
-                                    <p></p>
-                                    <p>HRB Lipo’s</p>
-                                    <p>2 x 6s 4000mah or</p>
-                                    <p>2 x 4s 5000mah or&nbsp;<strong></strong></p>
-                                    <p>3 x 3s 5000 mah Lipos</p>
-                                    <p></p>
-                                </div>
-                                <h5>0 <span>Entries Remaining</span></h5>
-                                <a href="<?php echo e(route ('single-products')); ?>">Enter Now</a>
-                                <h3><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>1.90</bdi>
-                                    </span> <span>Per Entry</span></h3>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <ul class="products">
-                            <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
-                                <div class="pic">
-                                    <img src="<?php echo e(asset('public/assets/website')); ?>/images/0c135afc-d363-4a73-99ba-554f9cf6c3fd-300x300.jpg">
-                                </div>
-                                <div class="time-slot">
-                                    <div class="main-lottery lottery-time-countdown is-wc_lotery_countdown" data-time="1647734400" data-lotteryid="7431" data-format="yowdHMS"><span class="wc_lotery_countdown-row wc_lotery_countdown-show4">
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">1</span> <br> <span class="wc_lotery_countdown-period">Day</span></span>
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">11</span> <br> <span class="wc_lotery_countdown-period">Hours</span></span><span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">53</span>                                        <br>
-                                        <span class="wc_lotery_countdown-period">Minutes</span>
-                                        </span>
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">52</span> <br> <span class="wc_lotery_countdown-period">Seconds</span></span>
-                                        </span>
+                                    <div class="box">
+                                        <p><?php echo e($product->name); ?></p>
+                                        <p><?php echo $product->short_description; ?></p>
                                     </div>
-                                </div>
-                                <div class="box">
-                                    <p></p>
-                                    <p>HRB Lipo’s</p>
-                                    <p>2 x 6s 4000mah or</p>
-                                    <p>2 x 4s 5000mah or&nbsp;<strong><span style="color: #ff0000;">NOW SOLD OUT</span></strong></p>
-                                    <p>3 x 3s 5000 mah Lipos</p>
-                                    <p></p>
-                                </div>
-                                <h5>0 <span>Entries Remaining</span></h5>
-                                <a href="<?php echo e(route ('single-products')); ?>">Enter Now</a>
-                                <h3><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>1.90</bdi>
-                                    </span> <span>Per Entry</span></h3>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col-lg-4 col-md-6">
-                        <ul class="products">
-                            <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
-                                <div class="pic">
-                                    <img src="<?php echo e(asset('public/assets/website')); ?>/images/0c135afc-d363-4a73-99ba-554f9cf6c3fd-300x300.jpg">
-                                </div>
-                                <div class="time-slot">
-                                    <div class="main-lottery lottery-time-countdown is-wc_lotery_countdown" data-time="1647734400" data-lotteryid="7431" data-format="yowdHMS"><span class="wc_lotery_countdown-row wc_lotery_countdown-show4">
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">1</span> <br> <span class="wc_lotery_countdown-period">Day</span></span>
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">11</span> <br> <span class="wc_lotery_countdown-period">Hours</span></span><span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">53</span>                                        <br>
-                                        <span class="wc_lotery_countdown-period">Minutes</span>
-                                        </span>
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">52</span> <br> <span class="wc_lotery_countdown-period">Seconds</span></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="box">
-                                    <p></p>
-                                    <p>HRB Lipo’s</p>
-                                    <p>2 x 6s 4000mah or</p>
-                                    <p>2 x 4s 5000mah or&nbsp;</p>
-                                    <p>3 x 3s 5000 mah Lipos</p>
-                                    <p></p>
-                                </div>
-                                <h5>0 <span>Entries Remaining</span></h5>
-                                <a href="<?php echo e(route ('single-products')); ?>">Enter Now</a>
-                                <h3><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>1.90</bdi>
-                                    </span> <span>Per Entry</span></h3>
+                                    <h5>0 <span>Entries Remaining</span></h5>
+                                    <a href="<?php echo e(route ('single-products')); ?>">Enter Now</a>
+                                    <h3><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>1.90</bdi>
+                                        </span> <span>Per Entry</span></h3>
 
-                            </li>
+                                </li>
 
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <ul class="products">
-                            <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
-                                <div class="pic">
-                                    <img src="<?php echo e(asset('public/assets/website')); ?>/images/0c135afc-d363-4a73-99ba-554f9cf6c3fd-300x300.jpg">
-                                </div>
-                                <div class="time-slot">
-                                    <div class="main-lottery lottery-time-countdown is-wc_lotery_countdown" data-time="1647734400" data-lotteryid="7431" data-format="yowdHMS"><span class="wc_lotery_countdown-row wc_lotery_countdown-show4">
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">1</span> <br> <span class="wc_lotery_countdown-period">Day</span></span>
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">11</span> <br> <span class="wc_lotery_countdown-period">Hours</span></span><span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">53</span>                                        <br>
-                                        <span class="wc_lotery_countdown-period">Minutes</span>
-                                        </span>
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">52</span> <br> <span class="wc_lotery_countdown-period">Seconds</span></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="box">
-                                    <p></p>
-                                    <p>HRB Lipo’s</p>
-                                    <p>2 x 6s 4000mah or</p>
-                                    <p>2 x 4s 5000mah or&nbsp;<strong></strong></p>
-                                    <p>3 x 3s 5000 mah Lipos</p>
-                                    <p></p>
-                                </div>
-                                <h5>0 <span>Entries Remaining</span></h5>
-                                <a href="<?php echo e(route ('single-products')); ?>">Enter Now</a>
-                                <h3><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>1.90</bdi>
-                                    </span> <span>Per Entry</span></h3>
-
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <ul class="products">
-                            <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
-                                <div class="pic">
-                                    <img src="<?php echo e(asset('public/assets/website')); ?>/images/0c135afc-d363-4a73-99ba-554f9cf6c3fd-300x300.jpg">
-                                </div>
-                                <div class="time-slot">
-                                    <div class="main-lottery lottery-time-countdown is-wc_lotery_countdown" data-time="1647734400" data-lotteryid="7431" data-format="yowdHMS"><span class="wc_lotery_countdown-row wc_lotery_countdown-show4">
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">1</span> <br> <span class="wc_lotery_countdown-period">Day</span></span>
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">11</span> <br> <span class="wc_lotery_countdown-period">Hours</span></span><span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">53</span>                                        <br>
-                                        <span class="wc_lotery_countdown-period">Minutes</span>
-                                        </span>
-                                        <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">52</span> <br> <span class="wc_lotery_countdown-period">Seconds</span></span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="box">
-                                    <p></p>
-                                    <p>HRB Lipo’s</p>
-                                    <p>2 x 6s 4000mah or</p>
-                                    <p>2 x 4s 5000mah or&nbsp;<strong><span style="color: #ff0000;">NOW SOLD OUT</span></strong></p>
-                                    <p>3 x 3s 5000 mah Lipos</p>
-                                    <p></p>
-                                </div>
-                                <h5>0 <span>Entries Remaining</span></h5>
-                                <a href="<?php echo e(route ('single-products')); ?>">Enter Now</a>
-                                <h3><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>1.90</bdi>
-                                    </span> <span>Per Entry</span></h3>
-                            </li>
-                        </ul>
-                    </div>
+                            </ul>
+                        </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
         </div>

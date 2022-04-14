@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Faq;
 use Auth;
 use Hash;
 
@@ -11,7 +13,8 @@ class WebController extends Controller
 {
     public function index ()
   {
-    return view('website.index');
+    $products = Product::where('status',1)->get();
+    return view('website.index', compact('products'));
   }
 
 public function login()
@@ -164,7 +167,8 @@ public function sendEmail(Request $request)
   }
   public function faqs ()
   {
-    return view('website.faqs');
+    $questions = Faq::where('status',1)->get();
+    return view('website.faqs' , compact('questions'));
   }
 //   public function login ()
 //   {

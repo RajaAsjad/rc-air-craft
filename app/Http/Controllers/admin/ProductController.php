@@ -1,8 +1,12 @@
 <?php
 namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Question;
+use App\Models\Option;
+use Illuminate\Support\Facades\Validator;
 use Auth;
 
 
@@ -38,6 +42,7 @@ class ProductController extends Controller
             return (string) view('admin.product.search', compact('models'));
         }
         $page_title = 'All Products';
+
         $models = Product::orderby('id', 'desc')->paginate(10);
         return View('admin.product.index', compact("models","page_title"));
     }
@@ -50,7 +55,8 @@ class ProductController extends Controller
     public function create()
     {
         $page_title = 'Add Product';
-        return View('admin.product.create', compact('page_title'));
+        $categories = Category::orderby('id', 'desc')->where('status', 1)->get();
+        return View('admin.product.create', compact('page_title',"categories"));
     }
 
     /**
@@ -62,12 +68,16 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        // return $request->expiry_date;
-        $validator = $request->validate([
-            'name' => 'required|max:255',
-            'description' => 'required',
-            'image' => 'mimes:jpeg,jpg,png,gif|required|max:10000' // max 10000kb
+        // return $request->short_description;
+
+        $rules = ([
+            'name' => ['required','unique:products','max:255'],
+            'short_description' => 'max:1000',
+            'description' => ['required','max:1000'],
+            'image' => ['mimes:jpeg,jpg,png,gif','required','max:10000'], // max 10000kb
         ]);
+
+        $this->validate(request(), $rules);
 
         $model = new Product();
 
@@ -77,20 +87,36 @@ class ProductController extends Controller
             $model->image = $photo;
         }
 
-        $model->created_at = Auth::user()->id;
+        $model->created_by = Auth::user()->id;
+        $model->category_slug = $request->category_slug;
         $model->name = $request->name;
         $model->slug = \Str::slug($request->name);
+        $model->price = $request->price;
+        $model->draw_ends = date('Y-m-d', strtotime($request->draw_ends));
+        $model->min_competition = $request->min_competition;
+        $model->max_competition = $request->max_competition;
+        $model->number_of_winners = $request->number_of_winners;
         $model->short_description = $request->short_description;
         $model->description = $request->description;
-        $model->price = $request->price;
-        $model->total_inventory = $request->total_inventory;
-        $model->remaining_inventory = $request->remaining_inventory;
-        $model->type = $request->type;
-        $model->expiry_date = date('Y-m-d H:i:s', strtotime($request->expiry_date));
-        $model->number_of_competitions = $request->number_of_competitions;
-        $model->number_of_winners = $request->number_of_winners;
         $model->status = 1;
         $model->save();
+
+        $question = Question::create([
+            'product_slug' => $model->slug,
+            'question' => $request->question,
+            'answer' => $request->answer,
+        ]);
+
+        if(!empty($question)){
+            foreach($request->choices as $choice){
+                if (!empty($choice)) {
+                    Option::create([
+                    'question_id'=>$question->id,
+                    'choices'=>$choice,
+                ]);
+            }
+            }
+        }
 
         return redirect()->route('product.index')->with('message', 'Product Added Successfully !');
     }
@@ -113,9 +139,11 @@ class ProductController extends Controller
      */
     public function edit($slug)
     {
+
         $page_title = 'Edit Product';
         $details = Product::where('slug', $slug)->first();
-        return View('admin.product.edit', compact("details","page_title"));
+        $categories = Category::orderby('id', 'desc')->where('status', 1)->get();
+        return View('admin.product.edit', compact("details","page_title","categories"));
     }
 
     /**
@@ -128,12 +156,13 @@ class ProductController extends Controller
 
     public function update(Request $request,$slug)
     {
-
-        $update = Product::where('slug', $slug)->first();
+        // return $request;
         $validator = $request->validate([
             'name' => 'required|max:255',
             'description' => 'required',
         ]);
+
+            $update = Product::where('slug', $slug)->first();
 
         if (isset($request->image)) {
             $photo = date('YmdHis').'.'.$request->file('image')->getClientOriginalExtension();
@@ -141,19 +170,18 @@ class ProductController extends Controller
             $update->image = $photo;
         }
 
+        $update->category_slug = \Str::slug($request->name);
         $update->name = $request->name;
         $update->slug = \Str::slug($request->name);
+        $update->price = $request->price;
+        $update->draw_ends = date('Y-m-d', strtotime($request->draw_ends));
+        $update->min_competition = $request->min_competition;
+        $update->max_competition = $request->max_competition;
+        $update->number_of_winners = $request->number_of_winners;
         $update->short_description = $request->short_description;
         $update->description = $request->description;
-        $update->price = $request->price;
-        $update->total_inventory = $request->total_inventory;
-        $update->remaining_inventory = $request->remaining_inventory;
-        $update->type = $request->type;
-        $update->expiry_date = date('Y-m-d H:i:s', strtotime($request->expiry_date));
-        $update->number_of_competitions = $request->number_of_competitions;
-        $update->number_of_winners = $request->number_of_winners;
         $update->status = $request->status;
-        $update->save();
+        $update->update();
 
 
         return redirect()->route('product.index')->with('message', 'Product Updated Successfully !');

@@ -76,5 +76,14 @@ Route::group(['middleware' => ['auth']], function() {
     //Products
     Route::resource('product', 'admin\ProductController');
 
+    //Category
+    Route::resource('category', 'admin\CategoryController');
+
+    //Faqs
+    Route::resource('faq', 'admin\FaqController');
+
+    //Coupon
+    Route::resource('coupon', 'admin\CouponController');
+
 
 });

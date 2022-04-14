@@ -18,10 +18,22 @@
 				{{ method_field('PATCH') }}
 				<div class="box box-info">
 					<div class="box-body">
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Category<span style="color: red">*</span></label>
+                            <div class="col-md-9">
+                                <select name="category_slug" id="category_slug" class="form-control">
+                                    <option value="" selected>Select category</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->slug }}" {{ $details->category_slug == $category->slug ? 'selected':'' }}>{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                                <span style="color: red">{{ $errors->first('category_slug') }}</span>
+                            </div>
+						</div>
 						<div class="form-group">
 							<label for="" class="col-sm-2 control-label">Name <span style="color:red">*</span></label>
 							<div class="col-sm-9">
-								<input type="text" autocomplete="off" class="form-control" name="title" value="{{$details->name}}">
+								<input type="text" autocomplete="off" class="form-control" name="name" value="{{$details->name}}">
 							</div>
 						</div>
                         <div class="form-group">
@@ -32,27 +44,38 @@
 							</div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Product Type <span style="color: red">*</span></label>
-                            <div class="col-md-9">
-                                <select name="type" id="type" class="form-control">
-                                    <option value="" selected>Select product type</option>
-                                    <option value="fix" {{ $details->type == 'fix' ? 'selected':'' }}>Fix Discount</option>
-									<option value="percent" {{ $details->type=='percent'?'selected':'' }}>Percent Discount</option>
-                                </select>
-                                <span style="color: red">{{ $errors->first('type') }}</span>
-                            </div>
-						</div>
+							<label for="" class="col-sm-2 control-label">Min Competition<span style="color: red">*</span></label>
+							<div class="col-sm-9">
+                                <input type="number" name="min_competition" id="" value="{{$details->min_competition}}" min="1" class="form-control placeholder="Enter min competition">
+								<span style="color: red">{{ $errors->first('min_competition') }}</span>
+							</div>
+                        </div>
+                        <div class="form-group">
+							<label for="" class="col-sm-2 control-label">Max Competition<span style="color: red">*</span></label>
+							<div class="col-sm-9">
+                                <input type="number" name="max_competition" id="" value="{{$details->max_competition}}" min="1" max="190" class="form-control placeholder="Enter max competition">
+								<span style="color: red">{{ $errors->first('max_competition') }}</span>
+							</div>
+                        </div>
+                        <div class="form-group">
+							<label for="" class="col-sm-2 control-label">Number Of Winners<span style="color: red">*</span></label>
+							<div class="col-sm-9">
+                                <input type="number" name="number_of_winners" id="" value="{{$details->number_of_winners}}" min="1" max="190" class="form-control placeholder="Enter number of winners">
+								<span style="color: red">{{ $errors->first('number_of_winners') }}</span>
+							</div>
+                        </div>
+
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">Expiry Date <span style="color: red">*</span></label>
                             <div class="col-sm-9">
-                                <input type="date" name="expiry_date" value="{{ $details->expiry_date }}" id="end-date" min="{{ date('Y-m-d') }}" class="form-control">
+                                <input type="date" name="draw_ends" value="{{ $details->draw_ends }}" id="end-date"  class="form-control">
                                 <span id="error-end-date" style="color:red"></span>
-                                <span style="color: red">{{ $errors->first('expiry_date') }}</span>
+                                <span style="color: red">{{ $errors->first('draw_ends') }}</span>
                             </div>
                          </div>
 
                          <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Exist Image </label>
+                            <label for="" class="col-sm-2 control-label">Image </label>
                             <div class="col-sm-6" style="padding-top:5px">
                                 <input type="file" class="form-control" accept="image*" name="image">
                             </div>
@@ -74,6 +97,41 @@
 								<span style="color: red">{{ $errors->first('description') }}</span>
 							</div>
 						</div>
+                        <div class="form-group">
+							<label for="" class="col-sm-2 control-label">Question <span style="color: red">*</span></label>
+							<div class="col-sm-9">
+								<textarea class="form-control" name="question" style="height:100px;" placeholder="Enter question">{!! isset($details->hasQuestion)?$details->hasQuestion->question:'' !!}</textarea>
+								<span style="color: red">{{ $errors->first('question') }}</span>
+							</div>
+						</div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Answer<span style="color: red">*</span></label>
+                            <div class="col-sm-9">
+                            <input type="text" name="answer" id="" value="{!! isset($details->hasQuestion)?$details->hasQuestion->answer:'' !!}" class="form-control" placeholder="Enter answer">
+                            <span style="color: red">{{ $errors->first('answer') }}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Option#1<span style="color: red">*</span></label>
+                            <div class="col-sm-9">
+                            <input type="text" name="choices[]" id="" value="{{ isset($details->hasQuestion->hasOptions[0])?$details->hasQuestion->hasOptions[0]->choices:'' }}" class="form-control" placeholder="Enter choices">
+                            <span style="color: red">{{ $errors->first('choices') }}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Option#2<span style="color: red">*</span></label>
+                            <div class="col-sm-9">
+                            <input type="text" name="choices[]" id="" value="{{ isset($details->hasQuestion->hasOptions[1])?$details->hasQuestion->hasOptions[1]->choices:'' }}" class="form-control" placeholder="Enter choices">
+                            <span style="color: red">{{ $errors->first('choices') }}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Option#3<span style="color: red">*</span></label>
+                            <div class="col-sm-9">
+                            <input type="text" name="choices[]" id="" value="{{ isset($details->hasQuestion->hasOptions[2])?$details->hasQuestion->hasOptions[2]->choices:'' }}" class="form-control" placeholder="Enter choices">
+                            <span style="color: red">{{ $errors->first('choices') }}</span>
+                            </div>
+                        </div>
 
 						<div class="form-group">
 							<label for="" class="col-sm-2 control-label">Status</label>
@@ -118,7 +176,7 @@
 
 		$("#regform").validate({
 			rules: {
-				title: "required",
+				name: "required",
 				description: "required",
 			}
 		});

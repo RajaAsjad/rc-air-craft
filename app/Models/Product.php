@@ -11,4 +11,7 @@ class Product extends Model
     use HasFactory,SoftDeletes;
     protected $guarded = [];
 
+    public function hasQuestion(){
+        return $this->hasOne(Question::class, 'product_slug', 'slug');
+    }
 }

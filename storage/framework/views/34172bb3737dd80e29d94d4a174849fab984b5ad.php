@@ -18,10 +18,22 @@
 
 				<div class="box box-info">
 					<div class="box-body">
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Category<span style="color: red">*</span></label>
+                            <div class="col-md-9">
+                                <select name="category_slug" id="category_slug" class="form-control">
+                                    <option value="" selected>Select category</option>
+                                    <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($category->slug); ?>" <?php echo e($details->category_slug == $category->slug ? 'selected':''); ?>><?php echo e($category->name); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </select>
+                                <span style="color: red"><?php echo e($errors->first('category_slug')); ?></span>
+                            </div>
+						</div>
 						<div class="form-group">
 							<label for="" class="col-sm-2 control-label">Name <span style="color:red">*</span></label>
 							<div class="col-sm-9">
-								<input type="text" autocomplete="off" class="form-control" name="title" value="<?php echo e($details->name); ?>">
+								<input type="text" autocomplete="off" class="form-control" name="name" value="<?php echo e($details->name); ?>">
 							</div>
 						</div>
                         <div class="form-group">
@@ -32,27 +44,38 @@
 							</div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Product Type <span style="color: red">*</span></label>
-                            <div class="col-md-9">
-                                <select name="type" id="type" class="form-control">
-                                    <option value="" selected>Select product type</option>
-                                    <option value="fix" <?php echo e($details->type == 'fix' ? 'selected':''); ?>>Fix Discount</option>
-									<option value="percent" <?php echo e($details->type=='percent'?'selected':''); ?>>Percent Discount</option>
-                                </select>
-                                <span style="color: red"><?php echo e($errors->first('type')); ?></span>
-                            </div>
-						</div>
+							<label for="" class="col-sm-2 control-label">Min Competition<span style="color: red">*</span></label>
+							<div class="col-sm-9">
+                                <input type="number" name="min_competition" id="" value="<?php echo e($details->min_competition); ?>" min="1" class="form-control placeholder="Enter min competition">
+								<span style="color: red"><?php echo e($errors->first('min_competition')); ?></span>
+							</div>
+                        </div>
+                        <div class="form-group">
+							<label for="" class="col-sm-2 control-label">Max Competition<span style="color: red">*</span></label>
+							<div class="col-sm-9">
+                                <input type="number" name="max_competition" id="" value="<?php echo e($details->max_competition); ?>" min="1" max="190" class="form-control placeholder="Enter max competition">
+								<span style="color: red"><?php echo e($errors->first('max_competition')); ?></span>
+							</div>
+                        </div>
+                        <div class="form-group">
+							<label for="" class="col-sm-2 control-label">Number Of Winners<span style="color: red">*</span></label>
+							<div class="col-sm-9">
+                                <input type="number" name="number_of_winners" id="" value="<?php echo e($details->number_of_winners); ?>" min="1" max="190" class="form-control placeholder="Enter number of winners">
+								<span style="color: red"><?php echo e($errors->first('number_of_winners')); ?></span>
+							</div>
+                        </div>
+
                         <div class="form-group">
                             <label for="" class="col-sm-2 control-label">Expiry Date <span style="color: red">*</span></label>
                             <div class="col-sm-9">
-                                <input type="date" name="expiry_date" value="<?php echo e($details->expiry_date); ?>" id="end-date" min="<?php echo e(date('Y-m-d')); ?>" class="form-control">
+                                <input type="date" name="draw_ends" value="<?php echo e($details->draw_ends); ?>" id="end-date"  class="form-control">
                                 <span id="error-end-date" style="color:red"></span>
-                                <span style="color: red"><?php echo e($errors->first('expiry_date')); ?></span>
+                                <span style="color: red"><?php echo e($errors->first('draw_ends')); ?></span>
                             </div>
                          </div>
 
                          <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Exist Image </label>
+                            <label for="" class="col-sm-2 control-label">Image </label>
                             <div class="col-sm-6" style="padding-top:5px">
                                 <input type="file" class="form-control" accept="image*" name="image">
                             </div>
@@ -74,6 +97,41 @@
 								<span style="color: red"><?php echo e($errors->first('description')); ?></span>
 							</div>
 						</div>
+                        <div class="form-group">
+							<label for="" class="col-sm-2 control-label">Question <span style="color: red">*</span></label>
+							<div class="col-sm-9">
+								<textarea class="form-control" name="question" style="height:100px;" placeholder="Enter question"><?php echo isset($details->hasQuestion)?$details->hasQuestion->question:''; ?></textarea>
+								<span style="color: red"><?php echo e($errors->first('question')); ?></span>
+							</div>
+						</div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Answer<span style="color: red">*</span></label>
+                            <div class="col-sm-9">
+                            <input type="text" name="answer" id="" value="<?php echo isset($details->hasQuestion)?$details->hasQuestion->answer:''; ?>" class="form-control" placeholder="Enter answer">
+                            <span style="color: red"><?php echo e($errors->first('answer')); ?></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Option#1<span style="color: red">*</span></label>
+                            <div class="col-sm-9">
+                            <input type="text" name="choices[]" id="" value="<?php echo e(isset($details->hasQuestion->hasOptions[0])?$details->hasQuestion->hasOptions[0]->choices:''); ?>" class="form-control" placeholder="Enter choices">
+                            <span style="color: red"><?php echo e($errors->first('choices')); ?></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Option#2<span style="color: red">*</span></label>
+                            <div class="col-sm-9">
+                            <input type="text" name="choices[]" id="" value="<?php echo e(isset($details->hasQuestion->hasOptions[1])?$details->hasQuestion->hasOptions[1]->choices:''); ?>" class="form-control" placeholder="Enter choices">
+                            <span style="color: red"><?php echo e($errors->first('choices')); ?></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Option#3<span style="color: red">*</span></label>
+                            <div class="col-sm-9">
+                            <input type="text" name="choices[]" id="" value="<?php echo e(isset($details->hasQuestion->hasOptions[2])?$details->hasQuestion->hasOptions[2]->choices:''); ?>" class="form-control" placeholder="Enter choices">
+                            <span style="color: red"><?php echo e($errors->first('choices')); ?></span>
+                            </div>
+                        </div>
 
 						<div class="form-group">
 							<label for="" class="col-sm-2 control-label">Status</label>
@@ -118,7 +176,7 @@
 
 		$("#regform").validate({
 			rules: {
-				title: "required",
+				name: "required",
 				description: "required",
 			}
 		});

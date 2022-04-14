@@ -34,24 +34,38 @@
                 </a>
             </li>
             @endcan
-            @can('booking_type-list')
-            <li class="treeview">
-                <a href="{{ route('booking_type.index') }}" class="{{ request()->is('booking_type') || request()->is('booking_type/*')? 'active' : '' }}">
-                    <i class="fa fa-book"></i> <span>Booking Types</span>
-                </a>
-            </li>
-            @endcan
             @can('product-list')
             <li class="treeview">
                 <a href="{{ route('product.index') }}" class="{{ request()->is('product') || request()->is('product/create') || request()->is('product/*/edit') ? 'active' : '' }}">
-                    <i class="fa fa-product"></i> <span>Products</span>
+                    <i class="fa fa-product-hunt"></i> <span>Products</span>
                 </a>
             </li>
             @endcan
-            @can('degree-list')
+            @can('category-list')
             <li class="treeview">
-                <a href="{{ route('degree.index') }}" class="{{ request()->is('degree') || request()->is('degree/create') || request()->is('degree/*/edit') ? 'active' : '' }}">
-                    <i class="fa fa-graduation-cap"></i> <span>Degrees</span>
+                <a href="{{ route('category.index') }}" class="{{ request()->is('category') || request()->is('category/create') || request()->is('category/*/edit') ? 'active' : '' }}">
+                    <i class="fa fa-list-alt"></i> <span>Categories</span>
+                </a>
+            </li>
+            @endcan
+            @can('faq-list')
+            <li class="treeview">
+                <a href="{{ route('faq.index') }}" class="{{ request()->is('faq') || request()->is('faq/create') || request()->is('faq/*/edit') ? 'active' : '' }}">
+                    <i class="fa fa-question-circle"></i> <span>Faqs</span>
+                </a>
+            </li>
+            @endcan
+           @can('coupon-list')
+            <li class="treeview">
+                <a href="{{ route('coupon.index') }}" class="{{ request()->is('coupon') || request()->is('coupon/create') || request()->is('coupon/*/edit') ? 'active' : '' }}">
+                    <i class="fa fa-graduation-cap"></i> <span>Coupons</span>
+                </a>
+            </li>
+            @endcan
+                {{--    @can('booking_type-list')
+            <li class="treeview">
+                <a href="{{ route('booking_type.index') }}" class="{{ request()->is('booking_type') || request()->is('booking_type/*')? 'active' : '' }}">
+                    <i class="fa fa-book"></i> <span>Booking Types</span>
                 </a>
             </li>
             @endcan
@@ -75,15 +89,9 @@
                     <i class="fa fa-sliders"></i> <span>Sliders</span>
                 </a>
             </li>
-            @endcan
-            @can('category-list')
-            <li class="treeview">
-                <a href="{{ route('category.index') }}" class="{{ request()->is('category') || request()->is('category/create') || request()->is('category/*/edit') ? 'active' : '' }}">
-                    <i class="fa fa-list-alt"></i> <span>Category</span>
-                </a>
-            </li>
-            @endcan
-            @can('blog-list')
+            @endcan --}}
+
+           {{--  @can('blog-list')
             <li class="treeview">
                 <a href="{{ route('blog.index') }}" class="{{ request()->is('blog') || request()->is('blog/create') || request()->is('blog/*/edit') ? 'active' : '' }}">
                     <i class="fa fa-sticky-note"></i> <span>Blogs</span>
@@ -125,13 +133,6 @@
                 </a>
             </li>
             @endcan
-            @can('help-list')
-            <li class="treeview">
-                <a href="{{ route('help.index') }}" class="{{ request()->is('help') || request()->is('help/create') || request()->is('help/*/edit') ? 'active' : '' }}">
-                    <i class="fa fa-question-circle"></i> <span>Help</span>
-                </a>
-            </li>
-            @endcan
             @can('why_choose-list')
             <li class="treeview">
                 <a href="{{ route('why_choose.index') }}" class="{{ request()->is('why_choose') || request()->is('why_choose/create') || request()->is('why_choose/*/edit') ? 'active' : '' }}">
@@ -145,7 +146,7 @@
                     <i class="fa fa-address-book"></i> <span>Social Media</span>
                 </a>
             </li>
-            @endcan
+            @endcan --}}
         </ul>
     </section>
 </aside>

@@ -52,7 +52,7 @@
 							@foreach($models as $key=>$model)
 								<tr id="id-{{ $model->slug }}">
 									<td>{{ $models->firstItem()+$key }}.</td>
-									<td>{{isset($model->hasCreatedBy)?$model->hasCreatedBy->name:'N/A'}}</td>
+
 									<td>{{\Illuminate\Support\Str::limit($model->name,40)}}</td>
 									<td>{{\Illuminate\Support\Str::limit($model->description,60)}}</td>
 									<td>
@@ -62,6 +62,7 @@
 											<span class="badge badge-danger">In-Active</span>
 										@endif
 									</td>
+                                    <td>{{isset($model->hasCreatedBy)?$model->hasCreatedBy->name:'N/A'}}</td>
 									<td width="250px">
 										@can('category-edit')
 											<a href="{{route('category.edit', $model->slug)}}" data-toggle="tooltip" data-placement="top" title="Edit category" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit</a>
@@ -74,7 +75,6 @@
 							@endforeach
                             <tr>
                                 <td colspan="6">
-									Displying {{$models->firstItem()}} to {{$models->lastItem()}} of {{$models->total()}} records
                                     <div class="d-flex justify-content-center">
                                         {!! $models->links('pagination::bootstrap-4') !!}
                                     </div>

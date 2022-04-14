@@ -514,7 +514,7 @@ footer {
 }
 
 
-/* 
+/*
 .foot-text h4 {
     color: white;
     font-family: 'Cocogoose';
@@ -579,7 +579,7 @@ input#email {
 }
 
 
-/* 
+/*
 section.cop {
     color: #000;
     font-weight: 300;
@@ -697,6 +697,7 @@ header .navbar-nav a:hover {
     border-left: 1px solid #317dd8;
     border-right: 1px solid #317dd8;
     border-top: 1px solid #317dd8;
+    border-bottom: 1px solid #317dd8;
 }
 
 #main #faq .card .card-header .btn-header-link:after {
@@ -744,6 +745,7 @@ header .navbar-nav a:hover {
 }
 
 .card-body {
+    background: #000 !important;
     font-family: 'Rubik';
     font-size: 15px;
     line-height: 25px;
