@@ -1,3 +1,4 @@
+
 <?php $__env->startSection('content'); ?>
     <!-- banner-start -->
     <div class="banner">
@@ -42,7 +43,7 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__currentLoopData = $data['competitions']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="col-lg-4 col-md-6">
                             <ul class="products">
                                 <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
@@ -64,9 +65,11 @@
                                         <p><?php echo $product->short_description; ?></p>
                                     </div>
                                     <h5>0 <span>Entries Remaining</span></h5>
-                                    <a href="<?php echo e(route ('single-products')); ?>">Enter Now</a>
-                                    <h3><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span><?php echo e($product->price); ?></bdi>
-                                        </span> <span>Per Entry</span></h3>
+                                    <a href="<?php echo e(route ('single-product', $product->slug)); ?>">Enter Now</a>
+                                    <h3>
+                                        <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span><?php echo e($product->price); ?></bdi>
+                                        </span> <span>Per Entry</span>
+                                    </h3>
                                 </li>
                             </ul>
                         </div>
@@ -87,7 +90,7 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__currentLoopData = $data['mini-competitions']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="col-lg-4 col-md-6">
                             <ul class="products">
                                 <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
@@ -109,12 +112,10 @@
                                         <p><?php echo $product->short_description; ?></p>
                                     </div>
                                     <h5>0 <span>Entries Remaining</span></h5>
-                                    <a href="<?php echo e(route ('single-products')); ?>">Enter Now</a>
+                                    <a href="<?php echo e(route ('single-product', $product->slug)); ?>">Enter Now</a>
                                     <h3><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>1.90</bdi>
                                         </span> <span>Per Entry</span></h3>
-
                                 </li>
-
                             </ul>
                         </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

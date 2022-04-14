@@ -55,13 +55,14 @@ Route::get('registration', [WebController::class, 'registration'])->name('regist
 Route::get('result', [WebController::class, 'result'])->name('result');
 Route::get('resultinner', [WebController::class, 'resultinner'])->name('resultinner');
 Route::get('shipping-address', [WebController::class, 'shippingAddress'])->name('shipping-address');
-Route::get('single-products', [WebController::class, 'singleProducts'])->name('single-products');
+
 Route::get('sold-out', [WebController::class, 'soldOut'])->name('sold-out');
 Route::get('terms-and-conditions', [WebController::class, 'termsAndConditions'])->name('terms-and-conditions');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('single-product/{slug}', 'WebController@singleProduct')->name('single-product');
 
 Route::group(['middleware' => ['auth']], function() {
     //Roles
@@ -84,6 +85,5 @@ Route::group(['middleware' => ['auth']], function() {
 
     //Coupon
     Route::resource('coupon', 'admin\CouponController');
-
 
 });

@@ -43,7 +43,7 @@
             </div>
             <div class="container">
                 <div class="row">
-                    @foreach ($products as $product)
+                    @foreach ($data['competitions'] as $product)
                         <div class="col-lg-4 col-md-6">
                             <ul class="products">
                                 <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
@@ -65,9 +65,11 @@
                                         <p>{!! $product->short_description !!}</p>
                                     </div>
                                     <h5>0 <span>Entries Remaining</span></h5>
-                                    <a href="{{route ('single-products') }}">Enter Now</a>
-                                    <h3><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>{{ $product->price }}</bdi>
-                                        </span> <span>Per Entry</span></h3>
+                                    <a href="{{route ('single-product', $product->slug) }}">Enter Now</a>
+                                    <h3>
+                                        <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>{{ $product->price }}</bdi>
+                                        </span> <span>Per Entry</span>
+                                    </h3>
                                 </li>
                             </ul>
                         </div>
@@ -88,7 +90,7 @@
             </div>
             <div class="container">
                 <div class="row">
-                    @foreach ($products as $product)
+                    @foreach ($data['mini-competitions'] as $product)
                         <div class="col-lg-4 col-md-6">
                             <ul class="products">
                                 <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
@@ -110,7 +112,7 @@
                                         <p>{!! $product->short_description !!}</p>
                                     </div>
                                     <h5>0 <span>Entries Remaining</span></h5>
-                                    <a href="{{route ('single-products') }}">Enter Now</a>
+                                    <a href="{{route ('single-product', $product->slug) }}">Enter Now</a>
                                     <h3><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>1.90</bdi>
                                         </span> <span>Per Entry</span></h3>
                                 </li>
