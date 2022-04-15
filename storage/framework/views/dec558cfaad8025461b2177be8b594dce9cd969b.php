@@ -40,10 +40,19 @@
                 </div>
             </div>
             <div class="col-md-3">
+                <?php if(session('status')): ?>
+				<div class="callout callout-success">
+					<?php echo e(session('status')); ?>
+
+				</div>
+			<?php endif; ?>
                 <h4>SIGNUP FOR NEWSLETTER</h4>
-                <input type="email" name="email" placeholder="Email Address" id="email">
-                <button class="submit" type="submit" id="submit">Submit</button>
-                <img src="<?php echo e(asset('public/assets/website')); ?>/images/card.png" class="img-fluid mt-4">
+                <form action="<?php echo e(route('newsletter.store')); ?>" id="regform" class="form-horizontal" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                    <?php echo csrf_field(); ?>
+                    <input type="email" name="email" placeholder="Email Address" id="email">
+                    <button class="submit" type="submit" id="submit">Submit</button>
+                    <img src="<?php echo e(asset('public/assets/website')); ?>/images/card.png" class="img-fluid mt-4">
+                </form>
             </div>
         </div>
     </div>

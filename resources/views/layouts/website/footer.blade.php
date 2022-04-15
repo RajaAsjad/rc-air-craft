@@ -40,10 +40,18 @@
                 </div>
             </div>
             <div class="col-md-3">
+                @if (session('status'))
+				<div class="callout callout-success">
+					{{ session('status') }}
+				</div>
+			@endif
                 <h4>SIGNUP FOR NEWSLETTER</h4>
-                <input type="email" name="email" placeholder="Email Address" id="email">
-                <button class="submit" type="submit" id="submit">Submit</button>
-                <img src="{{ asset('public/assets/website') }}/images/card.png" class="img-fluid mt-4">
+                <form action="{{ route('newsletter.store') }}" id="regform" class="form-horizontal" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                    @csrf
+                    <input type="email" name="email" placeholder="Email Address" id="email">
+                    <button class="submit" type="submit" id="submit">Submit</button>
+                    <img src="{{ asset('public/assets/website') }}/images/card.png" class="img-fluid mt-4">
+                </form>
             </div>
         </div>
     </div>

@@ -7,7 +7,11 @@
                 <div class="col-md-12">
                     <h1 class="aircraft">Welcome To R.C <br><span>Aircraft Online</span></h1>
                     <a class="all-site-btn"  href="#competitions">View Competition</a>
-
+                    @if (session('message'))
+                        <div class="callout callout-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -69,7 +73,7 @@
                                     <h3>
                                         <span class="woocommerce-Price-amount amount">
                                             <bdi><span class="woocommerce-Price-currencySymbol">$</span>{{ number_format($product->price, 2) }}</bdi>
-                                        </span> 
+                                        </span>
                                         <span>Per Entry</span>
                                     </h3>
                                 </li>
@@ -118,7 +122,7 @@
                                     <h3>
                                         <span class="woocommerce-Price-amount amount">
                                             <bdi><span class="woocommerce-Price-currencySymbol">$</span>{{ number_format($product->price, 2) }}</bdi>
-                                        </span> 
+                                        </span>
                                         <span>Per Entry</span>
                                     </h3>
                                 </li>

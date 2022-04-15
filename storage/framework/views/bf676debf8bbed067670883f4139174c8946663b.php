@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css">
     <link rel="stylesheet" href="<?php echo e(asset('public/assets/website')); ?>/css/style.css">
+    <link rel="stylesheet" href="<?php echo e(asset('public/admin/assets/css/toastr.min.css')); ?>">
     <link rel="icon" href="<?php echo e(asset('public/assets/website')); ?>/images/favicon.png" type="image/png" sizes="16x16">
     <title>R.C Aircraft Online | Lucky Draw Competition</title>
 </head>
@@ -40,8 +41,45 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 
+<script src="<?php echo e(asset('public/admin/assets/js/toastr.min.js')); ?>"></script>
+<script>
+    <?php if(Session::has('message')): ?>
+    toastr.options =
+    {
+        "closeButton" : true,
+        "progressBar" : true
+    }
+            toastr.success("<?php echo e(session('message')); ?>");
+    <?php endif; ?>
 
+    <?php if(Session::has('error')): ?>
+    toastr.options =
+    {
+        "closeButton" : true,
+        "progressBar" : true
+    }
+            toastr.error("<?php echo e(session('error')); ?>");
+    <?php endif; ?>
 
+    <?php if(Session::has('info')): ?>
+    toastr.options =
+    {
+        "closeButton" : true,
+        "progressBar" : true
+    }
+            toastr.info("<?php echo e(session('info')); ?>");
+    <?php endif; ?>
+
+    <?php if(Session::has('warning')): ?>
+    toastr.options =
+    {
+        "closeButton" : true,
+        "progressBar" : true
+    }
+            toastr.warning("<?php echo e(session('warning')); ?>");
+    <?php endif; ?>
+</script>
+<?php echo method_field('js'); ?>
 </body>
 
 </html>

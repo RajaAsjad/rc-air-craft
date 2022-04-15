@@ -88,5 +88,6 @@ Route::group(['middleware' => ['auth']], function() {
 
     //order
     Route::resource('order', 'OrderController');
-
 });
+
+Route::resource('newsletter', 'NewsletterController');
