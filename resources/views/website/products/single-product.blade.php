@@ -53,7 +53,11 @@
                             @endforeach
                         </ul>
                         <div class="input-group quantity_goods">
-                            <input type="number" step="1" min="1" max="10" id="num_count" name="quantity" value="1" title="Qty"><button class="btn-to-you ">Participate now for $66.11</button>
+                            <form action="{{ route('order.store') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="product_id" name="{{ $product->id }}">
+                                <input type="number" step="1" min="1" max="10" id="num_count" name="quantity" value="1" title="Qty"><button type="submit" class="btn-to-you ">Participate now </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -63,7 +67,6 @@
                     <p class="hed">Description</p>
                 </div>
                 <div class="main-des">
-                    <h2>Description</h2>
                     <p class="descrip">{!! $product->short_description !!}</p>
                 </div>
             </div>

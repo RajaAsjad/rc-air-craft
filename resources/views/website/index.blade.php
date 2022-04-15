@@ -67,8 +67,10 @@
                                     <h5>0 <span>Entries Remaining</span></h5>
                                     <a href="{{route ('single-product', $product->slug) }}">Enter Now</a>
                                     <h3>
-                                        <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>{{ $product->price }}</bdi>
-                                        </span> <span>Per Entry</span>
+                                        <span class="woocommerce-Price-amount amount">
+                                            <bdi><span class="woocommerce-Price-currencySymbol">$</span>{{ number_format($product->price, 2) }}</bdi>
+                                        </span> 
+                                        <span>Per Entry</span>
                                     </h3>
                                 </li>
                             </ul>
@@ -113,8 +115,12 @@
                                     </div>
                                     <h5>0 <span>Entries Remaining</span></h5>
                                     <a href="{{route ('single-product', $product->slug) }}">Enter Now</a>
-                                    <h3><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">£</span>1.90</bdi>
-                                        </span> <span>Per Entry</span></h3>
+                                    <h3>
+                                        <span class="woocommerce-Price-amount amount">
+                                            <bdi><span class="woocommerce-Price-currencySymbol">$</span>{{ number_format($product->price, 2) }}</bdi>
+                                        </span> 
+                                        <span>Per Entry</span>
+                                    </h3>
                                 </li>
                             </ul>
                         </div>

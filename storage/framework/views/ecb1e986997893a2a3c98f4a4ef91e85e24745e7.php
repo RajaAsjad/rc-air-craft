@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('content'); ?>
     <div class="login-box">
         <div class="login-logo">

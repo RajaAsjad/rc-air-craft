@@ -86,4 +86,7 @@ Route::group(['middleware' => ['auth']], function() {
     //Coupon
     Route::resource('coupon', 'admin\CouponController');
 
+    //order
+    Route::resource('order', 'OrderController');
+
 });
