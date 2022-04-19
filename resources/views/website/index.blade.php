@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="aircraft">Welcome To R.C <br><span>Aircraft Online</span></h1>
+                    <h1 class="aircraft">{!! $home_page_data['banner_heading'] !!}</h1>
                     <a class="all-site-btn"  href="#competitions">View Competition</a>
                     @if (session('message'))
                         <div class="callout callout-success">
@@ -17,7 +17,6 @@
         </div>
     </div>
     <!-- banner-send -->
-
     <!-- min-header-start -->
     <div class="min-header">
         <div class="container">

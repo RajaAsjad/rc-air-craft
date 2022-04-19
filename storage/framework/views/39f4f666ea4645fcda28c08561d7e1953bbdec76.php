@@ -22,6 +22,7 @@
 		<link rel="stylesheet" href="<?php echo e(asset('public/admin/assets/css/magnific-popup.css')); ?>">
 		<link rel="stylesheet" href="<?php echo e(asset('public/admin/assets/css/style.css')); ?>">
 		<link rel="stylesheet" href="<?php echo e(asset('public/admin/assets/css/toastr.min.css')); ?>">
+        <link rel="icon" href="<?php echo e(asset('public/admin/assets/images/page')); ?>/<?php echo e($home_page_data['header_favicon']); ?>" type="image/png" sizes="16x16">
 
 		<style>
 			.skin-blue .wrapper,
