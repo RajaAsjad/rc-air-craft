@@ -139,28 +139,15 @@
         <div class="container">
             <h2>HOW TO PLAY</h2>
             <h4>Playing Our Competitions is Easy</h4>
-            <div class="row">
-                <div class="col-lg-3 col-md-6 play-inner">
-                    <img src="{{ asset('public/assets/website') }}/images/play-1.png">
-                    <h4>CHOOSE COMPETITION</h4>
-                    <p class="play-text">Choose from our list of current competitions which prize you want to enter for.</p>
+                <div class="row">
+                    @foreach ($howtoplays as $howtoplay)
+                    <div class="col-lg-3 col-md-6 play-inner">
+                        <img src="{{ asset('public/admin/assets/images/howToPlay') }}/{{ $howtoplay->image }}">
+                        <h4>{{ $howtoplay->title }}</h4>
+                        <p class="play-text">{!! $howtoplay->description !!}</p>
+                    </div>
+                    @endforeach
                 </div>
-                <div class="col-lg-3 col-md-6 play-inner">
-                    <img src="{{ asset('public/assets/website') }}/images/play-2.png">
-                    <h4>answer the question</h4>
-                    <p class="play-text">Answer the skill based question for your entry to be successful</p>
-                </div>
-                <div class="col-lg-3 col-md-6 play-inner">
-                    <img src="{{ asset('public/assets/website') }}/images/play-4.png">
-                    <h4>enter live draw</h4>
-                    <p class="play-text">Assuming you entered the answer correctly you will be entered into the Facebook Live draw.</p>
-                </div>
-                <div class="col-lg-3 col-md-6 play-inner">
-                    <img src="{{ asset('public/assets/website') }}/images/fb-1.png">
-                    <h4>Facebook</h4>
-                    <p class="play-text">Sit back and watch the live draw on our Facebook Page.</p>
-                </div>
-            </div>
             <div class="account">
                 <a href="{{route ('login') }}">CREATE ACCOUNT</a>
             </div>
@@ -173,15 +160,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-4">
-                    <img src="{{ asset('public/assets/website') }}/images/20201206_231807.jpg" class="img-fluid">
+                    <img src="{{ asset('public/admin/assets/images/page') }}/{{$home_page_data['image']}}" alt="imgs" class="img-fluid">
                 </div>
                 <div class="col-lg-8 col-md-8 about-text">
-                    <h4 data-aos="fade-down" data-aos-duration="3000" class="aos-init aos-animate">ABOUT US</h4>
-                    <h2 data-aos="fade-down" data-aos-duration="3000" class="aos-init aos-animate">RC aircraft online</h2>
+                    <h4 data-aos="fade-down" data-aos-duration="3000" class="aos-init aos-animate">{!! $home_page_data['mt_about'] !!}</h4>
+                    <h2 data-aos="fade-down" data-aos-duration="3000" class="aos-init aos-animate">{!! $home_page_data['about_heading'] !!}</h2>
                     <p></p>
-                    <p>At<strong> R.C Aircraft Online</strong>, our goal is to create lots of winners up and down the country winning fantastic prizes for less than the cost of a receiver battery. We are supporting UK model shops and UK manufacturers in
-                        what we do, which is very important to us.&nbsp; All prizes display a Entry price per Entry and a LIVE draw is done on our Facebook page once all Entries are sold, <strong>Competitions are drawn same week of selling out where possible.</strong>                        Prizes are then sent to the Winners via courier FREE of charge*&nbsp; &nbsp; Tell your Friends, Family and Club members and come and join the Fun.</p>
-                    <p></p>
+                    <p>{!! $home_page_data['about_content'] !!}</p>
                     <a href="{{ ('about-us') }}" class="all-site-btn">READ MORE</a>
                 </div>
             </div>
@@ -192,9 +177,10 @@
     <!-- gallery-start -->
     <div class="gallery">
         <div class="container-fluid">
-            <h2>our valued winners</h2>
-            <h4>Here are just a few of our past winners!</h4>
-
+            @foreach ($sliders as $slider)
+            <h2>{{$slider->title}}</h2>
+            <h4>{{$slider->description}}</h4>
+            @endforeach
             <section class="winner-sec" id="gallery">
                 <div class="winner-main" id="winner-main">
                     <div class="slider-win" id="">
@@ -204,21 +190,11 @@
                         <input type="radio" name="testimonialwin" class="t-1" data-attr="4" id="t-4">
                         <input type="radio" name="testimonialwin" class="t-1" data-attr="5" id="t-5">
                         <div class="testimonials-win">
-                            <label class="item" id="myitem1" for="t-1">
-                                <img src="{{ asset('public/assets/website') }}/images/gal-1.jpg">
+                            @foreach ($sliders as $slider)
+                            <label class="item" id="myitem{{$slider->id}}" for="t-{{$slider->id}}">
+                                <img src="{{ asset('public/admin/assets/images/slider') }}/{{$slider->image}}" alt="imgs" >
                              </label>
-                            <label class="item" id="myitem2" for="t-2">
-                                <img src="{{ asset('public/assets/website') }}/images/gal-2.jpg">
-                             </label>
-                            <label class="item" id="myitem3" for="t-3">
-                                <img src="{{ asset('public/assets/website') }}/images/gal-3.jpg">
-                             </label>
-                            <label class="item" id="myitem4" for="t-4">
-                                <img src="{{ asset('public/assets/website') }}/images/gal-4.jpg">
-                             </label>
-                            <label class="item" id="myitem5" for="t-5">
-                                <img src="{{ asset('public/assets/website') }}/images/gal-5.jpg">
-                             </label>
+                             @endforeach
                         </div>
                     </div>
                     <div class="dots" id="myDIV">

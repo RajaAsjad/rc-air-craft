@@ -34,17 +34,17 @@
                 </a>
             </li>
             <?php endif; ?>
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('product-list')): ?>
-            <li class="treeview">
-                <a href="<?php echo e(route('product.index')); ?>" class="<?php echo e(request()->is('product') || request()->is('product/create') || request()->is('product/*/edit') ? 'active' : ''); ?>">
-                    <i class="fa fa-product-hunt"></i> <span>Products</span>
-                </a>
-            </li>
-            <?php endif; ?>
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('category-list')): ?>
             <li class="treeview">
                 <a href="<?php echo e(route('category.index')); ?>" class="<?php echo e(request()->is('category') || request()->is('category/create') || request()->is('category/*/edit') ? 'active' : ''); ?>">
                     <i class="fa fa-list-alt"></i> <span>Categories</span>
+                </a>
+            </li>
+            <?php endif; ?>
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('product-list')): ?>
+            <li class="treeview">
+                <a href="<?php echo e(route('product.index')); ?>" class="<?php echo e(request()->is('product') || request()->is('product/create') || request()->is('product/*/edit') ? 'active' : ''); ?>">
+                    <i class="fa fa-product-hunt"></i> <span>Products</span>
                 </a>
             </li>
             <?php endif; ?>
@@ -59,6 +59,20 @@
             <li class="treeview">
                 <a href="<?php echo e(route('coupon.index')); ?>" class="<?php echo e(request()->is('coupon') || request()->is('coupon/create') || request()->is('coupon/*/edit') ? 'active' : ''); ?>">
                     <i class="fa fa-graduation-cap"></i> <span>Coupons</span>
+                </a>
+            </li>
+            <?php endif; ?>
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('slider-list')): ?>
+            <li class="treeview">
+                <a href="<?php echo e(route('slider.index')); ?>" class="<?php echo e(request()->is('slider') || request()->is('slider/create') || request()->is('slider/*/edit') || request()->is('slider/*') ? 'active' : ''); ?>">
+                    <i class="fa fa-sliders"></i> <span>Sliders</span>
+                </a>
+            </li>
+            <?php endif; ?>
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('how_to_play-list')): ?>
+            <li class="treeview">
+                <a href="<?php echo e(route('how_to_play.index')); ?>" class="<?php echo e(request()->is('how_to_play') || request()->is('how_to_play/create') || request()->is('how_to_play/*/edit') || request()->is('how_to_play/*') ? 'active' : ''); ?>">
+                    <i class="fa fa-book"></i> <span>How To Play</span>
                 </a>
             </li>
             <?php endif; ?>

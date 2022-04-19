@@ -3,12 +3,12 @@
     <div class="container footer-highlight">
         <div class="row">
             <div class="col-md-12">
-                <p>Unlike other competition sites we are supporting the hobby by GIVING AWAY 1 complete trainer package per month to BMFA affiliated clubs to encourage new members into the hobby.</p>
+                 <p>{!! $home_page_data['footer_description'] !!}</p>
             </div>
         </div>
     </div>
     <div class="container">
-        <img class="foot-logo img-fluid" src="{{ asset('public/assets/website') }}/images/image-2.png">
+        <img class="foot-logo img-fluid" src="{{ asset('public/admin/assets/images/page') }}/{{ $home_page_data['footer_image'] }}">
         <div class="row foot-text">
             <div class="col-md-3">
                 <h4>QUICK LINKS</h4>
@@ -31,12 +31,12 @@
             <div class="col-md-3">
                 <h4>CONTACT US</h4>
                 <ul>
-                    <li><a href="mailto:rcaircraftonline@gmail.com">rcaircraftonline@gmail.com</a></li>
+                    <li><a href="">{{ $home_page_data['footer_email'] }}</a></li>
                 </ul>
                 <h4 class="mt-4">FOLLOW US</h4>
                 <div class="icons">
-                    <a href="https://www.facebook.com/RCAircraftonline/"><i class="fa fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/rcaircraftonline/"><i class="fa fa-instagram"></i></a>
+                    <a href="{{ $home_page_data['footer_facebook'] }}"><i class="fa fa-facebook"></i></a>
+                    <a href="{{ $home_page_data['footer_instagram'] }}"><i class="fa fa-instagram"></i></a>
                 </div>
             </div>
             <div class="col-md-3">
@@ -60,10 +60,10 @@
     <div class="container text-center copy">
         <div class="row">
             <div class="col-md-6">
-                <p>Copyright © 2022 - R.C Aircraft Online - All Rights Reserved</p>
+                <p>{!! $home_page_data['footer_copy_right_right_side'] !!}</p>
             </div>
             <div class="col-md-6">
-                <p>Site Design and Developed by <a href="https://www.pixelslogo.co.uk/">Pixels Logo</a></p>
+                <p> {!! $home_page_data['footer_copy_right_left_side'] !!}</p>
             </div>
         </div>
     </div>

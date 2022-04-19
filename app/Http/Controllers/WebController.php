@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Faq;
+use App\Models\Slider;
+use App\Models\HowToPlay;
 use Auth;
 use Hash;
 
@@ -18,7 +20,9 @@ class WebController extends Controller
         foreach($categories as $category){
             $data[$category->slug] = Product::where('category_slug', $category->slug)->where('status',1)->get();
         }
-        return view('website.index', compact('data'));
+        $howtoplays = HowToPlay::where('status',1)->get();
+        $sliders = Slider::where('status',1)->get();
+        return view('website.index', compact('data','howtoplays','sliders'));
     }
 
     public function singleProduct($slug)

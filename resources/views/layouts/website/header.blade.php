@@ -1,6 +1,5 @@
-
-    <!-- header -->
-    <header id="display-pc">
+<!-- header -->
+      <header id="display-pc">
         <div class="container">
             <div class="row" style=" display:flex; align-items: center;">
                 <div class="col-lg-4 col-md-4 left-menu">
@@ -16,7 +15,7 @@
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <a href="{{ route('index') }}">
-                        <img src="{{ asset('public/assets/website') }}/images/logo.png" class="img-fluid">
+                        <img src="{{ asset('public/admin/assets/images/page') }}/{{ $home_page_data['header_logo'] }}" alt="logo" class="img-fluid">
                     </a>
                 </div>
                 <div class="col-lg-4    col-md-4 left-menu">
@@ -55,7 +54,7 @@
                         <div class="navbar-nav">
                             <div class="logo">
                                 <a class="logo-responive" href="{{ route('index') }}">
-                                    <img src="{{ asset('public/assets/website') }}/images/logo.png" class="img-fluid">
+                                    <img src="{{ asset('public/admin/assets/images/page') }}/{{ $home_page_data['header_logo'] }}" alt="logo" class="img-fluid">
                                 </a>
                             </div>
                             <a class="nav-link active" aria-current="page" href="{{ route('index') }}">HOME</a>
@@ -78,4 +77,4 @@
             </div>
         </div>
     </header>
-    <!-- header -->
+<!-- header -->

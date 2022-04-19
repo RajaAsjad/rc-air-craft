@@ -20,7 +20,7 @@
                         <ul class="products">
                             <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
                                 <div class="pic">
-                                    <img src="{{ asset('public/assets/website') }}/images/0c135afc-d363-4a73-99ba-554f9cf6c3fd-300x300.jpg">
+                                    <img src="{{ asset('public/assets/website') }}/images/sold-out.jpg">
                                 </div>
                                 <div class="time-slot">
                                     <div id="countdown">

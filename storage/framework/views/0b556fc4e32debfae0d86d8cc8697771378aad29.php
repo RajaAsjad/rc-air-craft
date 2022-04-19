@@ -15,13 +15,6 @@
 <section class="content">
 	<div class="row">
 		<div class="col-md-12">
-			<?php if(session('status')): ?>
-				<div class="callout callout-success">
-					<?php echo e(session('status')); ?>
-
-				</div>
-			<?php endif; ?>
-
 			<div class="box box-info">
 				<div class="box-body">
                     <div class="row">

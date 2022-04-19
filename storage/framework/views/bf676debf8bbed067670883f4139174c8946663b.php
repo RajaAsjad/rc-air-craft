@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css">
     <link rel="stylesheet" href="<?php echo e(asset('public/assets/website')); ?>/css/style.css">
     <link rel="stylesheet" href="<?php echo e(asset('public/admin/assets/css/toastr.min.css')); ?>">
-    <link rel="icon" href="<?php echo e(asset('public/assets/website')); ?>/images/favicon.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="<?php echo e(asset('public/admin/assets/images/page')); ?>/<?php echo e($home_page_data['header_favicon']); ?>" type="image/png" sizes="16x16">
     <title>R.C Aircraft Online | Lucky Draw Competition</title>
 </head>
 

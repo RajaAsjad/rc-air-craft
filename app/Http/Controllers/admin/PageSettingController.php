@@ -43,7 +43,7 @@ class PageSettingController extends Controller
         if(empty($model)){
             foreach($request->all() as $key=>$value){
                 $obj = $value;
-                
+
                 if(gettype($obj)!='array' && gettype($obj)!='string' && !empty($obj)){
                     $file = $obj;
                     $image = date('dmYHis').'.'.$file->getClientOriginalExtension();
@@ -62,7 +62,7 @@ class PageSettingController extends Controller
         }else{
             foreach($request->all() as $key=>$value){
                 $page = PageSetting::where('parent_slug', $request->parent_slug)->where('key', $key)->first();
-                
+
                 $obj = $value;
                 if(!empty($page)){
                     if(gettype($obj)!='array' && gettype($obj)!='string' && !empty($obj)){
@@ -86,7 +86,7 @@ class PageSettingController extends Controller
                         'parent_slug' => $request->parent_slug,
                         'key' => $key,
                         'value' => isset($obj)?$obj:null,
-                    ]); 
+                    ]);
                 }
             }
             Session::flash('message', 'Setting updated successfully!');
@@ -102,7 +102,7 @@ class PageSettingController extends Controller
      */
     public function show($slug)
     {
-        $model = Page::where('slug', $slug)->first(); 
+        $model = Page::where('slug', $slug)->first();
         $page_settings = PageSetting::where('parent_slug', $slug)->get(['key', 'value']);
         $page_data = [];
         foreach ($page_settings as $key => $page_setting) {

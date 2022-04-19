@@ -74,6 +74,10 @@ Route::group(['middleware' => ['auth']], function() {
     //permissions
     Route::resource('permission', 'admin\PermissionController');
 
+    //pages settings
+    Route::resource('page', 'admin\PageController');
+    Route::resource('page_setting', 'admin\PageSettingController');
+
     //Products
     Route::resource('product', 'admin\ProductController');
 
@@ -88,6 +92,12 @@ Route::group(['middleware' => ['auth']], function() {
 
     //order
     Route::resource('order', 'OrderController');
+
+    //Slider
+    Route::resource('slider', 'admin\SliderController');
+
+    //How To Play
+    Route::resource('how_to_play', 'admin\HowToPlayController');
 });
 
 Route::resource('newsletter', 'NewsletterController');

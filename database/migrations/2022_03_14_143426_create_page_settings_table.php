@@ -18,6 +18,7 @@ class CreatePageSettingsTable extends Migration
             $table->string('parent_slug');
             $table->string('key');
             $table->string('value')->nullable();
+            $table->string('deleted_at')->nullable();
             $table->timestamps();
         });
     }

@@ -24,21 +24,9 @@
 				<div class="box box-info">
 					<div class="box-body">
 						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">Meta Title </label>
+							<label for="" class="col-sm-2 control-label">Title </label>
 							<div class="col-sm-9">
 								<input type="text" name="mt_about" class="form-control" value="{{ isset($page_data['mt_about'])?$page_data['mt_about']:'' }}" placeholder="Enter meta title">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">Meta Keyword </label>
-							<div class="col-sm-9">
-								<textarea class="form-control" name="mk_about" style="height:60px;" placeholder="Enter meta keyword">{{ isset($page_data['mk_about'])?$page_data['mk_about']:'' }}</textarea>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">Meta Description </label>
-							<div class="col-sm-9">
-								<textarea class="form-control" name="md_about" style="height:60px;" placeholder="Enter meta description">{{ isset($page_data['md_about'])?$page_data['md_about']:'' }}</textarea>
 							</div>
 						</div>
 						<div class="form-group">
@@ -53,6 +41,17 @@
 								<textarea name="about_content" class="form-control texteditor" cols="30" rows="10" placeholder="Enter content">{!! isset($page_data['about_content'])?$page_data['about_content']:'' !!}</textarea>
 							</div>
 						</div>
+                        <div class="form-group">
+							<label for="" class="col-sm-2 control-label">About Image</label>
+                            <div class="col-sm-6" style="padding-top:5px">
+                                <input type="file" class="form-control" accept="image*"  name="image" value="{!! isset($page_data['image'])?$page_data['image']:'' !!} id="image">
+                                <span style="color: red">{{ $errors->first('image') }}</span>
+                            </div>
+                                <div class="col-sm-4" >
+                                <img style="width: 80px" id="banner_preview"  src="{{ asset('public/admin/assets/images/default.jpg') }}"  alt="Image Not Found ">
+                                </div>
+                            </div>
+                        </div>
 						<div class="form-group">
 							<label for="" class="col-sm-2 control-label">Show on Home? </label>
 							<div class="col-sm-2">
@@ -62,7 +61,7 @@
 								</select>
 							</div>
 						</div>
-						
+
 						<div class="form-group">
 							<label for="" class="col-sm-2 control-label"></label>
 							<div class="col-sm-6">

@@ -34,17 +34,17 @@
                 </a>
             </li>
             @endcan
-            @can('product-list')
-            <li class="treeview">
-                <a href="{{ route('product.index') }}" class="{{ request()->is('product') || request()->is('product/create') || request()->is('product/*/edit') ? 'active' : '' }}">
-                    <i class="fa fa-product-hunt"></i> <span>Products</span>
-                </a>
-            </li>
-            @endcan
             @can('category-list')
             <li class="treeview">
                 <a href="{{ route('category.index') }}" class="{{ request()->is('category') || request()->is('category/create') || request()->is('category/*/edit') ? 'active' : '' }}">
                     <i class="fa fa-list-alt"></i> <span>Categories</span>
+                </a>
+            </li>
+            @endcan
+            @can('product-list')
+            <li class="treeview">
+                <a href="{{ route('product.index') }}" class="{{ request()->is('product') || request()->is('product/create') || request()->is('product/*/edit') ? 'active' : '' }}">
+                    <i class="fa fa-product-hunt"></i> <span>Products</span>
                 </a>
             </li>
             @endcan
@@ -59,6 +59,20 @@
             <li class="treeview">
                 <a href="{{ route('coupon.index') }}" class="{{ request()->is('coupon') || request()->is('coupon/create') || request()->is('coupon/*/edit') ? 'active' : '' }}">
                     <i class="fa fa-graduation-cap"></i> <span>Coupons</span>
+                </a>
+            </li>
+            @endcan
+            @can('slider-list')
+            <li class="treeview">
+                <a href="{{ route('slider.index') }}" class="{{ request()->is('slider') || request()->is('slider/create') || request()->is('slider/*/edit') || request()->is('slider/*') ? 'active' : '' }}">
+                    <i class="fa fa-sliders"></i> <span>Sliders</span>
+                </a>
+            </li>
+            @endcan
+            @can('how_to_play-list')
+            <li class="treeview">
+                <a href="{{ route('how_to_play.index') }}" class="{{ request()->is('how_to_play') || request()->is('how_to_play/create') || request()->is('how_to_play/*/edit') || request()->is('how_to_play/*') ? 'active' : '' }}">
+                    <i class="fa fa-book"></i> <span>How To Play</span>
                 </a>
             </li>
             @endcan
