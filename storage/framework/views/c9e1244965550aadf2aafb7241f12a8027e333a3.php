@@ -41,9 +41,6 @@
 							<tr>
 								<th>SL</th>
 								<th>Title</th>
-								<th>Meta Title</th>
-								<th>Meta Keyword</th>
-								<th>Meta Description</th>
 								<th>Description</th>
                                 <th>Status</th>
 								<th width="140">Action</th>
@@ -54,10 +51,7 @@
 								<tr id="id-<?php echo e($model->slug); ?>">
 									<td><?php echo e($models->firstItem()+$key); ?>.</td>
 									<td><?php echo $model->title??'N/A'; ?></td>
-									<td><?php echo $model->meta_title??'N/A'; ?></td>
-									<td><?php echo $model->meta_keyword??'N/A'; ?></td>
-									<td><?php echo \Illuminate\Support\Str::limit($model->meta_description??'N/A',60); ?></td>
-									<td><?php echo \Illuminate\Support\Str::limit($model->description,60); ?></td>
+									<td><?php echo \Illuminate\Support\Str::limit($model->description??'N/A',60); ?></td>
 									<td>
 										<?php if($model->status): ?>
 											<span class="badge badge-success">Active</span>

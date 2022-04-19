@@ -30,25 +30,6 @@
 								<span style="color: red">{{ $errors->first('title') }}</span>
 							</div>
 						</div>
-
-						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">Meta Title </label>
-							<div class="col-sm-9">
-								<input type="text" name="meta_title" class="form-control" value="{{$model->meta_title}}" placeholder="Enter meta title">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">Meta Keyword </label>
-							<div class="col-sm-9">
-								<textarea class="form-control" name="meta_keyword" style="height:60px;" placeholder="Enter meta keyword">{{$model->meta_keyword}}</textarea>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">Meta Description </label>
-							<div class="col-sm-9">
-								<textarea class="form-control" name="meta_description" style="height:60px;" placeholder="Enter meta description">{{$model->meta_description}}</textarea>
-							</div>
-						</div>
 						<div class="form-group">
 							<label for="" class="col-sm-2 control-label">Description </label>
 							<div class="col-sm-9">

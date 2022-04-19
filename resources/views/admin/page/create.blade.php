@@ -25,24 +25,6 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">Meta Title </label>
-							<div class="col-sm-9">
-								<input type="text" name="meta_title" class="form-control" value="{{ isset($page_data['home_meta'])?$page_data['home_meta']:'' }}" placeholder="Enter title">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">Meta Keyword </label>
-							<div class="col-sm-9">
-								<textarea class="form-control" name="meta_keyword" style="height:60px;" placeholder="Enter meta keyword">{{ isset($page_data['home_meta_keyword'])?$page_data['home_meta_keyword']:'' }}</textarea>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">Meta Description </label>
-							<div class="col-sm-9">
-								<textarea class="form-control" name="meta_description" style="height:60px;" placeholder="Enter meta description">{{ isset($page_data['home_meta_description'])?$page_data['home_meta_description']:'' }}</textarea>
-							</div>
-						</div>
-						<div class="form-group">
 							<label for="" class="col-sm-2 control-label">Description </label>
 							<div class="col-sm-9">
 								<textarea class="form-control texteditor" name="description" maxlength="200" style="height:140px;" placeholder="Describe page">{{ old('description') }}</textarea>
