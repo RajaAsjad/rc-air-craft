@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         if(Auth::check() && Auth::user()->hasRole('Admin')){
             $page_title = 'Dashboard';
             return View('admin.dashboard.dashboard', compact('page_title'));

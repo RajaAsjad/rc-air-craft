@@ -184,10 +184,14 @@ class WebController extends Controller
     $questions = Faq::where('status',1)->get();
     return view('website.faqs' , compact('questions'));
   }
-//   public function login ()
-//   {
-//     return view('website.login');
-//   }
+  public function userlogin ()
+  {
+    if(Auth::check()){
+        return redirect()->route('dashboard');
+    }
+    $page_title = 'Log In';
+    return view('website.login', compact('page_title'));
+  }
   public function lostPassword()
   {
       return view('website.lost-password');

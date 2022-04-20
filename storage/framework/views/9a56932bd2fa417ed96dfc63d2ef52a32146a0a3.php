@@ -1,6 +1,4 @@
-
-@extends('layouts.website.master')
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="inner-banner" style="background:#000;">
         <div class="container text-center">
             <h1>MY ACCOUNT</h1>
@@ -16,8 +14,8 @@
                         <div class="row" id="customer_login">
                             <div class="col-lg-6 col-md-12">
                                 <h2>Login</h2>
-                                <form method="POST" action="{{ route('user-authenticate') }}">
-                                    @csrf
+                                <form method="POST" action="<?php echo e(route('user-authenticate')); ?>">
+                                    <?php echo csrf_field(); ?>
                                     <input type="hidden" name="user_type" value="Admin">
                                     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                                         <label for="username">Username or email address&nbsp;<span class="required">*</span></label> <br>
@@ -69,4 +67,6 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.website.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\rc-air-craft\resources\views/website/login.blade.php ENDPATH**/ ?>

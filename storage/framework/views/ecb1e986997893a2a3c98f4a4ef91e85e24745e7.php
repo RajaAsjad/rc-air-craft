@@ -1,7 +1,7 @@
 <?php $__env->startSection('content'); ?>
     <div class="login-box">
         <div class="login-logo">
-            <b>Admin Panel</b>
+            <b>RC Air Craft</b>
         </div>
         <div class="card-body login-box-body">
             <form method="POST" action="<?php echo e(route('user-authenticate')); ?>">

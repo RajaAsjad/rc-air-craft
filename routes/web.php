@@ -13,13 +13,6 @@ use App\Http\Controllers\WebController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-/* Route::get('/', function () {
-    return view('website.welcome');
-
-}); */
-
-
 Route::get('admin/login', 'WebController@login')->name('admin.login');
 Route::post('user-authenticate', 'WebController@authenticate')->name('user-authenticate');
 Route::get('signup', 'WebController@signUp')->name('signup');
@@ -48,7 +41,7 @@ Route::get('billing-address', [WebController::class, 'billingAddress'])->name('b
 Route::get('cart', [WebController::class, 'cart'])->name('cart');
 Route::get('check-out', [WebController::class, 'checkOut'])->name('check-out');
 Route::get('faqs', [WebController::class, 'faqs'])->name('faqs');
-// Route::get('login', [WebController::class, 'login'])->name('login');
+// Route::get('login', [WebController::class, 'userlogin'])->name('login');
 Route::get('lost-password', [WebController::class, 'lostPassword'])->name('lost-password');
 Route::get('privacy-policy', [WebController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('registration', [WebController::class, 'registration'])->name('registration');
