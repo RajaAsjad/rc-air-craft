@@ -13,9 +13,9 @@
                         </div>
                     </nav>
                 </div>
-                <div class="col-lg-4 col-md-4">
+                <div class="col-lg-4 col-md-4" style="text-align:center">
                     <a href="{{ route('index') }}">
-                        <img src="{{ asset('public/admin/assets/images/page') }}/{{ $home_page_data['header_logo'] }}" alt="logo" class="img-fluid">
+                        <img src="{{ asset('public/admin/assets/images/page') }}/{{ $home_page_data['header_logo'] }}" alt="logo" style="width:200px" class="img-fluid">
                     </a>
                 </div>
                 <div class="col-lg-4    col-md-4 left-menu">
@@ -23,7 +23,7 @@
                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div class="navbar-nav">
                                 <a class="nav-link active" aria-current="page" href="{{route ('winner') }}">WINNERS </a>
-                                <a class="nav-link" href="{{route ('sold-out')}}"> SOLD OUT</a>
+                               <!-- <a class="nav-link" href="{{route ('sold-out')}}"> SOLD OUT</a> -->
                                 <a class="nav-link" href="{{route ('result')}}">RESULTS</a>
                                 <a class="nav-link" href="{{route ('faqs')}}">FAQ</a>
                                 <a class="nav-link" href="{{route ('login')}}">

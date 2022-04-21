@@ -74,6 +74,8 @@ class ProductController extends Controller
             'name' => ['required','unique:products','max:255'],
             'short_description' => 'max:1000',
             'description' => ['required','max:1000'],
+            'min_competition' => ['required','min:1','max:1'],
+            'max_competition' => ['required','min:1','max:190'],
             'image' => ['mimes:jpeg,jpg,png,gif','required','max:10000'], // max 10000kb
         ]);
 
@@ -160,6 +162,8 @@ class ProductController extends Controller
         $validator = $request->validate([
             'name' => 'required|max:255',
             'description' => 'required',
+            'min_competition' => ['required','min:1','max:1'],
+            'max_competition' => ['required','min:1','max:190'],
         ]);
 
             $update = Product::where('slug', $slug)->first();

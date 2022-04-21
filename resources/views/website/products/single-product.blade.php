@@ -27,10 +27,10 @@
                         </div>
                     </div>
                     <br>
-                    <p class="descrip">Draw ends: {{ date('F d, Y H:i A', strtotime($product->draw_ends)) }} Timezone: UTC+0 <br> 
-                        This draw has a minimum of {{ $product->min_competition }} Competition<br> 
-                        This draw is limited to {{ $product->max_competition }} Competition<br> 
-                        Tickets sold: 85<br> 
+                    <p class="descrip">Draw ends: {{ date('F d, Y H:i A', strtotime($product->draw_ends)) }} Timezone: UTC+0 <br>
+                        This draw has a minimum of {{ $product->min_competition }} Competition<br>
+                        This draw is limited to {{ $product->max_competition }} Competition<br>
+                        Tickets sold: 85<br>
                         This draw will have {{ $product->number_of_winners }} winner
                     </p>
                     <div class="bar-for-us">
@@ -47,11 +47,13 @@
                     <div class="ques ">
                         <h2 class="answer ">Answer the question: </h2>
                         <p class="descrip ">{{ $product->hasQuestion->question }}?</p>
-                        <ul>
-                            @foreach($product->hasQuestion->hasOptions as $option)
-                                <li>{{ $option->choices }}</li>
-                            @endforeach
-                        </ul>
+                            <div class="navigatee">
+                                <ul>
+                                    @foreach($product->hasQuestion->hasOptions as $option)
+                                        <li>{{ $option->choices }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         <div class="input-group quantity_goods">
                             <form action="{{ route('order.store') }}" method="post">
                                 @csrf
@@ -72,4 +74,19 @@
             </div>
         </div>
     </div>
+
+
+@method('js')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $('.navigatee ul li').click(function() {
+        $('.navigatee ul li.correct').css('background-color', 'transparent');
+        $(this).css('background-color', '#8bcf69');
+    });
+
+    $('.navigatee ul li.wrong').click(function() {
+        $('.navigatee ul li.wrong').css('background-color', 'transparent');
+        $(this).css('background-color', 'red');
+    });
+</script>
 @endsection

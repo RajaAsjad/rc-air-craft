@@ -1877,8 +1877,15 @@ h2.addres-2 {
     font-family: "Roboto";
 }
 
-.ques ul li:hover {
-    background: #8bcf69;
+.ques ul {
+    list-style: none;
+    padding: 0px;
+}
+.ques ul li {
+    padding: 10px 20px;
+    transition: 0.5s all ease-in-out;
+    font-size: 18px;
+    font-family: "Roboto";
 }
 
 input#email::placeholder {

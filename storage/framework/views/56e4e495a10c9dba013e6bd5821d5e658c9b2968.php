@@ -78,4 +78,4 @@
         </div>
     </header>
 <!-- header -->
-<?php /**PATH C:\xampp\htdocs\rc-air-craft\resources\views/layouts/website/header.blade.php ENDPATH**/ ?>
+<?php /**PATH /home/customer/www/demolinkweb2.com/public_html/rc-air-craft/resources/views/layouts/website/header.blade.php ENDPATH**/ ?>

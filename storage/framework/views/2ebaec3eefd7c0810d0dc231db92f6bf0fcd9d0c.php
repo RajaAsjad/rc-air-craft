@@ -13,74 +13,74 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css">
-    <link rel="stylesheet" href="{{ asset('public/assets/website') }}/css/style.css">
-    <link rel="stylesheet" href="{{asset('public/admin/assets/css/toastr.min.css')}}">
-    <link rel="icon" href="{{ asset('public/admin/assets/images/page') }}/{{ $home_page_data['header_favicon'] }}" type="image/png" sizes="16x16">
+    <link rel="stylesheet" href="<?php echo e(asset('public/assets/website')); ?>/css/style.css">
+    <link rel="stylesheet" href="<?php echo e(asset('public/admin/assets/css/toastr.min.css')); ?>">
+    <link rel="icon" href="<?php echo e(asset('public/admin/assets/images/page')); ?>/<?php echo e($home_page_data['header_favicon']); ?>" type="image/png" sizes="16x16">
     <title>R.C Aircraft Online | Lucky Draw Competition</title>
 </head>
 
 <body>
 
        <!-- Header -->
-            @include('layouts.website.header')
+            <?php echo $__env->make('layouts.website.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
        <!-- Header End -->
 
-        @yield('content')
+        <?php echo $__env->yieldContent('content'); ?>
 
         <!-- Footer -->
-            @include('layouts.website.footer')
+            <?php echo $__env->make('layouts.website.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <!-- Footer End -->
 
 <div id="back-top" style="display: block;">
     <a href="#top"> <span class="fa fa-arrow-circle-o-up"></span></a>
 </div>
-<script src="{{ asset('public/assets/website') }}/js/main.js"></script>
-{{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script> --}}
+<script src="<?php echo e(asset('public/assets/website')); ?>/js/main.js"></script>
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 
-<script src="{{asset('public/admin/assets/js/toastr.min.js')}}"></script>
-
+<script src="<?php echo e(asset('public/admin/assets/js/toastr.min.js')); ?>"></script>
 <script>
-    @if(Session::has('message'))
+    <?php if(Session::has('message')): ?>
     toastr.options =
     {
         "closeButton" : true,
         "progressBar" : true
     }
-            toastr.success("{{ session('message') }}");
-    @endif
+            toastr.success("<?php echo e(session('message')); ?>");
+    <?php endif; ?>
 
-    @if(Session::has('error'))
+    <?php if(Session::has('error')): ?>
     toastr.options =
     {
         "closeButton" : true,
         "progressBar" : true
     }
-            toastr.error("{{ session('error') }}");
-    @endif
+            toastr.error("<?php echo e(session('error')); ?>");
+    <?php endif; ?>
 
-    @if(Session::has('info'))
+    <?php if(Session::has('info')): ?>
     toastr.options =
     {
         "closeButton" : true,
         "progressBar" : true
     }
-            toastr.info("{{ session('info') }}");
-    @endif
+            toastr.info("<?php echo e(session('info')); ?>");
+    <?php endif; ?>
 
-    @if(Session::has('warning'))
+    <?php if(Session::has('warning')): ?>
     toastr.options =
     {
         "closeButton" : true,
         "progressBar" : true
     }
-            toastr.warning("{{ session('warning') }}");
-    @endif
+            toastr.warning("<?php echo e(session('warning')); ?>");
+    <?php endif; ?>
 </script>
-@method('js')
+<?php echo method_field('js'); ?>
 </body>
 
 </html>
+<?php /**PATH /home/customer/www/demolinkweb2.com/public_html/rc-air-craft/resources/views/layouts/website/master.blade.php ENDPATH**/ ?>

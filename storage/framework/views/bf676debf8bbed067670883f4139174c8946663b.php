@@ -42,6 +42,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 
 <script src="<?php echo e(asset('public/admin/assets/js/toastr.min.js')); ?>"></script>
+
 <script>
     <?php if(Session::has('message')): ?>
     toastr.options =

@@ -43,6 +43,7 @@
 								<th width="30">SL</th>
 								<th>Image</th>
 								<th>Name</th>
+								<th>Categories</th>
 								<th>Short Description</th>
 								<th>Status</th>
 								<th>Action</th>
@@ -60,6 +61,7 @@
 										@endif
 									</td>
 									<td>{!! \Illuminate\Support\Str::limit($model->name,40) !!}</td>
+									<td>{!! \Illuminate\Support\Str::limit($model->category_slug,40) !!}</td>
 									<td>{!! \Illuminate\Support\Str::limit($model->short_description,60) !!}</td>
 									<td>
 										@if($model->status)

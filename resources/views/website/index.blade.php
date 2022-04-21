@@ -46,39 +46,41 @@
             </div>
             <div class="container">
                 <div class="row">
-                    @foreach ($data['competitions'] as $product)
-                        <div class="col-lg-4 col-md-6">
-                            <ul class="products">
-                                <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
-                                    <div class="pic">
-                                        <img src="{{ asset('public/admin/assets/images/product') }}/{{ $product->image }}">
-                                    </div>
-                                    <div class="time-slot">
-                                        <div id="countdown">
-                                            <ul>
-                                                <li><span id="days"></span>days</li>
-                                                <li><span id="hours"></span>Hours</li>
-                                                <li><span id="minutes"></span>Minutes</li>
-                                                <li><span id="seconds"></span>Seconds</li>
-                                            </ul>
+                    @if(!empty($data['competitions']))
+                        @foreach ($data['competitions'] as $product)
+                            <div class="col-lg-4 col-md-6">
+                                <ul class="products">
+                                    <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
+                                        <div class="pic">
+                                            <img src="{{ asset('public/admin/assets/images/product') }}/{{ $product->image }}">
                                         </div>
-                                    </div>
-                                    <div class="box">
-                                        <p>{{ $product->name }}</p>
-                                        <p>{!! $product->short_description !!}</p>
-                                    </div>
-                                    <h5>0 <span>Entries Remaining</span></h5>
-                                    <a href="{{route ('single-product', $product->slug) }}">Enter Now</a>
-                                    <h3>
-                                        <span class="woocommerce-Price-amount amount">
-                                            <bdi><span class="woocommerce-Price-currencySymbol">$</span>{{ number_format($product->price, 2) }}</bdi>
-                                        </span>
-                                        <span>Per Entry</span>
-                                    </h3>
-                                </li>
-                            </ul>
-                        </div>
-                    @endforeach
+                                        <div class="time-slot">
+                                            <div id="countdown">
+                                                <ul>
+                                                    <li><span id="days"></span>days</li>
+                                                    <li><span id="hours"></span>Hours</li>
+                                                    <li><span id="minutes"></span>Minutes</li>
+                                                    <li><span id="seconds"></span>Seconds</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="box">
+                                            <p>{{ $product->name }}</p>
+                                            <p>{!! $product->short_description !!}</p>
+                                        </div>
+                                        <h5>0 <span>Entries Remaining</span></h5>
+                                        <a href="{{route ('single-product', $product->slug) }}">Enter Now</a>
+                                        <h3>
+                                            <span class="woocommerce-Price-amount amount">
+                                                <bdi><span class="woocommerce-Price-currencySymbol">$</span>{{ number_format($product->price, 2) }}</bdi>
+                                            </span>
+                                            <span>Per Entry</span>
+                                        </h3>
+                                    </li>
+                                </ul>
+                            </div>
+                        @endforeach
+                    @endif    
                 </div>
             </div>
         </div>
@@ -86,7 +88,7 @@
 
     <!-- home-prdcts -->
     <section id="home-products">
-        <div class="category-2" {{ $product->category_slug }}>
+        <div class="category-2">
             <div class="container">
                 <div class="text-text">
                     <h2>RC aircraft online</h2>
