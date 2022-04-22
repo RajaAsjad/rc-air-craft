@@ -6,19 +6,27 @@
             <h1>Biling Address</h1>
         </div>
     </div>
-
-
     <div class="my-acc registration-page">
         <div class="container">
             <div id="post-38" class="post-39 page type-page status-publish hentry">
                 <div class="row">
                     <div class="col-lg-3 col-md-12">
                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#dashboard" role="tab" aria-controls="v-pills-home" aria-selected="true">Dashboard</a>
+                            <a class="nav-link" href="{{route ('registration')}}">Dashboard</a>
                             <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#orders" role="tab" aria-controls="v-pills-profile" aria-selected="false">Orders</a>
                             <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#address" role="tab" aria-controls="v-pills-settings" aria-selected="false">Addresses</a>
                             <a class="nav-link" id="v-pills-account-details" data-toggle="pill" href="#account-details" role="tab" aria-controls="v-pills-settings" aria-selected="false">Account</a>
-                            <a class="nav-link" id="v-pills-logout" data-toggle="pill" href="#logout" role="tab" aria-controls="v-pills-settings" aria-selected="false">Logout</a>
+                            <div>
+                                <a class="dropdown-item btn btn-default btn-flat" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-12">

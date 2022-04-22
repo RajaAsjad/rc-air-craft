@@ -23,12 +23,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         if(Auth::check() && Auth::user()->hasRole('Admin')){
             $page_title = 'Dashboard';
             return View('admin.dashboard.dashboard', compact('page_title'));
-        }else{
-            return redirect()->route('admin.login');
+        }elseif(Auth::check() && Auth::user()->hasRole('User')){
+            return view('website.registration');
         }
     }
 }

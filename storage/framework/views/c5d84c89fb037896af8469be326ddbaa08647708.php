@@ -1,29 +1,31 @@
-@extends('layouts.website.master')
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="inner-banner" style="background:#000;">
         <div class="container text-center">
             <h1>Shipping Address</h1>
         </div>
     </div>
+
+
     <div class="my-acc registration-page">
         <div class="container">
             <div id="post-38" class="post-39 page type-page status-publish hentry">
                 <div class="row">
                     <div class="col-lg-3 col-md-12">
                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            <a class="nav-link" href="{{route ('registration')}}">Dashboard</a>
+                            <a class="nav-link" href="<?php echo e(route ('registration')); ?>">Dashboard</a>
                             <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#orders" role="tab" aria-controls="v-pills-profile" aria-selected="false">Orders</a>
                             <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#address" role="tab" aria-controls="v-pills-settings" aria-selected="false">Addresses</a>
                             <a class="nav-link" id="v-pills-account-details" data-toggle="pill" href="#account-details" role="tab" aria-controls="v-pills-settings" aria-selected="false">Account</a>
                            <div>
-                                <a class="dropdown-item btn btn-default btn-flat" href="{{ route('logout') }}"
+                                <a class="dropdown-item btn btn-default btn-flat" href="<?php echo e(route('logout')); ?>"
                                     onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    <?php echo e(__('Logout')); ?>
+
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
+                                <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">
+                                    <?php echo csrf_field(); ?>
                                 </form>
                             </div>
                         </div>
@@ -484,4 +486,6 @@
             });
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.website.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\rc-air-craft\resources\views/website/shipping-address.blade.php ENDPATH**/ ?>

@@ -16,13 +16,24 @@
                             <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#orders" role="tab" aria-controls="v-pills-profile" aria-selected="false">Orders</a>
                             <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#address" role="tab" aria-controls="v-pills-settings" aria-selected="false">Addresses</a>
                             <a class="nav-link" id="v-pills-account-details" data-toggle="pill" href="#account-details" role="tab" aria-controls="v-pills-settings" aria-selected="false">Account</a>
-                            <a class="nav-link" id="v-pills-logout" data-toggle="pill" href="#logout" role="tab" aria-controls="v-pills-settings" aria-selected="false">Logout</a>
+                            <div>
+                                <a class="dropdown-item btn btn-default btn-flat" href="<?php echo e(route('logout')); ?>"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                    <?php echo e(__('Logout')); ?>
+
+                                </a>
+
+                                <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">
+                                    <?php echo csrf_field(); ?>
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-12">
                         <div class="tab-content" id="v-pills-tabContent">
                             <div class="tab-pane fade show active" id="dashboard" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                                <p>Hello <strong>my-email</strong> (not <strong>my-email</strong> <a href="#">Log out</a> )</p>
+
                                 <p>From your account dashboard you can view your <a href="">recent orders</a> , manage your <a href="">shipping and billing addresses</a> , and <a href="">edit your password and account details</a> .</p>
                             </div>
                             <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="v-pills-profile-tab">

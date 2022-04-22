@@ -42,7 +42,7 @@ class AdminController extends Controller
     public function logOut()
     {
         Auth::logout();
-        return redirect()->route('admin.login');
+        return redirect()->route('website.login');
     }
 
     //Password reset

@@ -36,68 +36,34 @@ class WebController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:password_confirmation',
-        ]);
-        //return $request;
-        $password = $request->password;
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($password),
-            'status' => 1,
+            'password' => 'required|same:confirm-password',
         ]);
 
-        if ($user) {
-            return redirect()->route('index');
-        }
+        do{
+            $verify_token = uniqid();
+        }while(User::where('verify_token', $verify_token)->first());
+        do{
+            $user_id = rand(1000, 9999);
+        }while(User::where('user_id', $user_id)->first());
+
+        $input = $request->all();
+        $input['user_id'] = $user_id;
+        $input['verify_token'] = $verify_token;
+        $input['password'] = Hash::make($input['password']);
+        $user = User::create($input);
+        $user->assignRole("User");
+
+        $details = [
+            'from' => 'verify',
+            'title' => "We're excited to have you get started. First, you need to confirm your account. Just press the button below.",
+            'body' => "If you have any questions, just reply to this email—we're always happy to help out.",
+            'verify_token' => $user->verify_token,
+        ];
+
+        \Mail::to($user->email)->send(new \App\Mail\Email($details));
+
+        return redirect()->back()->with('message', 'We have sent verification email. Click on link and get activation');
     }
-
-    public function customerDashboard(Request $request)
-    {
-        $user = User::where('email', $request->email)->first();
-
-        if(!empty($user) && $user->status==1 && $user->hasRole($request->user_type)){
-            $credentials = $request->only('email', 'password');
-
-            if (Auth::attempt($credentials)) {
-                return redirect()->route('website.registration');
-            }
-            return redirect()->back()->with('error', 'Failed to login try again.!');
-        }elseif(!empty($user) && $user->status==0){
-            return redirect()->back()->with('error', 'Your account is not active verify your email we have sent you verification link.!');
-        }else{
-            return redirect()->back()->with('error', 'Something went wrong!');
-        }
-
-    }
-
-    public function login()
-    {
-        if(Auth::check()){
-            return redirect()->route('dashboard');
-        }
-        $page_title = 'Log In';
-        return view('auth.login', compact('page_title'));
-    }
-
-    public function authenticate(Request $request)
-    {
-        $user = User::where('email', $request->email)->first();
-
-        if(!empty($user) && $user->status==1 && $user->hasRole($request->user_type)){
-            $credentials = $request->only('email', 'password');
-
-            if (Auth::attempt($credentials)) {
-                return redirect()->route('dashboard');
-            }
-            return redirect()->back()->with('error', 'Failed to login try again.!');
-        }elseif(!empty($user) && $user->status==0){
-            return redirect()->back()->with('error', 'Your account is not active verify your email we have sent you verification link.!');
-        }else{
-            return redirect()->back()->with('error', 'Something went wrong!');
-        }
-    }
-
     public function verifyEmail($token)
     {
         $user = User::where('verify_token', $token)->first();
@@ -116,7 +82,38 @@ class WebController extends Controller
         }
     }
 
-    //Reset password
+    public function login()
+    {
+        if(Auth::check()){
+            return redirect()->route('dashboard');
+        }
+        $page_title = 'Log In';
+        return view('auth.login', compact('page_title'));
+    }
+
+    public function logOut()
+    {
+        Auth::logout();
+        return redirect()->route('website.login');
+    }
+    public function authenticate(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+
+        if(!empty($user) && $user->status==1 && $user->hasRole($request->user_type)){
+            $credentials = $request->only('email', 'password');
+
+            if (Auth::attempt($credentials)) {
+                return redirect()->route('dashboard');
+            }
+            return redirect()->back()->with('error', 'Failed to login try again.!');
+        }elseif(!empty($user) && $user->status==0){
+            return redirect()->back()->with('error', 'Your account is not active verify your email we have sent you verification link.!');
+        }else{
+            return redirect()->back()->with('error', 'Something went wrong!');
+        }
+    }
+
     public function forgotPassword()
     {
         $page_title = 'Forgot Password';

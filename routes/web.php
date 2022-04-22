@@ -17,8 +17,8 @@ Route::get('admin/login', 'WebController@login')->name('admin.login');
 Route::post('user-authenticate', 'WebController@authenticate')->name('user-authenticate');
 Route::get('signup', 'WebController@signUp')->name('signup');
 Route::post('register/store', 'WebController@store')->name('register.store');
-Route::post('custom-dashboard', 'WebController@customDashboard')->name('custom-dashboard');
 Route::get('email-verification/{token}', 'WebController@verifyEmail')->name('email-verification');
+Route::post('custom-dashboard', 'WebController@customDashboard')->name('custom-dashboard');
 
 //admin reset password
 Route::get('admin/forgot_password', 'admin\AdminController@forgotPassword')->name('admin.forgot_password');
@@ -45,7 +45,7 @@ Route::get('faqs', [WebController::class, 'faqs'])->name('faqs');
 // Route::get('login', [WebController::class, 'userlogin'])->name('login');
 Route::get('lost-password', [WebController::class, 'lostPassword'])->name('lost-password');
 Route::get('privacy-policy', [WebController::class, 'privacyPolicy'])->name('privacy-policy');
-Route::post('registration', [WebController::class, 'registration'])->name('registration');
+Route::get('registration', [WebController::class, 'registration'])->name('registration');
 Route::get('result', [WebController::class, 'result'])->name('result');
 Route::get('resultinner', [WebController::class, 'resultinner'])->name('resultinner');
 Route::get('shipping-address', [WebController::class, 'shippingAddress'])->name('shipping-address');
@@ -92,6 +92,10 @@ Route::group(['middleware' => ['auth']], function() {
 
     //How To Play
     Route::resource('how_to_play', 'admin\HowToPlayController');
+
+   //User Account
+    Route::resource('account', 'admin\AccountController');
+
 });
 
 Route::resource('newsletter', 'NewsletterController');
