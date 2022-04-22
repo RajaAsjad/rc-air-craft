@@ -51,4 +51,4 @@
         </div>
 
     </nav>
-</header><?php /**PATH /home/customer/www/demolinkweb2.com/public_html/rc-air-craft/resources/views/layouts/admin/header.blade.php ENDPATH**/ ?>
+</header><?php /**PATH C:\xampp\htdocs\rc-air-craft\resources\views/layouts/admin/header.blade.php ENDPATH**/ ?>

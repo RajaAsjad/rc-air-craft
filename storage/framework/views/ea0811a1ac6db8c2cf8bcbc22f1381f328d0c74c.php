@@ -149,4 +149,4 @@
 
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.website.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/customer/www/demolinkweb2.com/public_html/rc-air-craft/resources/views/website/registration.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.website.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\rc-air-craft\resources\views/website/registration.blade.php ENDPATH**/ ?>

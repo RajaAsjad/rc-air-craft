@@ -91,4 +91,4 @@
 </script>
 </body>
 </html>
-<?php /**PATH /home/customer/www/demolinkweb2.com/public_html/rc-air-craft/resources/views/auth/layouts/app.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\rc-air-craft\resources\views/auth/layouts/app.blade.php ENDPATH**/ ?>

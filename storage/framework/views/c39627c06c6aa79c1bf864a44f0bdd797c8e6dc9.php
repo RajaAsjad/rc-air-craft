@@ -45,11 +45,12 @@
                     </div>
                     <div class="ques ">
                         <h2 class="answer ">Answer the question: </h2>
-                        <p class="descrip "><?php echo e($product->hasQuestion->question); ?>?</p>
+                        <p class="descrip"><?php echo e($product->hasQuestion->question); ?></p>
                             <div class="navigatee">
                                 <ul>
+                                    <li class="correct"><?php echo e($product->hasQuestion->answer); ?></li>
                                     <?php $__currentLoopData = $product->hasQuestion->hasOptions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $option): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <li><?php echo e($option->choices); ?></li>
+                                        <li class="wrong"><?php echo e($option->choices); ?></li>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </ul>
                             </div>
@@ -73,21 +74,6 @@
             </div>
         </div>
     </div>
-
-
-<?php echo method_field('js'); ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script>
-    $('.navigatee ul li').click(function() {
-        $('.navigatee ul li.correct').css('background-color', 'transparent');
-        $(this).css('background-color', '#8bcf69');
-    });
-
-    $('.navigatee ul li.wrong').click(function() {
-        $('.navigatee ul li.wrong').css('background-color', 'transparent');
-        $(this).css('background-color', 'red');
-    });
-</script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.website.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\rc-air-craft\resources\views/website/products/single-product.blade.php ENDPATH**/ ?>

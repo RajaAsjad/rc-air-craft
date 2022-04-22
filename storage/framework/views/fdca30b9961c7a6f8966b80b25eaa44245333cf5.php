@@ -23,7 +23,7 @@
                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div class="navbar-nav">
                                 <a class="nav-link active" aria-current="page" href="<?php echo e(route ('winner')); ?>">WINNERS </a>
-                               <!-- <a class="nav-link" href="<?php echo e(route ('sold-out')); ?>"> SOLD OUT</a> -->
+                               <!--  -->
                                 <a class="nav-link" href="<?php echo e(route ('result')); ?>">RESULTS</a>
                                 <a class="nav-link" href="<?php echo e(route ('faqs')); ?>">FAQ</a>
                                 <a class="nav-link" href="<?php echo e(route ('login')); ?>">

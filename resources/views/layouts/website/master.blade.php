@@ -42,7 +42,12 @@
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 
 <script src="{{asset('public/admin/assets/js/toastr.min.js')}}"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $(document).on('click', '.navigatee ul li', function() {
+        $(this).addClass('selected').siblings().removeClass('selected');
+    });
+</script>
 <script>
     @if(Session::has('message'))
     toastr.options =

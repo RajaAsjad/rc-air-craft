@@ -73,4 +73,4 @@
   </section>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.admin.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/customer/www/demolinkweb2.com/public_html/rc-air-craft/resources/views/admin/dashboard/dashboard.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.admin.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\rc-air-craft\resources\views/admin/dashboard/dashboard.blade.php ENDPATH**/ ?>

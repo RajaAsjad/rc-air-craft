@@ -46,11 +46,12 @@
                     </div>
                     <div class="ques ">
                         <h2 class="answer ">Answer the question: </h2>
-                        <p class="descrip ">{{ $product->hasQuestion->question }}?</p>
+                        <p class="descrip">{{ $product->hasQuestion->question }}</p>
                             <div class="navigatee">
                                 <ul>
+                                    <li class="correct">{{ $product->hasQuestion->answer }}</li>
                                     @foreach($product->hasQuestion->hasOptions as $option)
-                                        <li>{{ $option->choices }}</li>
+                                        <li class="wrong">{{ $option->choices }}</li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -74,19 +75,4 @@
             </div>
         </div>
     </div>
-
-
-@method('js')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script>
-    $('.navigatee ul li').click(function() {
-        $('.navigatee ul li.correct').css('background-color', 'transparent');
-        $(this).css('background-color', '#8bcf69');
-    });
-
-    $('.navigatee ul li.wrong').click(function() {
-        $('.navigatee ul li.wrong').css('background-color', 'transparent');
-        $(this).css('background-color', 'red');
-    });
-</script>
 @endsection

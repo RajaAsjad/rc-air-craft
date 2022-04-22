@@ -1159,7 +1159,7 @@ div#post-39 p {
     margin: 2em 0;
     text-align: left;
     border-radius: 5px;
-    height: 360px;
+    height: auto;
 }
 
 .my-account-forms label {
@@ -1886,6 +1886,14 @@ h2.addres-2 {
     transition: 0.5s all ease-in-out;
     font-size: 18px;
     font-family: "Roboto";
+}
+
+.navigatee ul li.selected {
+    background: #8bcf69;
+}
+
+.navigatee ul li.wrong.selected {
+    background: red
 }
 
 input#email::placeholder {

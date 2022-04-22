@@ -157,4 +157,4 @@
 	</script>
 	<?php echo $__env->yieldPushContent('js'); ?>
 </html>
-<?php /**PATH /home/customer/www/demolinkweb2.com/public_html/rc-air-craft/resources/views/layouts/admin/app.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\rc-air-craft\resources\views/layouts/admin/app.blade.php ENDPATH**/ ?>

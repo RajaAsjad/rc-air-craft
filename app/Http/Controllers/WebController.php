@@ -31,6 +31,46 @@ class WebController extends Controller
         return view('website.products.single-product', compact('product'));
     }
 
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|same:password_confirmation',
+        ]);
+        //return $request;
+        $password = $request->password;
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($password),
+            'status' => 1,
+        ]);
+
+        if ($user) {
+            return redirect()->route('index');
+        }
+    }
+
+    public function customerDashboard(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+
+        if(!empty($user) && $user->status==1 && $user->hasRole($request->user_type)){
+            $credentials = $request->only('email', 'password');
+
+            if (Auth::attempt($credentials)) {
+                return redirect()->route('website.registration');
+            }
+            return redirect()->back()->with('error', 'Failed to login try again.!');
+        }elseif(!empty($user) && $user->status==0){
+            return redirect()->back()->with('error', 'Your account is not active verify your email we have sent you verification link.!');
+        }else{
+            return redirect()->back()->with('error', 'Something went wrong!');
+        }
+
+    }
+
     public function login()
     {
         if(Auth::check()){
@@ -202,7 +242,9 @@ class WebController extends Controller
   }
   public function registration()
   {
-      return view('website.registration');
+
+     return view('website.registration');
+
   }
   public function result()
   {

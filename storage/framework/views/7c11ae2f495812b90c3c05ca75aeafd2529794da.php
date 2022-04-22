@@ -80,7 +80,7 @@
                                 </ul>
                             </div>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    <?php endif; ?>    
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -88,7 +88,7 @@
 
     <!-- home-prdcts -->
     <section id="home-products">
-        <div class="category-2">
+        <div class="category-2" id="mini-competitions">
             <div class="container">
                 <div class="text-text">
                     <h2>RC aircraft online</h2>
