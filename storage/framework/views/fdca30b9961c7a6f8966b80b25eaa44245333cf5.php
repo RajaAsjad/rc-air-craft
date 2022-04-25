@@ -8,7 +8,7 @@
                             <div class="navbar-nav">
                                 <a class="nav-link active" aria-current="page" href="<?php echo e(route ('index')); ?>">HOME</a>
                                 <a class="nav-link" href="#competitions"> COMPETITION</a>
-                                <a class="nav-link" href="#mini-competitions"> MINI COMPETITION</a>
+                                <a class="nav-link" href="#mini-competitions"> MEDIUM COMPETITION</a>
                             </div>
                         </div>
                     </nav>
@@ -24,7 +24,7 @@
                             <div class="navbar-nav">
                                 <a class="nav-link active" aria-current="page" href="<?php echo e(route ('winner')); ?>">WINNERS </a>
                                <!--  -->
-                                <a class="nav-link" href="<?php echo e(route ('result')); ?>">RESULTS</a>
+                               
                                 <a class="nav-link" href="<?php echo e(route ('faqs')); ?>">FAQ</a>
                                 <a class="nav-link" href="<?php echo e(route ('login')); ?>">
                                     <i class="fa fa-user"></i>

@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Faq;
 use App\Models\Slider;
 use App\Models\HowToPlay;
+use App\Models\AboutUs;
 use Auth;
 use Hash;
 
@@ -202,7 +203,9 @@ class WebController extends Controller
     }
   public function aboutUs ()
   {
-    return view('website.about-us');
+      $aboutsus = AboutUs::where('status',1)->take(1)->first();
+      $abouts = AboutUs::where('id', '>' , 3)->get();
+    return view('website.about-us', compact('aboutsus' , 'abouts'));
   }
   public function billingAddress ()
   {

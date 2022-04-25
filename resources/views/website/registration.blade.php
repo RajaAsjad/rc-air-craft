@@ -64,8 +64,8 @@
                                     <div class="col-sm-6">
                                         <div class="billing">
                                             <h2 class="addres">Billing address</h2>
-                                            <a href="{{route ('billing-address') }}" class="edit">Edit</a>
                                             <a href="{{route ('billing-address') }}" class="add">Add</a>
+                                          {{--   <a href="{{route ('billing-address') }}" class="edit">Edit</a> --}}
                                             <p class="details">admin admin <br> rcao <br> 12 ventnor street<br> hull<br> test <br>HU5 2LP<br> United Kingdom (UK)</p>
                                             <p class="details">You have not set up this type of address yet.</p>
                                         </div>
@@ -73,8 +73,8 @@
                                     <div class="col-sm-6">
                                         <div class="billing">
                                             <h2 class="addres">Shipping address</h2>
-                                            <a href="{{route ('shipping-address') }}" class="edit">Edit</a>
                                             <a href="{{route ('shipping-address') }}" class="add">Add</a>
+                                           {{--  <a href="{{route ('shipping-address') }}" class="edit">Edit</a> --}}
                                             <p class="details">United Kingdom (UK)</p>
                                             <p class="details">You have not set up this type of address yet.</p>
                                         </div>
@@ -102,17 +102,17 @@
 
                                     <div class="password-group">
                                         <label>Current password (leave blank to leave unchanged)<span style="color: red;">*</span></label> <br>
-                                        <input type="password" class="form-for-us password-box" aria-label="password" value="wdocechoiwceh98">
+                                        <input type="password" class="form-for-us password-box" aria-label="password" value="">
                                         <a href="#!" class="password-visibility"><i class="fa fa-eye"></i></a>
                                     </div>
                                     <div class="password-group">
                                         <label>New password (leave blank to leave unchanged)<span style="color: red;">*</span></label> <br>
-                                        <input type="password" class="form-for-us password-box" aria-label="password" value="wdocechoiwceh98">
+                                        <input type="password" class="form-for-us password-box" aria-label="password" value="">
                                         <a href="#!" class="password-visibility"><i class="fa fa-eye"></i></a>
                                     </div>
                                     <div class="password-group">
                                         <label> Confirm new password<span style="color: red;">*</span></label> <br>
-                                        <input type="password" class="form-for-us password-box" aria-label="password" value="wdocechoiwceh98">
+                                        <input type="password" class="form-for-us password-box" aria-label="password" value="">
                                         <a href="#!" class="password-visibility"><i class="fa fa-eye"></i></a>
                                     </div>
                                     <button type="submit" id="submit" class="submit">Log In</button>

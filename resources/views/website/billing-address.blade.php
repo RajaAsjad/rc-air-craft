@@ -33,23 +33,23 @@
                         <div class="tab-content" id="v-pills-tabContent">
                             <div class="biiling-addres">
                                 <h2 class="addres-2">Billing address</h2>
-                                <div class="form">
+                                <form action="{{ route('billing_address.store') }}" id="regform" class="form-horizontal" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-lg-6 col-md-12">
                                             <label>First name <span style="color: red;">*</span></label> <br>
-                                            <input type="text" class="form-for-us" id="text">
+                                            <input type="text" placeholder="Enter your first name" name="first_name" class="form-for-us" id="text">
                                         </div>
                                         <div class="col-lg-6 col-md-12">
                                             <label>Last Name <span style="color: red;">*</span></label> <br>
-                                            <input type="text" class="form-for-us" id="text">
+                                            <input type="text" placeholder="Enter your last name" name="last_name" class="form-for-us" id="text">
                                         </div>
                                     </div>
-
                                     <label>Company name (optional) </label> <br>
-                                    <input type="text" class="form-for-us" id="text">
+                                    <input type="text" placeholder="Enter your company name"  name="company" class="form-for-us" id="text">
 
                                     <label>Country / Region <span style="color: red;">*</span></label> <br>
-                                    <select id="country" name="country" class="form-for-us">
+                                    <select id="country" placeholder="Enter your country name" name="country" class="form-for-us">
                                             <option value="Afganistan">Afghanistan</option>
                                             <option value="Albania">Albania</option>
                                             <option value="Algeria">Algeria</option>
@@ -299,23 +299,23 @@
                                          </select>
 
                                     <label>Street address<span style="color: red;">*</span></label> <br>
-                                    <input type="text" class="form-for-us" id="text">
-                                    <input type="text" class="form-for-us" id="text">
+                                    <input type="text" placeholder="Enter your address" name="street" class="form-for-us" id="text">
+                                    <input type="text" name="street" placeholder="Enter your address" class="form-for-us" id="text">
 
                                     <label>Town / City<span style="color: red;">*</span></label> <br>
-                                    <input type="text" class="form-for-us" id="text">
+                                    <input type="text" name="town" placeholder="Enter your town/city name" class="form-for-us" id="text">
 
                                     <label>Postcode / ZIP<span style="color: red;">*</span></label> <br>
-                                    <input type="number" class="form-for-us" id="text">
+                                    <input type="number" name="postcode" placeholder="Enter your ZIP code" class="form-for-us" id="text">
 
                                     <label>Phone<span style="color: red;">*</span></label> <br>
-                                    <input type="number" class="form-for-us" id="number">
+                                    <input type="number" name="phone" placeholder="Enter your phone number" class="form-for-us" id="number">
 
                                     <label>Email address<span style="color: red;">*</span></label> <br>
-                                    <input type="email" class="form-for-us" id="mail">
+                                    <input type="email" name="email" placeholder="Enter your email" class="form-for-us" id="mail">
 
-                                    <button type="submit" class="button" name="apply_coupon" value="Apply coupon">Save Changes</button>
-                                </div>
+                                    <button type="submit" class="button">Submit</button>
+                                </form>
                             </div>
                         </div>
                     </div>

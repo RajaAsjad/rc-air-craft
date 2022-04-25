@@ -48,6 +48,13 @@
                 </a>
             </li>
             @endcan
+            @can('about_us-list')
+            <li class="treeview">
+                <a href="{{ route('about_us.index') }}" class="{{ request()->is('about_us') || request()->is('about_us/create') || request()->is('about_us/*/edit') ? 'active' : '' }}">
+                    <i class="fa fa-sticky-note"></i> <span>About Us</span>
+                </a>
+            </li>
+            @endcan
             @can('faq-list')
             <li class="treeview">
                 <a href="{{ route('faq.index') }}" class="{{ request()->is('faq') || request()->is('faq/create') || request()->is('faq/*/edit') ? 'active' : '' }}">
@@ -55,6 +62,7 @@
                 </a>
             </li>
             @endcan
+
            @can('coupon-list')
             <li class="treeview">
                 <a href="{{ route('coupon.index') }}" class="{{ request()->is('coupon') || request()->is('coupon/create') || request()->is('coupon/*/edit') ? 'active' : '' }}">
@@ -105,13 +113,7 @@
             </li>
             @endcan --}}
 
-           {{--  @can('blog-list')
-            <li class="treeview">
-                <a href="{{ route('blog.index') }}" class="{{ request()->is('blog') || request()->is('blog/create') || request()->is('blog/*/edit') ? 'active' : '' }}">
-                    <i class="fa fa-sticky-note"></i> <span>Blogs</span>
-                </a>
-            </li>
-            @endcan
+           {{--
             @can('testimonial-list')
             <li class="treeview">
                 <a href="{{ route('testimonial.index') }}" class="{{ request()->is('testimonial') || request()->is('testimonial/create') || request()->is('testimonial/*/edit') ? 'active' : '' }}">

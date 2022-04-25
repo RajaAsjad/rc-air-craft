@@ -92,10 +92,17 @@ Route::group(['middleware' => ['auth']], function() {
 
     //How To Play
     Route::resource('how_to_play', 'admin\HowToPlayController');
+    //About Us
+    Route::resource('about_us', 'admin\AboutUsController');
 
-   //User Account
-    Route::resource('account', 'admin\AccountController');
 
 });
 
+//Newsletter
 Route::resource('newsletter', 'NewsletterController');
+
+//Billing-Address
+Route::resource('billing_address', 'BillingAddressController');
+
+//Shipping-Address
+Route::resource('shipping_address', 'ShippingAddressController');

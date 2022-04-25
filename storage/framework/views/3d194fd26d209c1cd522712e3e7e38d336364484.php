@@ -1,26 +1,26 @@
-@extends('layouts.admin.app')
-@section('title', $page_title)
-@section('content')
-    <input type="hidden" id="page_url" value="{{ route('role.index') }}">
+<?php $__env->startSection('title', $page_title); ?>
+<?php $__env->startSection('content'); ?>
+    <input type="hidden" id="page_url" value="<?php echo e(route('role.index')); ?>">
     <section class="content-header">
         <div class="content-header-left">
             <h1>All Roles</h1>
         </div>
-        @can('role-create')
+        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role-create')): ?>
         <div class="content-header-right">
-            <a href="{{ route('role.create') }}" class="btn btn-primary btn-sm">Add New Role</a>
+            <a href="<?php echo e(route('role.create')); ?>" class="btn btn-primary btn-sm">Add New Role</a>
         </div>
-        @endcan
+        <?php endif; ?>
     </section>
 
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                @if (session('success'))
+                <?php if(session('success')): ?>
                     <div class="callout callout-success">
-                        {{ session('success') }}
+                        <?php echo e(session('success')); ?>
+
                     </div>
-                @endif
+                <?php endif; ?>
 
                 <div class="box box-info">
                     <div class="box-body">
@@ -47,26 +47,25 @@
                                 </tr>
                             </thead>
                             <tbody id="body">
-                                @foreach($roles as $key=>$role)
-                                    <tr id="id-{{ $role->id }}">
-                                        <td>{{  $roles->firstItem()+$key }}.</td>
-                                        <td>{{ $role->name }}</td>
-                                        <td>{!! $role->description !!}</td>
+                                <?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <tr id="id-<?php echo e($role->id); ?>">
+                                        <td><?php echo e($roles->firstItem()+$key); ?>.</td>
+                                        <td><?php echo e($role->name); ?></td>
+                                        <td><?php echo $role->description; ?></td>
                                         <td>
-                                            @can('role-edit')
-                                                <a class="btn btn-primary btn-xs" href="{{ route('role.edit', $role->id) }}"><i class="fa fa-edit"></i> Edit</a>
-                                            @endcan
-                                           {{--  @can('role-delete')
-                                                <button class="btn btn-danger btn-xs delete" data-slug="{{ $role->id }}" data-del-url="{{ url('role', $role->id) }}"><i class="fa fa-trash"></i> Delete</button>
-                                            @endcan --}}
+                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role-edit')): ?>
+                                                <a class="btn btn-primary btn-xs" href="<?php echo e(route('role.edit', $role->id)); ?>"><i class="fa fa-edit"></i> Edit</a>
+                                            <?php endif; ?>
+                                           
                                         </td>
                                     </tr>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
                                     <td colspan="4">
-                                        Displying {{$roles->firstItem()}} to {{$roles->lastItem()}} of {{$roles->total()}} records
+                                        Displying <?php echo e($roles->firstItem()); ?> to <?php echo e($roles->lastItem()); ?> of <?php echo e($roles->total()); ?> records
                                         <div class="d-flex justify-content-center">
-                                            {!! $roles->links('pagination::bootstrap-4') !!}
+                                            <?php echo $roles->links('pagination::bootstrap-4'); ?>
+
                                         </div>
                                     </td>
                                 </tr>
@@ -76,7 +75,9 @@
                 </div>
             </div>
     </section>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('js')
-@endpush
+<?php $__env->startPush('js'); ?>
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.admin.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\rc-air-craft\resources\views/admin/role/index.blade.php ENDPATH**/ ?>

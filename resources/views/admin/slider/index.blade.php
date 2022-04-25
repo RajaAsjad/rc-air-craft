@@ -60,8 +60,8 @@
 											<img src="{{ asset('public/admin/assets/images/default.jpg') }}" style="width:60px;">
 										@endif
 									</td>
-									<td>{{\Illuminate\Support\Str::limit($model->title,60)}}</td>
-									<td>{{\Illuminate\Support\Str::limit($model->description,60)}}</td>
+									<td>{{\Illuminate\Support\Str::limit($model->title??'N/A',60)}}</td>
+									<td>{{\Illuminate\Support\Str::limit($model->description??'N/A',60)}}</td>
 									<td>
 										@if($model->status)
 											<span class="badge badge-success">Active</span>

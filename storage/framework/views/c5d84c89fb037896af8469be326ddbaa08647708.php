@@ -4,8 +4,6 @@
             <h1>Shipping Address</h1>
         </div>
     </div>
-
-
     <div class="my-acc registration-page">
         <div class="container">
             <div id="post-38" class="post-39 page type-page status-publish hentry">
@@ -32,117 +30,25 @@
                     </div>
                     <div class="col-lg-9 col-md-12">
                         <div class="tab-content" id="v-pills-tabContent">
-                            <!-- <div class="tab-pane fade show active" id="dashboard" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                                <p>Hello <strong>my-email</strong> (not <strong>my-email</strong> <a href="#">Log out</a> )</p>
-                                <p>From your account dashboard you can view your <a href="">recent orders</a> , manage your <a href="">shipping and billing addresses</a> , and <a href="">edit your password and account details</a> .</p>
-                            </div>
-                            <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                <table class="table my-tables  table-bordered  table-responsive text-nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Order</th>
-                                            <th scope="col">Date</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Total</th>
-                                            <th scope="col">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">#12279</th>
-                                            <td>March 11, 2022 </td>
-                                            <td>Cancelled </td>
-                                            <td>£5.00 for 5 items</td>
-                                            <td><button class="btn-for">VIEW</button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                                <p class="address-para">The following addresses will be used on the checkout page by default.</p>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="billing">
-                                            <h2 class="addres">Billing address</h2>
-                                            <a href="#" class="edit">Edit</a>
-                                            <a href="#" class="add">Add</a>
-                                            <p class="details">admin admin <br> rcao <br> 12 ventnor street<br> hull<br> test <br>HU5 2LP<br> United Kingdom (UK)</p>
-                                            <p class="details">You have not set up this type of address yet.</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="billing">
-                                            <h2 class="addres">Shipping address</h2>
-                                            <a href="#" class="edit">Edit</a>
-                                            <a href="#" class="add">Add</a>
-                                            <p class="details">United Kingdom (UK)</p>
-                                            <p class="details">You have not set up this type of address yet.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="account-details" role="account-details" aria-labelledby="account-details">
-                                <div class="form">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-12">
-                                            <label>First name <span style="color: red;">*</span></label> <br>
-                                            <input type="text" class="form-for-us" id="text">
-                                        </div>
-                                        <div class="col-lg-6 col-md-12">
-                                            <label>Last Name <span style="color: red;">*</span></label> <br>
-                                            <input type="text" class="form-for-us" id="text">
-                                        </div>
-                                    </div>
-                                    <label>Display name <span style="color: red;">*</span></label> <br>
-                                    <input type="text" class="form-for-us" id="text">
-
-                                    <label>Email address<span style="color: red;">*</span></label> <br>
-                                    <input type="email" class="form-for-us" id="mail">
-
-
-                                    <div class="password-group">
-                                        <label>Current password (leave blank to leave unchanged)<span style="color: red;">*</span></label> <br>
-                                        <input type="password" class="form-for-us password-box" aria-label="password" value="wdocechoiwceh98">
-                                        <a href="#!" class="password-visibility"><i class="fa fa-eye"></i></a>
-                                    </div>
-                                    <div class="password-group">
-                                        <label>New password (leave blank to leave unchanged)<span style="color: red;">*</span></label> <br>
-                                        <input type="password" class="form-for-us password-box" aria-label="password" value="wdocechoiwceh98">
-                                        <a href="#!" class="password-visibility"><i class="fa fa-eye"></i></a>
-                                    </div>
-                                    <div class="password-group">
-                                        <label> Confirm new password<span style="color: red;">*</span></label> <br>
-                                        <input type="password" class="form-for-us password-box" aria-label="password" value="wdocechoiwceh98">
-                                        <a href="#!" class="password-visibility"><i class="fa fa-eye"></i></a>
-                                    </div>
-                                    <button type="submit" id="submit" class="submit">Log In</button>
-
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="logout" role="logout" aria-labelledby="logout">
-
-                            </div> -->
                             <div class="biiling-addres">
                                 <h2 class="addres-2">Shipping Address</h2>
-                                <div class="form">
+                                <form action="<?php echo e(route('shipping_address.store')); ?>" id="regform" class="form-horizontal" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                                    <?php echo csrf_field(); ?>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-12">
                                             <label>First name <span style="color: red;">*</span></label> <br>
-                                            <input type="text" class="form-for-us" id="text">
+                                            <input type="text" placeholder="Enter your first name" name="first_name" class="form-for-us" id="text">
                                         </div>
                                         <div class="col-lg-6 col-md-12">
                                             <label>Last Name <span style="color: red;">*</span></label> <br>
-                                            <input type="text" class="form-for-us" id="text">
+                                            <input type="text" placeholder="Enter your last name" name="last_name" class="form-for-us" id="text">
                                         </div>
                                     </div>
-                                    <!-- <label>Date of Birth <span style="color: red;">*</span></label> <br>
-                                    <input type="date" class="form-for-us" id="text"> -->
-
                                     <label>Company name (optional) </label> <br>
-                                    <input type="text" class="form-for-us" id="text">
+                                    <input type="text" placeholder="Enter your company name"  name="company" class="form-for-us" id="text">
 
                                     <label>Country / Region <span style="color: red;">*</span></label> <br>
-                                    <select id="country" name="country" class="form-for-us">
+                                    <select id="country" placeholder="Enter your country name" name="country" class="form-for-us">
                                             <option value="Afganistan">Afghanistan</option>
                                             <option value="Albania">Albania</option>
                                             <option value="Algeria">Algeria</option>
@@ -392,65 +298,17 @@
                                          </select>
 
                                     <label>Street address<span style="color: red;">*</span></label> <br>
-                                    <input type="text" class="form-for-us" id="text">
-                                    <input type="text" class="form-for-us" id="text">
+                                    <input type="text" placeholder="Enter your address" name="street" class="form-for-us" id="text">
+                                    <input type="text" name="street" placeholder="Enter your address" class="form-for-us" id="text">
 
                                     <label>Town / City<span style="color: red;">*</span></label> <br>
-                                    <input type="text" class="form-for-us" id="text">
-
-
-                                    <!-- <label>Town / City<span style="color: red;">*</span></label> <br>
-                                    <select id="country-state" class="form-for-us" name="country-state">
-                                            <option value="AN">Andaman and Nicobar Islands</option>
-                                            <option value="AP">Andhra Pradesh</option>
-                                            <option value="AR">Arunachal Pradesh</option>
-                                            <option value="AS">Assam</option>
-                                            <option value="BR">Bihar</option>
-                                            <option value="CH">Chandigarh</option>
-                                            <option value="CT">Chhattisgarh</option>
-                                            <option value="DN">Dadra and Nagar Haveli</option>
-                                            <option value="DD">Daman and Diu</option>
-                                            <option value="DL">Delhi</option>
-                                            <option value="GA">Goa</option>
-                                            <option value="GJ">Gujarat</option>
-                                            <option value="HR">Haryana</option>
-                                            <option value="HP">Himachal Pradesh</option>
-                                            <option value="JK">Jammu and Kashmir</option>
-                                            <option value="JH">Jharkhand</option>
-                                            <option value="KA">Karnataka</option>
-                                            <option value="KL">Kerala</option>
-                                            <option value="LA">Ladakh</option>
-                                            <option value="LD">Lakshadweep</option>
-                                            <option value="MP">Madhya Pradesh</option>
-                                            <option value="MH">Maharashtra</option>
-                                            <option value="MN">Manipur</option>
-                                            <option value="ML">Meghalaya</option>
-                                            <option value="MZ">Mizoram</option>
-                                            <option value="NL">Nagaland</option>
-                                            <option value="OR">Odisha</option>
-                                            <option value="PY">Puducherry</option>
-                                            <option value="PB">Punjab</option>
-                                            <option value="RJ">Rajasthan</option>
-                                            <option value="SK">Sikkim</option>
-                                            <option value="TN">Tamil Nadu</option>
-                                            <option value="TG">Telangana</option>
-                                            <option value="TR">Tripura</option>
-                                            <option value="UP">Uttar Pradesh</option>
-                                            <option value="UT">Uttarakhand</option>
-                                            <option value="WB">West Bengal</option>
-                                        </select> -->
+                                    <input type="text" name="town" placeholder="Enter your town/city name" class="form-for-us" id="text">
 
                                     <label>Postcode / ZIP<span style="color: red;">*</span></label> <br>
-                                    <input type="number" class="form-for-us" id="text">
+                                    <input type="number" name="postcode" placeholder="Enter your ZIP code" class="form-for-us" id="text">
 
-                                    <!-- <label>Phone<span style="color: red;">*</span></label> <br>
-                                    <input type="number" class="form-for-us" id="number">
-
-                                    <label>Email address<span style="color: red;">*</span></label> <br>
-                                    <input type="email" class="form-for-us" id="mail"> -->
-
-                                    <button type="submit" class="button" name="apply_coupon" value="Apply coupon">Save Changes</button>
-                                </div>
+                                    <button type="submit" class="button">Submit</button>
+                                </form>
                             </div>
                         </div>
                     </div>

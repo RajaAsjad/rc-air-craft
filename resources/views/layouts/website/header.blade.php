@@ -8,7 +8,7 @@
                             <div class="navbar-nav">
                                 <a class="nav-link active" aria-current="page" href="{{route ('index')}}">HOME</a>
                                 <a class="nav-link" href="#competitions"> COMPETITION</a>
-                                <a class="nav-link" href="#mini-competitions"> MINI COMPETITION</a>
+                                <a class="nav-link" href="#mini-competitions"> MEDIUM COMPETITION</a>
                             </div>
                         </div>
                     </nav>
@@ -24,7 +24,7 @@
                             <div class="navbar-nav">
                                 <a class="nav-link active" aria-current="page" href="{{route ('winner') }}">WINNERS </a>
                                <!-- {{-- <a class="nav-link" href="{{route ('sold-out')}}"> SOLD OUT</a> --}} -->
-                                <a class="nav-link" href="{{route ('result')}}">RESULTS</a>
+                               {{--  <a class="nav-link" href="{{route ('result')}}">RESULTS</a> --}}
                                 <a class="nav-link" href="{{route ('faqs')}}">FAQ</a>
                                 <a class="nav-link" href="{{route ('login')}}">
                                     <i class="fa fa-user"></i>

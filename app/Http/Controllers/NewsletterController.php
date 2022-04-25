@@ -17,8 +17,6 @@ class NewsletterController extends Controller
      */
     public function index(Request $request)
     {
-        /* $data = Newsletter::where('status',1)->get();
-        return view('website.index', compact('data')); */
         $categories = Category::where('status', 1)->get(['slug']);
         $data = [];
         foreach($categories as $category){
