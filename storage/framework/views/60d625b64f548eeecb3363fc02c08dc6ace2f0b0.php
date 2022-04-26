@@ -10,23 +10,22 @@
         <div class="container">
             <div class="row abt-iner-content">
                 <div class="col-md-6">
-                        <h2><?php echo e($aboutsus->heading); ?></h2>
-                        <p><?php echo $aboutsus->description; ?></p>
-
+                        <h2><?php echo e($abouts->heading); ?></h2>
+                        <p><?php echo $abouts->description; ?></p>
                     </div>
                     <div class="col-md-6">
-                        <img src="<?php echo e(asset('public/admin/assets/images/about_us')); ?>/<?php echo e($aboutsus->image); ?>">
+                        <img src="<?php echo e(asset('public/admin/assets/images/about_us')); ?>/<?php echo e($abouts->image); ?>">
                     </div>
             </div>
             <div class="why-choose-us">
                 <h2>WHY CHOOSE US</h2>
                 <div class="row">
-                    <?php $__currentLoopData = $abouts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $about): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="col-sm-6">
-                        <img src="<?php echo e(asset('public/admin/assets/images/about_us')); ?>/<?php echo e($about->image); ?>" class="avatar wp-post-image" alt="">
-                        <div class="title"><?php echo e($about->heading); ?></div>
-                        <div class="desc"><?php echo $about->description; ?></div>
-                    </div>
+                    <?php $__currentLoopData = $chooses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $choose): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <div class="col-sm-6">
+                        <img src="<?php echo e(asset('public/admin/assets/images/why_choose')); ?>/<?php echo e($choose->image); ?>" class="avatar wp-post-image" alt="">
+                        <div class="title"><?php echo e($choose->title); ?></div>
+                        <div class="desc"><?php echo $choose->description; ?></div>
+                  </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>

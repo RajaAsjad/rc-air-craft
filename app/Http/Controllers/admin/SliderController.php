@@ -25,7 +25,7 @@ class SliderController extends Controller
         if($request->ajax()){
             $query = Slider::orderby('id', 'desc')->where('id', '>', 0);
             if($request['search'] != ""){
-                $query->where('question', 'like', '%'. $request['search'] .'%');
+                $query->where('title', 'like', '%'. $request['search'] .'%');
             }
             if($request['status']!="All"){
                 if($request['status']==2){

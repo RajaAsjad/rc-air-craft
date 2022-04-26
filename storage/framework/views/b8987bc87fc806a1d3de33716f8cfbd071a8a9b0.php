@@ -37,7 +37,7 @@
                                 <span style="color: red"><?php echo e($errors->first('image')); ?></span>
                             </div>
                             <div class="col-sm-4" >
-                                <img style="width: 80px" id="banner_preview"  src="<?php echo e(asset('public/admin/assets/images/default.jpg')); ?>"  alt="Image Not Found ">
+                                    <img style="width: 80px" id="banner_preview"  src="<?php echo e(asset('public/admin/assets/images/default.jpg')); ?>"  alt="Image Not Found ">
                             </div>
                         </div>
 						<div class="form-group">
@@ -62,6 +62,13 @@
                 description: "required"
 			}
 		});
+
+        image.onchange = evt => {
+		const [file] = image.files
+		if (file) {
+			banner_preview.src = URL.createObjectURL(file)
+		}
+		}
 	});
 </script>
 <?php $__env->stopPush(); ?>

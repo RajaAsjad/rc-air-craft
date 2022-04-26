@@ -3,13 +3,13 @@
         <td>{{ $models->firstItem()+$key }}.</td>
         <td>
             @if($model->image)
-                <img src="{{ asset('public/admin/assets/images/howToPlay/'.$model->image) }}" alt="" style="width:60px;">
+                <img src="{{ asset('public/admin/assets/images/why_choose/'.$model->image) }}" alt="" style="width:60px;">
             @else
                 <img src="{{ asset('public/admin/assets/images/default.jpg') }}" style="width:60px;">
             @endif
         </td>
-        <td>{{\Illuminate\Support\Str::limit($model->title,60)}}</td>
-        <td>{{\Illuminate\Support\Str::limit($model->description,60)}}</td>
+        <td>{{\Illuminate\Support\Str::limit($model->title??'N/A',60)}}</td>
+        <td>{{\Illuminate\Support\Str::limit($model->description??'N/A',60)}}</td>
         <td>
             @if($model->status)
                 <span class="badge badge-success">Active</span>
@@ -19,11 +19,11 @@
         </td>
         <td>{{isset($model->hasCreatedBy)?$model->hasCreatedBy->name:'N/A'}}</td>
         <td width="250px">
-            @can('how_to_play-edit')
-                <a href="{{route('how_to_play.edit', $model->id)}}" data-toggle="tooltip" data-placement="top" title="Edit how_to_play" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit</a>
+            @can('why_choose_us-edit')
+                <a href="{{route('why_choose_us.edit', $model->id)}}" data-toggle="tooltip" data-placement="top" title="Edit AboutUs" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit</a>
             @endcan
-            @can('how_to_play-delete')
-                <button class="btn btn-danger btn-xs delete" data-slug="{{ $model->id }}" data-del-url="{{ url('how_to_play', $model->id) }}"><i class="fa fa-trash"></i> Delete</button>
+            @can('why_choose_us-delete')
+                <button class="btn btn-danger btn-xs delete" data-slug="{{ $model->id }}" data-del-url="{{ url('why_choose_us', $model->id) }}"><i class="fa fa-trash"></i> Delete</button>
             @endcan
         </td>
     </tr>

@@ -55,6 +55,13 @@
                 </a>
             </li>
             <?php endif; ?>
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('why_choose_us-list')): ?>
+            <li class="treeview">
+                <a href="<?php echo e(route('why_choose_us.index')); ?>" class="<?php echo e(request()->is('why_choose_us') || request()->is('why_choose_us/create') || request()->is('why_choose_us/*/edit') ? 'active' : ''); ?>">
+                    <i class="fa fa-question"></i> <span>Why Choose Us</span>
+                </a>
+            </li>
+            <?php endif; ?>
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('faq-list')): ?>
             <li class="treeview">
                 <a href="<?php echo e(route('faq.index')); ?>" class="<?php echo e(request()->is('faq') || request()->is('faq/create') || request()->is('faq/*/edit') ? 'active' : ''); ?>">

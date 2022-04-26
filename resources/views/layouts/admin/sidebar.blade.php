@@ -55,6 +55,13 @@
                 </a>
             </li>
             @endcan
+            @can('why_choose_us-list')
+            <li class="treeview">
+                <a href="{{ route('why_choose_us.index') }}" class="{{ request()->is('why_choose_us') || request()->is('why_choose_us/create') || request()->is('why_choose_us/*/edit') ? 'active' : '' }}">
+                    <i class="fa fa-question"></i> <span>Why Choose Us</span>
+                </a>
+            </li>
+            @endcan
             @can('faq-list')
             <li class="treeview">
                 <a href="{{ route('faq.index') }}" class="{{ request()->is('faq') || request()->is('faq/create') || request()->is('faq/*/edit') ? 'active' : '' }}">

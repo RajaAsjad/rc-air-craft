@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
-use App\Models\HowToPlay;
+use App\Models\WhyChooseUs;
 use Illuminate\Http\Request;
 use Auth;
 
-class HowToPlayController extends Controller
+class WhyChooseUsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,15 +15,16 @@ class HowToPlayController extends Controller
      */
     function __construct()
     {
-        $this->middleware('permission:how_to_play-list|how_to_play-create|how_to_play-edit|how_to_play-delete', ['only' => ['index','store']]);
-        $this->middleware('permission:how_to_play-create', ['only' => ['create','store']]);
-        $this->middleware('permission:how_to_play-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:how_to_play-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:why_choose_us-list|why_choose_us-create|why_choose_us-edit|why_choose_us-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:why_choose_us-create', ['only' => ['create','store']]);
+        $this->middleware('permission:why_choose_us-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:why_choose_us-delete', ['only' => ['destroy']]);
     }
+
     public function index(Request $request)
     {
         if($request->ajax()){
-            $query = HowToPlay::orderby('id', 'desc')->where('id', '>', 0);
+            $query = WhyChooseUs::orderby('id', 'desc')->where('id', '>', 0);
             if($request['search'] != ""){
                 $query->where('title', 'like', '%'. $request['search'] .'%');
             }
@@ -34,12 +35,14 @@ class HowToPlayController extends Controller
                 $query->where('status', $request['status']);
             }
             $models = $query->paginate(10);
-            return (string) view('admin.how_to_play.search', compact('models'));
+            return (string) view('admin.why_choose_us.search', compact('models'));
         }
-        $page_title = 'All Categories';
-        $models = HowToPlay::orderby('id', 'desc')->paginate(10);
-        return View('admin.how_to_play.index', compact("models","page_title"));
+        $page_title = 'All WhyChooseUs';
+        $models = WhyChooseUs::orderby('id', 'desc')->paginate(10);
+        return View('admin.why_choose_us.index', compact("models","page_title"));
     }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -48,10 +51,11 @@ class HowToPlayController extends Controller
     public function create()
     {
         {
-            $page_title = 'Add HowToPlay';
-            return View('admin.how_to_play.create', compact('page_title'));
+            $page_title = 'Add WhyChooseUs';
+            return View('admin.why_choose_us.create', compact('page_title'));
         }
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -62,14 +66,14 @@ class HowToPlayController extends Controller
     {
         $validator = $request->validate([
             'title' => 'required|max:100',
-            'description' => 'required|max:1000',
+            'description' => 'required|max:2000',
         ]);
 
-        $model = new HowToPlay();
+        $model = new WhyChooseUs();
 
         if (isset($request->image)) {
             $photo = date('YmdHis').'.'.$request->file('image')->getClientOriginalExtension();
-            $request->image->move(public_path('/admin/assets/images/howToPlay'), $photo);
+            $request->image->move(public_path('/admin/assets/images/why_choose'), $photo);
             $model->image = $photo;
         }
 
@@ -78,16 +82,16 @@ class HowToPlayController extends Controller
         $model->description = $request->description;
         $model->save();
 
-        return redirect()->route('how_to_play.index')->with('message', 'How To Play Added Successfully !');
+        return redirect()->route('why_choose_us.index')->with('message', 'Why Choose Us Added Successfully !');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\HowToPlay  $howToPlay
+     * @param  \App\Models\WhyChooseUs  $whyChooseUs
      * @return \Illuminate\Http\Response
      */
-    public function show(HowToPlay $howToPlay)
+    public function show(WhyChooseUs $whyChooseUs)
     {
         //
     }
@@ -95,35 +99,35 @@ class HowToPlayController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\HowToPlay  $howToPlay
+     * @param  \App\Models\WhyChooseUs  $whyChooseUs
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $page_title = 'Edit HowToPlay';
-        $model = HowToPlay::where('id', $id)->first();
-        return View('admin.how_to_play.edit', compact('model','page_title'));
+        $page_title = 'Edit WhyChooseUs';
+        $model = WhyChooseUs::where('id', $id)->first();
+        return View('admin.why_choose_us.edit', compact('model','page_title'));
     }
-
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\HowToPlay  $howToPlay
+     * @param  \App\Models\WhyChooseUs  $whyChooseUs
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,$id)
     {
         $validator = $request->validate([
             'title' => 'required|max:100',
-            'description' => 'required|max:1000',
+            'description' => 'required|max:2000',
+
         ]);
 
-        $update = HowToPlay::where('id', $id)->first();
+        $update = WhyChooseUs::where('id', $id)->first();
 
         if (isset($request->image)) {
             $photo = date('YmdHis').'.'.$request->file('image')->getClientOriginalExtension();
-            $request->image->move(public_path('/admin/assets/images/howToPlay'), $photo);
+            $request->image->move(public_path('/admin/assets/images/why_choose'), $photo);
             $update->image = $photo;
         }
 
@@ -132,17 +136,18 @@ class HowToPlayController extends Controller
         $update->status = $request->status;
         $update->update();
 
-        return redirect()->route('how_to_play.index')->with('message', 'How To Play Updated Successfully !');
+        return redirect()->route('why_choose_us.index')->with('message', 'Why Choose Us Updated Successfully !');
     }
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\HowToPlay  $howToPlay
+     * @param  \App\Models\WhyChooseUs  $whyChooseUs
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $model = HowToPlay::where('id', $id)->first();
+        $model = WhyChooseUs::where('id', $id)->first();
         if ($model) {
             $model->delete();
             return true;

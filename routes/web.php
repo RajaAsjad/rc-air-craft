@@ -84,19 +84,23 @@ Route::group(['middleware' => ['auth']], function() {
     //Coupon
     Route::resource('coupon', 'admin\CouponController');
 
-    //order
-    Route::resource('order', 'OrderController');
-
     //Slider
     Route::resource('slider', 'admin\SliderController');
 
     //How To Play
     Route::resource('how_to_play', 'admin\HowToPlayController');
+
     //About Us
     Route::resource('about_us', 'admin\AboutUsController');
 
+    //Why Choose Us
+    Route::resource('why_choose_us', 'admin\WhyChooseUsController');
+
 
 });
+
+ //order
+ Route::resource('order', 'OrderController');
 
 //Newsletter
 Route::resource('newsletter', 'NewsletterController');

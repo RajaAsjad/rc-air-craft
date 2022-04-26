@@ -63,6 +63,13 @@
                 description: "required"
 			}
 		});
+
+        image.onchange = evt => {
+		const [file] = image.files
+		if (file) {
+			banner_preview.src = URL.createObjectURL(file)
+		}
+		}
 	});
 </script>
 @endpush

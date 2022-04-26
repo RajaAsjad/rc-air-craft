@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAboutUsTable extends Migration
+class CreateWhyChooseUsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateAboutUsTable extends Migration
      */
     public function up()
     {
-        Schema::create('about_us', function (Blueprint $table) {
+        Schema::create('why_choose_us', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('created_by');
-            $table->string('heading')->nullable();
+            $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->string('image')->nullable();
             $table->string('status')->default(1)->comment('0=inactive, 1= active');
@@ -32,6 +32,6 @@ class CreateAboutUsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('about_us');
+        Schema::dropIfExists('why_choose_us');
     }
 }

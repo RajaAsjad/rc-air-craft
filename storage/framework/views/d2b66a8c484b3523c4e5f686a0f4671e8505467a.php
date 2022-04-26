@@ -3,13 +3,13 @@
         <td><?php echo e($models->firstItem()+$key); ?>.</td>
         <td>
             <?php if($model->image): ?>
-                <img src="<?php echo e(asset('public/admin/assets/images/about_us/'.$model->image)); ?>" alt="" style="width:60px;">
+                <img src="<?php echo e(asset('public/admin/assets/images/howToPlay/'.$model->image)); ?>" alt="" style="width:60px;">
             <?php else: ?>
                 <img src="<?php echo e(asset('public/admin/assets/images/default.jpg')); ?>" style="width:60px;">
             <?php endif; ?>
         </td>
-        <td><?php echo e(\Illuminate\Support\Str::limit($model->heading??'N/A',60)); ?></td>
-        <td><?php echo e(\Illuminate\Support\Str::limit($model->description??'N/A',60)); ?></td>
+        <td><?php echo e(\Illuminate\Support\Str::limit($model->title,60)); ?></td>
+        <td><?php echo e(\Illuminate\Support\Str::limit($model->description,60)); ?></td>
         <td>
             <?php if($model->status): ?>
                 <span class="badge badge-success">Active</span>
@@ -19,11 +19,11 @@
         </td>
         <td><?php echo e(isset($model->hasCreatedBy)?$model->hasCreatedBy->name:'N/A'); ?></td>
         <td width="250px">
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('about_us-edit')): ?>
-                <a href="<?php echo e(route('about_us.edit', $model->id)); ?>" data-toggle="tooltip" data-placement="top" title="Edit AboutUs" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit</a>
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('how_to_play-edit')): ?>
+                <a href="<?php echo e(route('how_to_play.edit', $model->id)); ?>" data-toggle="tooltip" data-placement="top" title="Edit how_to_play" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit</a>
             <?php endif; ?>
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('about_us-delete')): ?>
-                <button class="btn btn-danger btn-xs delete" data-slug="<?php echo e($model->id); ?>" data-del-url="<?php echo e(url('about_us', $model->id)); ?>"><i class="fa fa-trash"></i> Delete</button>
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('how_to_play-delete')): ?>
+                <button class="btn btn-danger btn-xs delete" data-slug="<?php echo e($model->id); ?>" data-del-url="<?php echo e(url('how_to_play', $model->id)); ?>"><i class="fa fa-trash"></i> Delete</button>
             <?php endif; ?>
         </td>
     </tr>
@@ -36,4 +36,4 @@
         </div>
     </td>
 </tr>
-<?php /**PATH C:\xampp\htdocs\rc-air-craft\resources\views/admin/about_us/search.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\rc-air-craft\resources\views/admin/how_to_play/search.blade.php ENDPATH**/ ?>

@@ -9,6 +9,7 @@ use App\Models\Faq;
 use App\Models\Slider;
 use App\Models\HowToPlay;
 use App\Models\AboutUs;
+use App\Models\WhyChooseUs;
 use Auth;
 use Hash;
 
@@ -203,9 +204,9 @@ class WebController extends Controller
     }
   public function aboutUs ()
   {
-      $aboutsus = AboutUs::where('status',1)->take(1)->first();
-      $abouts = AboutUs::where('id', '>' , 3)->get();
-    return view('website.about-us', compact('aboutsus' , 'abouts'));
+      $abouts = AboutUs::where('status',1)->take(1)->first();
+      $chooses = WhyChooseUs::where('status',1)->get();
+    return view('website.about-us', compact('abouts','chooses'));
   }
   public function billingAddress ()
   {
