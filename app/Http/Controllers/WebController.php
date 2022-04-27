@@ -24,7 +24,8 @@ class WebController extends Controller
         }
         $howtoplays = HowToPlay::where('status',1)->get();
         $sliders = Slider::where('status',1)->get();
-        return view('website.index', compact('data','howtoplays','sliders'));
+        $times = Product::where('status',1)->get();
+        return view('website.index', compact('data','howtoplays','sliders','times'));
     }
 
     public function singleProduct($slug)
