@@ -24,8 +24,7 @@ class WebController extends Controller
         }
         $howtoplays = HowToPlay::where('status',1)->get();
         $sliders = Slider::where('status',1)->get();
-        $times = Product::where('status',1)->get();
-        return view('website.index', compact('data','howtoplays','sliders','times'));
+        return view('website.index', compact('data','howtoplays','sliders'));
     }
 
     public function singleProduct($slug)
@@ -271,6 +270,11 @@ class WebController extends Controller
   public function winner()
   {
       return view('website.winner');
+  }
+
+  public function getProductId(){
+    $product_ids = Product::where('status',1)->get(['id', 'draw_ends']);
+    return response()->json($product_ids);
   }
 
 }

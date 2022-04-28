@@ -57,6 +57,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('single-product/{slug}', 'WebController@singleProduct')->name('single-product');
+Route::get('get_product_ids', 'WebController@getProductId')->name('get_product_ids');
 
 Route::group(['middleware' => ['auth']], function() {
     //Roles

@@ -43,6 +43,7 @@
 
 <script src="{{asset('public/admin/assets/js/toastr.min.js')}}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+@stack('js')
 <script>
     $(document).on('click', '.navigatee ul li', function() {
         $(this).addClass('selected').siblings().removeClass('selected');
@@ -85,7 +86,7 @@
             toastr.warning("{{ session('warning') }}");
     @endif
 </script>
-@method('js')
+
 </body>
 
 </html>

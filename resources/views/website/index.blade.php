@@ -48,7 +48,7 @@
                 <div class="row">
                     @if(!empty($data['competitions']))
                         @foreach ($data['competitions'] as $product)
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-lg-4 col-md-6" id="auction-timer_{{ $product->id }}">
                                 <ul class="products">
                                     <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
                                         <div class="pic">
@@ -57,10 +57,10 @@
                                         <div class="time-slot">
                                             <div id="countdown">
                                                 <ul>
-                                                    <li><span id="days"></span>days</li>
-                                                    <li><span id="hours"></span>Hours</li>
-                                                    <li><span id="minutes"></span>Minutes</li>
-                                                    <li><span id="seconds"></span>Seconds</li>
+                                                    <li><span id="days-{{ $product->id }}"></span>days</li>
+                                                    <li><span id="hours-{{ $product->id }}"></span>Hours</li>
+                                                    <li><span id="minutes-{{ $product->id }}"></span>Minutes</li>
+                                                    <li><span id="seconds-{{ $product->id }}"></span>Seconds</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -98,34 +98,22 @@
             <div class="container">
                 <div class="row">
                     @foreach ($data['mini-competitions'] as $product)
-                        <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-4 col-md-6" id="auction-timer_{{ $product->id }}">
                             <ul class="products">
                                 <li class="product aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
                                     <div class="pic">
                                         <img src="{{ asset('public/admin/assets/images/product') }}/{{ $product->image }}">
                                     </div>
-                                    {{-- <div class="time-slot">
-                                        <div class="main-lottery lottery-time-countdown is-wc_lotery_countdown" data-time="1647734400" data-lotteryid="7431" data-format="yowdHMS"><span class="wc_lotery_countdown-row wc_lotery_countdown-show4">
-                                            <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">1</span> <br> <span class="wc_lotery_countdown-period">Day</span></span>
-                                            <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">11</span> <br> <span class="wc_lotery_countdown-period">Hours</span></span><span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">53</span>                                        <br>
-                                            <span class="wc_lotery_countdown-period">Minutes</span>
-                                            </span>
-                                            <span class="wc_lotery_countdown-section"><span class="wc_lotery_countdown-amount">52</span> <br> <span class="wc_lotery_countdown-period">Seconds</span></span>
-                                            </span>
-                                        </div>
-                                    </div> --}}
-
                                     <div class="time-slot">
                                         <div id="countdown">
                                             <ul>
-                                                <li><span id="days"></span>days</li>
-                                                <li><span id="hours"></span>Hours</li>
-                                                <li><span id="minutes"></span>Minutes</li>
-                                                <li><span id="seconds"></span>Seconds</li>
+                                                <li><span id="days-{{ $product->id }}"></span>days</li>
+                                                <li><span id="hours-{{ $product->id }}"></span>Hours</li>
+                                                <li><span id="minutes-{{ $product->id }}"></span>Minutes</li>
+                                                <li><span id="seconds-{{ $product->id }}"></span>Seconds</li>
                                             </ul>
                                         </div>
                                     </div>
-
                                     <div class="box">
                                         <p>{{ $product->name }}</p>
                                         <p>{!! $product->short_description !!}</p>
@@ -221,7 +209,52 @@
             </section>
         </div>
     </div>
-
-    <!-- gallery-end -->
-
 @endSection
+
+@push('js')
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                url : "{{ route('get_product_ids') }}",
+                type : 'GET',
+                success : function(response){
+                    // console.log(response);
+                    jQuery.each(response, function(index, item) {
+                        timer(item.id, item.draw_ends);
+                        // console.log(item.id+'----'+item.draw_ends);
+                    });
+                }
+            });
+        });
+
+        function timer(id, date_time){
+            // Set the date we're counting down to
+            var countDownDate = new Date(date_time).getTime();
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+                // Get today's date and time
+                var now = new Date().getTime();
+                // Find the distance between now and the count down date
+                var distance = countDownDate - now;
+
+                // Time calculations for days, hours, minutes and seconds
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Output the result in an element with id="demo"
+                document.getElementById('days-'+id).innerHTML=days;
+                document.getElementById('hours-'+id).innerHTML=hours;
+                document.getElementById('minutes-'+id).innerHTML=minutes;
+                document.getElementById('seconds-'+id).innerHTML=seconds;
+
+                // If the count down is over, write some text
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById('auction-timer_'+id).innerHTML = "EXPIRED";
+                }
+            }, 1000);
+        }
+    </script>
+@endpush

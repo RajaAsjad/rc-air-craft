@@ -72,7 +72,7 @@ class ProductController extends Controller
 
         $rules = ([
             'name' => ['required','unique:products','max:255'],
-            'short_description' => 'max:1000',
+
             'description' => ['required','max:1000'],
             'min_competition' => ['required','min:1','max:1'],
             'max_competition' => ['required','min:1','max:190'],
@@ -174,7 +174,7 @@ class ProductController extends Controller
             $update->image = $photo;
         }
 
-        $update->category_slug = \Str::slug($request->name);
+        $update->category_slug = \Str::slug($request->category_slug);
         $update->name = $request->name;
         $update->slug = \Str::slug($request->name);
         $update->price = $request->price;
