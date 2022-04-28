@@ -72,7 +72,7 @@
                                         <a href="{{route ('single-product', $product->slug) }}">Enter Now</a>
                                         <h3>
                                             <span class="woocommerce-Price-amount amount">
-                                                <bdi><span class="woocommerce-Price-currencySymbol">$</span>{{ number_format($product->price, 2) }}</bdi>
+                                                <bdi><span class="woocommerce-Price-currencySymbol">£</span>{{ number_format($product->price, 2) }}</bdi>
                                             </span>
                                             <span>Per Entry</span>
                                         </h3>
@@ -122,7 +122,7 @@
                                     <a href="{{route ('single-product', $product->slug) }}">Enter Now</a>
                                     <h3>
                                         <span class="woocommerce-Price-amount amount">
-                                            <bdi><span class="woocommerce-Price-currencySymbol">$</span>{{ number_format($product->price, 2) }}</bdi>
+                                            <bdi><span class="woocommerce-Price-currencySymbol">£</span>{{ number_format($product->price, 2) }}</bdi>
                                         </span>
                                         <span>Per Entry</span>
                                     </h3>

@@ -20,7 +20,7 @@ class WebController extends Controller
         $categories = Category::where('status', 1)->get(['slug']);
         $data = [];
         foreach($categories as $category){
-            $data[$category->slug] = Product::where('category_slug', $category->slug)->where('status',1)->get();
+            $data[$category->slug] = Product::where('draw_ends', '>=', date('Y-m-d'))->where('category_slug', $category->slug)->where('status',1)->get();
         }
         $howtoplays = HowToPlay::where('status',1)->get();
         $sliders = Slider::where('status',1)->get();

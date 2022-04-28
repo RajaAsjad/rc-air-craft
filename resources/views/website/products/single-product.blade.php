@@ -8,21 +8,20 @@
 
     <div class="single-produc">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 img-hover-zoom">
+            <div class="row" >
+                <div class="col-lg-6 col-md-6 img-hover-zoom" >
                     <img src="{{ asset('public/admin/assets/images/product') }}/{{ $product->image }}" style="width: 100%;">
                 </div>
-                <div class="col-lg-6 col-md-6">
-                    <h6 class="pro-price">${{ number_format($product->price, 2) }}</h6>
+                <div class="col-lg-6 col-md-6" id="auction-timer_{{ $product->id }}">
+                    <h6 class="pro-price">£{{ number_format($product->price, 2) }}</h6>
                     <p class="descrip">{!! $product->description !!}</p>
-                    <div class="time-slot-pro">
-                        <h2>Time Left</h2>
+                    <div class="time-slot">
                         <div id="countdown">
                             <ul>
-                                <li><span id="days"></span>days</li>
-                                <li><span id="hours"></span>Hours</li>
-                                <li><span id="minutes"></span>Minutes</li>
-                                <li><span id="seconds"></span>Seconds</li>
+                                <li><span id="days-{{ $product->id }}"></span>days</li>
+                                <li><span id="hours-{{ $product->id }}"></span>Hours</li>
+                                <li><span id="minutes-{{ $product->id }}"></span>Minutes</li>
+                                <li><span id="seconds-{{ $product->id }}"></span>Seconds</li>
                             </ul>
                         </div>
                     </div>
@@ -76,3 +75,50 @@
         </div>
     </div>
 @endsection
+@push('js')
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                url : "{{ route('get_product_ids') }}",
+                type : 'GET',
+                success : function(response){
+                    // console.log(response);
+                    jQuery.each(response, function(index, item) {
+                        timer(item.id, item.draw_ends);
+                        // console.log(item.id+'----'+item.draw_ends);
+                    });
+                }
+            });
+        });
+
+        function timer(id, date_time){
+            // Set the date we're counting down to
+            var countDownDate = new Date(date_time).getTime();
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+                // Get today's date and time
+                var now = new Date().getTime();
+                // Find the distance between now and the count down date
+                var distance = countDownDate - now;
+
+                // Time calculations for days, hours, minutes and seconds
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Output the result in an element with id="demo"
+                document.getElementById('days-'+id).innerHTML=days;
+                document.getElementById('hours-'+id).innerHTML=hours;
+                document.getElementById('minutes-'+id).innerHTML=minutes;
+                document.getElementById('seconds-'+id).innerHTML=seconds;
+
+                // If the count down is over, write some text
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById('auction-timer_'+id).innerHTML = "EXPIRED";
+                }
+            }, 1000);
+        }
+    </script>
+@endpush

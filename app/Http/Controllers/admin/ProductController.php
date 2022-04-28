@@ -72,7 +72,6 @@ class ProductController extends Controller
 
         $rules = ([
             'name' => ['required','unique:products','max:255'],
-
             'description' => ['required','max:1000'],
             'min_competition' => ['required','min:1','max:1'],
             'max_competition' => ['required','min:1','max:190'],
