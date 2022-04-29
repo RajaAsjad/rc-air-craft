@@ -17,7 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->id();
             $table->string('product_slug');
             $table->string('question');
-            $table->string('answer');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

@@ -3,54 +3,55 @@
     <div class="container footer-highlight">
         <div class="row">
             <div class="col-md-12">
-                 <p>{!! $home_page_data['footer_description'] !!}</p>
+                 <p><?php echo $home_page_data['footer_description']; ?></p>
             </div>
         </div>
     </div>
     <div class="container">
-        <img class="foot-logo img-fluid" src="{{ asset('public/admin/assets/images/page') }}/{{ $home_page_data['footer_image'] }}">
+        <img class="foot-logo img-fluid" src="<?php echo e(asset('public/admin/assets/images/page')); ?>/<?php echo e($home_page_data['footer_image']); ?>">
         <div class="row foot-text">
             <div class="col-md-3">
                 <h4>QUICK LINKS</h4>
                 <ul>
                     <li><a href="#competitions">Competitions</a></li>
                     <li><a href="#mini-competitions">Medium Competitions</a></li>
-                    <li><a href="{{route ('cart.list') }}">Basket</a></li>
-                    <li><a href="{{route ('login') }}">My account</a></li>
+                    <li><a href="<?php echo e(route ('cart.list')); ?>">Basket</a></li>
+                    <li><a href="<?php echo e(route ('login')); ?>">My account</a></li>
                 </ul>
             </div>
             <div class="col-md-3">
                 <h4>LEGAL PAGES</h4>
                 <ul>
-                    <li><a href="{{route ('terms-and-conditions') }}">Terms & Conditions</a></li>
-                    <li><a href="{{route ('faqs') }}">FAQs</a></li>
-                    <li><a href="{{route ('privacy-policy') }}">Privacy Policy</a></li>
-                    <li><a href="{{route ('about-us') }}">About Us</a></li>
+                    <li><a href="<?php echo e(route ('terms-and-conditions')); ?>">Terms & Conditions</a></li>
+                    <li><a href="<?php echo e(route ('faqs')); ?>">FAQs</a></li>
+                    <li><a href="<?php echo e(route ('privacy-policy')); ?>">Privacy Policy</a></li>
+                    <li><a href="<?php echo e(route ('about-us')); ?>">About Us</a></li>
                 </ul>
             </div>
             <div class="col-md-3">
                 <h4>CONTACT US</h4>
                 <ul>
-                    <li><a href="">{{ $home_page_data['footer_email'] }}</a></li>
+                    <li><a href=""><?php echo e($home_page_data['footer_email']); ?></a></li>
                 </ul>
                 <h4 class="mt-4">FOLLOW US</h4>
                 <div class="icons">
-                    <a href="{{ $home_page_data['footer_facebook'] }}"><i class="fa fa-facebook"></i></a>
-                    <a href="{{ $home_page_data['footer_instagram'] }}"><i class="fa fa-instagram"></i></a>
+                    <a href="<?php echo e($home_page_data['footer_facebook']); ?>"><i class="fa fa-facebook"></i></a>
+                    <a href="<?php echo e($home_page_data['footer_instagram']); ?>"><i class="fa fa-instagram"></i></a>
                 </div>
             </div>
             <div class="col-md-3">
-                @if (session('status'))
+                <?php if(session('status')): ?>
 				<div class="callout callout-success">
-					{{ session('status') }}
+					<?php echo e(session('status')); ?>
+
 				</div>
-			@endif
+			<?php endif; ?>
                 <h4>SIGNUP FOR NEWSLETTER</h4>
-                <form action="{{ route('newsletter.store') }}" id="regform" class="form-horizontal" enctype="multipart/form-data" method="post" accept-charset="utf-8">
-                    @csrf
+                <form action="<?php echo e(route('newsletter.store')); ?>" id="regform" class="form-horizontal" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                    <?php echo csrf_field(); ?>
                     <input type="email" name="email" placeholder="Email Address" id="email">
                     <button class="submit" type="submit" id="submit">Submit</button>
-                    <img src="{{ asset('public/assets/website') }}/images/card.png" class="img-fluid mt-4">
+                    <img src="<?php echo e(asset('public/assets/website')); ?>/images/card.png" class="img-fluid mt-4">
                 </form>
             </div>
         </div>
@@ -60,10 +61,10 @@
     <div class="container text-center copy">
         <div class="row">
             <div class="col-md-6">
-                <p>{!! $home_page_data['footer_copy_right_right_side'] !!}</p>
+                <p><?php echo $home_page_data['footer_copy_right_right_side']; ?></p>
             </div>
             <div class="col-md-6">
-                <p> {!! $home_page_data['footer_copy_right_left_side'] !!}</p>
+                <p> <?php echo $home_page_data['footer_copy_right_left_side']; ?></p>
             </div>
         </div>
     </div>
@@ -78,5 +79,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
-<script src="{{ asset('public/assets/website') }}/js/main.js"></script>
+<script src="<?php echo e(asset('public/assets/website')); ?>/js/main.js"></script>
 
+<?php /**PATH C:\xampp\htdocs\rc-air-craft\resources\views/layouts/website/footer.blade.php ENDPATH**/ ?>

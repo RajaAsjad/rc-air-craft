@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +40,7 @@ Route::get('/', [WebController::class, 'index'])->name('index');
 Route::get('winner', [WebController::class, 'winner'])->name('winner');
 Route::get('about-us', [WebController::class, 'aboutUs'])->name('about-us');
 Route::get('billing-address', [WebController::class, 'billingAddress'])->name('billing-address');
-Route::get('cart', [WebController::class, 'cart'])->name('cart');
+//Route::get('cart', [WebController::class, 'cart'])->name('cart.list');
 Route::get('check-out', [WebController::class, 'checkOut'])->name('check-out');
 Route::get('faqs', [WebController::class, 'faqs'])->name('faqs');
 // Route::get('login', [WebController::class, 'userlogin'])->name('login');
@@ -111,3 +112,9 @@ Route::resource('billing_address', 'BillingAddressController');
 
 //Shipping-Address
 Route::resource('shipping_address', 'ShippingAddressController');
+//Cart
+Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
+Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
+Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
+Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
+Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');

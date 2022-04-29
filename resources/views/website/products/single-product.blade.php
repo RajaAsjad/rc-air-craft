@@ -1,4 +1,9 @@
 @extends('layouts.website.master')
+@push('css')
+    <style>
+        .alert.alert-secondary p {margin-bottom: 0;}
+    </style>
+@endpush
 @section('content')
     <div class="inner-banner" style="background:#000;">
         <div class="container text-center">
@@ -8,6 +13,15 @@
 
     <div class="single-produc">
         <div class="container">
+            @if(session()->has('error'))
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="alert alert-secondary" style="display: flex;justify-content: space-between; border-top:2px solid red; align-item:center" role="alert">
+                       <p><i class="fa fa-info-circle" style="color: rgb(187, 50, 50)"></i> {{ session()->get('error') }}</p> <a href="{{ route('login') }}" class="btn btn-primary btn-sm">Login <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            @endif
             <div class="row" >
                 <div class="col-lg-6 col-md-6 img-hover-zoom" >
                     <img src="{{ asset('public/admin/assets/images/product') }}/{{ $product->image }}" style="width: 100%;">
@@ -43,24 +57,45 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="ques ">
-                        <h2 class="answer ">Answer the question: </h2>
-                        <p class="descrip">{{ $product->hasQuestion->question }}</p>
-                            <div class="navigatee">
-                                <ul>
-                                    <li class="correct">{{ $product->hasQuestion->answer }}</li>
-                                    @foreach($product->hasQuestion->hasOptions as $option)
-                                        <li class="wrong">{{ $option->choices }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        <div class="input-group quantity_goods">
-                            <form action="{{ route('order.store') }}" method="post">
+                        @if(!empty($product->hasQuestion))
+                            <h2 class="answer ">Answer the question: </h2>
+                            <p class="descrip">{{ $product->hasQuestion->question }}</p>
+                            <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <input type="hidden" name="product_id" name="{{ $product->id }}">
-                                <input type="number" step="1" min="1" max="10" id="num_count" name="quantity" value="1" title="Qty"><button type="submit" class="btn-to-you ">Participate now </button>
+                                <div class="navigatee">
+                                    <ul>
+                                        @foreach($product->hasQuestion->hasOptions as $option)
+                                            @if($option->answer)
+                                                <input type="hidden" value="{{ $option->choices }}" id="input-answer" name="answer">
+                                                <li class="correct" style="cursor: pointer" data-answer="{{ $option->choices }}">{{ $option->choices }}</li>
+                                            @else
+                                                <li class="wrong" style="cursor: pointer" data-answer="{{ $option->choices }}">{{ $option->choices }}</li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <div class="input-group quantity_goods">
+                                    <input type="hidden" value="{{ $product->id }}" name="id">
+                                    <input type="hidden" value="{{ $product->name }}" name="name">
+                                    <input type="hidden" value="{{ $product->price }}" name="price">
+                                    <input type="hidden" value="{{ $product->image }}"  name="image">
+                                    <input type="hidden" value="{{ $product->max_competition }}" name="max_competition">
+                                    <input type="number" step="1" min="1" max="{{ $product->max_competition }}" id="num_count" name="quantity" value="1" title="Qty">
+                                    <button type="submit" class="btn-to-you" style="cursor: pointer">Participate now</button>
+                                </div>
                             </form>
-                        </div>
+                        @else
+                            <div class="input-group quantity_goods">
+                                <input type="hidden" value="{{ $product->id }}" name="id">
+                                <input type="hidden" value="{{ $product->name }}" name="name">
+                                <input type="hidden" value="{{ $product->price }}" name="price">
+                                <input type="hidden" value="{{ $product->image }}"  name="image">
+                                <input type="number" step="1" min="1" max="{{ $product->max_competition }}" id="num_count" name="quantity" value="1" title="Qty">
+                                <button type="submit" class="btn-to-you" style="cursor: pointer">Participate now</button>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -77,15 +112,26 @@
 @endsection
 @push('js')
     <script>
+        $( "form" ).submit(function( event ) {
+            if ( $('.selected').attr('data-answer')===$("#input-answer").val()) {
+                return;
+            }else{
+                Swal.fire(
+                    'Wrong Answer',
+                    'You must pick correct answer.',
+                    'question'
+                )
+            }
+            event.preventDefault();
+        });
+
         $(document).ready(function(){
             $.ajax({
                 url : "{{ route('get_product_ids') }}",
                 type : 'GET',
                 success : function(response){
-                    // console.log(response);
                     jQuery.each(response, function(index, item) {
                         timer(item.id, item.draw_ends);
-                        // console.log(item.id+'----'+item.draw_ends);
                     });
                 }
             });

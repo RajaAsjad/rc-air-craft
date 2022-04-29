@@ -1,5 +1,4 @@
-@extends('layouts.website.master')
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="inner-banner" style="background:#000;">
         <div class="container text-center">
             <h1>CART</h1>
@@ -7,14 +6,14 @@
     </div>
 
     <div class="cart-of-table">
-        @if ($message = Session::get('success'))
+        <?php if($message = Session::get('success')): ?>
             <div class="p-4 mb-3 bg-green-400 rounded" style="background: green;width: 25%;display: block;margin: 0 auto;">
-                <p class="text-green-800" style="margin: 0; text-align: center;" >{{ $message }}</p>
+                <p class="text-green-800" style="margin: 0; text-align: center;" ><?php echo e($message); ?></p>
             </div>
-        @endif
+        <?php endif; ?>
         <div class="container">
-            <form action="{{ route('cart.update') }}" method="POST">
-                @csrf
+            <form action="<?php echo e(route('cart.update')); ?>" method="POST">
+                <?php echo csrf_field(); ?>
                 <table class="table text-nowrap table-responsive">
                     <thead>
                         <tr>
@@ -27,26 +26,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($cartItems as $item)
-                            <tr id="pro-{{ $item->id }}">
+                        <?php $__currentLoopData = $cartItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <tr id="pro-<?php echo e($item->id); ?>">
                                 <td>
-                                    <button type="button" value="{{ $item->id }}" scope="row" class="remove-btn" ><span class="croos">x</span></button>
+                                    <button type="button" value="<?php echo e($item->id); ?>" scope="row" class="remove-btn" ><span class="croos">x</span></button>
                                 </td>
-                                <td><img src="{{ asset('public/admin/assets/images/product') }}/{{ $item->attributes->image}}" style="width: 50px;"></td>
+                                <td><img src="<?php echo e(asset('public/admin/assets/images/product')); ?>/<?php echo e($item->attributes->image); ?>" style="width: 50px;"></td>
                                 <td>
-                                    <h6 class="prod-title"> {{ $item->name }}</h6> <br>
-                                    <p class="answer"> <strong>Answer:</strong>{{ $item->answer}}</p>
+                                    <h6 class="prod-title"> <?php echo e($item->name); ?></h6> <br>
+                                    <p class="answer"> <strong>Answer:</strong><?php echo e($item->answer); ?></p>
                                 </td>
-                                <td>{{ $item->price}}</td>
+                                <td><?php echo e($item->price); ?></td>
                                 <td>
-                                <input type="hidden" name="id[]" value="{{ $item->id}}" >
+                                <input type="hidden" name="id[]" value="<?php echo e($item->id); ?>" >
                                     <div class="input-group quantity_goods">
-                                        <input type="number" step="1" min="1" max="{{ $item->max_competition }}" id="num_count" name="quantity[]" value="{{ $item->quantity }}" title="Qty">
+                                        <input type="number" step="1" min="1" max="<?php echo e($item->max_competition); ?>" id="num_count" name="quantity[]" value="<?php echo e($item->quantity); ?>" title="Qty">
                                     </div>
                                 </td>
-                                <td>£{{ $item->quantity * $item->price }}</td>
+                                <td>£<?php echo e($item->quantity * $item->price); ?></td>
                             </tr>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                 </table>
                 <div class="row">
@@ -69,13 +68,13 @@
                         <thead>
                             <tr>
                                 <th scope="col">Subtotal</th>
-                                <th scope="col">£{{ Cart::getTotal() }}</th>
+                                <th scope="col">£<?php echo e(Cart::getTotal()); ?></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>Total</td>
-                                <td>£{{ Cart::getTotal() }}</td>
+                                <td>£<?php echo e(Cart::getTotal()); ?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -85,8 +84,8 @@
             </div>
         </div>
     </div>
-@endsection
-@push('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startPush('js'); ?>
     <script>
         $(document).on('click', '.coupon-btn', function(){
             var coupon_code = $('#coupon_code').val();
@@ -109,7 +108,7 @@
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        url : "{{ route('cart.remove') }}",
+                        url : "<?php echo e(route('cart.remove')); ?>",
                         data : {'product_id' : product_id},
                         type : 'POST',
                         success : function(result){
@@ -133,4 +132,6 @@
             })
         });
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.website.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\rc-air-craft\resources\views/website/cart.blade.php ENDPATH**/ ?>

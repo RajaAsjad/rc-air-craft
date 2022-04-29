@@ -68,17 +68,17 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        // return $request->short_description;
-
         $rules = ([
             'name' => ['required','unique:products','max:255'],
             'description' => ['required','max:1000'],
             'min_competition' => ['required','min:1','max:1'],
             'max_competition' => ['required','min:1','max:190'],
             'image' => ['mimes:jpeg,jpg,png,gif','required','max:10000'], // max 10000kb
+            'answers' => ['required'],
+            'answers.*' => ['required'],
         ]);
 
-        $this->validate(request(), $rules);
+        $this->validate($request, $rules);
 
         $model = new Product();
 
@@ -105,17 +105,21 @@ class ProductController extends Controller
         $question = Question::create([
             'product_slug' => $model->slug,
             'question' => $request->question,
-            'answer' => $request->answer,
         ]);
 
         if(!empty($question)){
-            foreach($request->choices as $choice){
+            foreach($request->choices as $key=>$choice){
+                $model = new Option();
                 if (!empty($choice)) {
-                    Option::create([
-                    'question_id'=>$question->id,
-                    'choices'=>$choice,
-                ]);
-            }
+                    $model->question_id = $question->id;
+                    $model->choices = $choice;
+
+                    if (isset($request->answers[$key])) {
+                        $model->answer = 1;
+                    }
+
+                    $model->save();
+                }
             }
         }
 

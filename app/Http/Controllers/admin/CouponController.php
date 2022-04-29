@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Auth;
 
 class CouponController extends Controller
@@ -69,13 +70,14 @@ class CouponController extends Controller
             'start_date' => 'required|max:100',
             'expire_date' => 'required|max:100',
         ]);
+
         $model = new Coupon();
         $model->user_id = Auth::user()->id;
         $model->slug = \Str::slug($request->title);
         $model->title = $request->title;
         $model->coupon_type = $request->coupon_type;
         $model->discount = $request->discount;
-        $model->coupon_code = '45rdfdf';
+        $model->coupon_code = Str::random(6);
         $model->max_purchase = $request->max_purchase;
         $model->start_date = date('Y-m-d', strtotime($request->start_date));
         $model->expire_date = date('Y-m-d', strtotime($request->expire_date));

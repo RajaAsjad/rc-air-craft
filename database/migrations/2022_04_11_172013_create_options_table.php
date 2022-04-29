@@ -17,6 +17,7 @@ class CreateOptionsTable extends Migration
             $table->id();
             $table->bigInteger('question_id');
             $table->string('choices');
+            $table->boolean('answer')->default(0);
             $table->timestamps();
         });
     }
