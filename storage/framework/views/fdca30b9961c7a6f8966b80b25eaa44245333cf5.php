@@ -31,25 +31,6 @@
                     </div>
                 </nav>
             </div>
-
-            <!--<div class="col-lg-4    col-md-4 left-menu">
-                <nav class=" navbar-expand-lg navbar-light bg-light">
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav">
-                            <a class="nav-link active" aria-current="page" href="<?php echo e(route ('winner')); ?>">WINNERS </a>
-                           <!-- 
-                           
-                            <a class="nav-link" href="<?php echo e(route ('faqs')); ?>">FAQ</a>
-                            <a class="nav-link" href="<?php echo e(route ('login')); ?>">
-                                <i class="fa fa-user"></i>
-                            </a>
-                            <a class="nav-link" href="cart">
-                                <i class="fa fa-shopping-cart"></i>
-                            </a>
-                        </div>
-                    </div>
-                </nav>
-            </div>-->
         </div>
     </div>
 </header>

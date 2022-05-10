@@ -60,6 +60,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('single-product/{slug}', 'WebController@singleProduct')->name('single-product');
 Route::get('get_product_ids', 'WebController@getProductId')->name('get_product_ids');
 
+Route::get('apply_coupon', [CartController::class, 'applyCoupon'])->name('apply_coupon');
+Route::get('remove-coupon', [CartController::class, 'removeCoupon'])->name('remove-coupon');
+
 Route::group(['middleware' => ['auth']], function() {
     //Roles
     Route::resource('role', 'admin\RoleController');

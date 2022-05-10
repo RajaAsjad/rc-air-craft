@@ -39,12 +39,19 @@ class BillingAddressController extends Controller
             $validator = $request->validate([
                 'first_name' => 'required|max:20',
                 'last_name' => 'required|max:20',
-                'email' => 'required|max:100',
+                /* 'company' => 'required|max:50',
+                'country' => 'required|max:50',
+                'street' => 'required|max:100',
+                'town' => 'required|max:100',
+                'postcode' => 'required|max:10',
+                'phone' => 'required|max:15',
+                'email' => 'required|max:100', */
             ]);
 
             $model = new BillingAddress();
             $model->first_name = $request->first_name;
             $model->last_name = $request->last_name;
+            $model->date_of_birth = $request->date_of_birth;
             $model->company = $request->company;
             $model->country = $request->country;
             $model->street = $request->street;
@@ -53,7 +60,7 @@ class BillingAddressController extends Controller
             $model->phone = $request->phone;
             $model->email = $request->email;
             $model->save();
-            return redirect('registration')->with('message', 'Email send Successfully !');
+            return redirect('check-out')->with('message', 'Successfully !');
         }
 
     /**

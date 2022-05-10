@@ -18,6 +18,7 @@ class CreateCouponUsagesTable extends Migration
             $table->bigInteger('user_id');
             $table->string('coupon_code');
             $table->bigInteger('usages');
+            $table->string('deleted_at')->nullable();
             $table->timestamps();
         });
     }

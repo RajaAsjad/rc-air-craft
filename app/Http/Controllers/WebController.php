@@ -10,6 +10,7 @@ use App\Models\Slider;
 use App\Models\HowToPlay;
 use App\Models\AboutUs;
 use App\Models\WhyChooseUs;
+use App\Models\Order;
 use Auth;
 use Hash;
 
@@ -30,6 +31,7 @@ class WebController extends Controller
     public function singleProduct($slug)
     {
         $product = Product::where('slug', $slug)->first();
+
         return view('website.products.single-product', compact('product'));
     }
 
@@ -61,10 +63,11 @@ class WebController extends Controller
             'body' => "If you have any questions, just reply to this email—we're always happy to help out.",
             'verify_token' => $user->verify_token,
         ];
+        return redirect()->back()->with('message', 'Register Successfully');
 
-        \Mail::to($user->email)->send(new \App\Mail\Email($details));
+       /*  \Mail::to($user->email)->send(new \App\Mail\Email($details)); */
 
-        return redirect()->back()->with('message', 'We have sent verification email. Click on link and get activation');
+       // return redirect()->back()->with('message', 'We have sent verification email. Click on link and get activation');
     }
     public function verifyEmail($token)
     {

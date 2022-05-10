@@ -8,7 +8,7 @@
 
     <div class="cart-of-table">
         @if ($message = Session::get('success'))
-            <div class="p-4 mb-3 bg-green-400 rounded" style="background: green;width: 25%;display: block;margin: 0 auto;">
+            <div class="p-4 mb-3 bg-green-400 rounded" style="background: green;width:82%;display: block;margin: 0 auto;">
                 <p class="text-green-800" style="margin: 0; text-align: center;" >{{ $message }}</p>
             </div>
         @endif
@@ -44,7 +44,7 @@
                                         <input type="number" step="1" min="1" max="{{ $item->max_competition }}" id="num_count" name="quantity[]" value="{{ $item->quantity }}" title="Qty">
                                     </div>
                                 </td>
-                                <td>£{{ $item->quantity * $item->price }}</td>
+                                <td>£{{ number_format($item->quantity * $item->price, 2) }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -53,9 +53,10 @@
                     <div class="col-md-6">
                         <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="Coupon code">
                         <button type="button" class="button coupon-btn" name="apply_coupon" value="Apply coupon">Apply coupon</button>
+                        <div><span style="color: red" id="error-coupon"></span></div>
                     </div>
-
-                    <div class="col-md-3 ">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3 right-txt ">
                         <button type="submit" class="button" name="update_cart" value="Update cart" aria-disabled="false">Update cart</button>
                     </div>
                 </div>
@@ -64,23 +65,42 @@
             <div class="row">
                 <div class="col-md-6"></div>
                 <div class="col-md-6">
-                    <h3 class="cart-totasl">Cart totals</h3>
+                    <h3 class="cart-totals">Cart totals</h3>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">Subtotal</th>
-                                <th scope="col">£{{ Cart::getTotal() }}</th>
+                                <th scope="col" colspan="2">£{{ number_format(Cart::getTotal(), 2) }}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Total</td>
-                                <td>£{{ Cart::getTotal() }}</td>
-                            </tr>
+                            @if(Session::has('discount'))
+                                <?php
+                                    $discount = Session::get('discount');
+                                ?>
+                                <tr>
+                                    <td>Coupon Discount</td>
+                                    <td>£{{ number_format($discount['discount'], 2) }}</td>
+                                    <td>
+                                        <button title="Remove coupon" type="button" data-session="discount" class="btn btn-danger btn-sm remove-coupon-btn"><i class="fa fa-times"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Total</td>
+                                    <td colspan="2">£{{ number_format(Cart::getTotal()-$discount['discount'], 2) }}</td>
+                                </tr>
+                            @else
+                                <tr>
+                                    <td>Total</td>
+                                    <td>£{{ number_format(Cart::getTotal(), 2) }}</td>
+                                </tr>
+                            @endif
                         </tbody>
                     </table>
-                    <button type="submit" class="proceesd" name="update_cart" value="Update cart" aria-disabled="false">Proceed to checkout</button>
-
+                    <form action="{{ route('order.store') }}" method="post">
+                        @csrf
+                        <button type="submit" style="cursor: pointer" class="proceesd" value="Proceed to checkout" aria-disabled="false">Proceed to checkout</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -90,8 +110,114 @@
     <script>
         $(document).on('click', '.coupon-btn', function(){
             var coupon_code = $('#coupon_code').val();
-            alert(coupon_code);
+            if(coupon_code.length==0){
+                $('#error-coupon').html('Invalid coupon code.');
+            }else if(coupon_code.length < 6 || coupon_code.length > 6){
+                $('#error-coupon').html('Invalid coupon code.');
+            }else{
+                $.ajax({
+                    type:"get",
+                    url:"{{ url('apply_coupon') }}",
+                    data:{'coupon_code':coupon_code},
+                    success:function(data){
+                        if(data.status=='sign'){
+                            window.location.href = "{{ url('/login') }}'";
+                        }else if(data.status=='expired'){
+                            Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: 'This is expired.',
+                            showConfirmButton: false,
+                            timer: 1500
+                            })
+                        }else if(data.status=='in-active'){
+                            Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: 'This is not active.',
+                            showConfirmButton: false,
+                            timer: 1500
+                            })
+                        }else if(data.status=='used'){
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: 'You have used this code can not use again.',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }else if(data.status=='true'){
+                            $('#cart-details').html(data.cart);
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Congrates! Coupon applied successfully.',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            location.reload();
+                        }else if(data.status=='not-found'){
+                            Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: 'Sorry this is not matched.',
+                            showConfirmButton: false,
+                            timer: 1500
+                            })
+                        }
+                    },
+                    error:function (er) {
+                        console.log(er);
+                    }
+                });
+            }
         });
+
+        $("#coupon_code").keyup(function(){
+            var coupon_code = $(this).val();
+            if(coupon_code.length == 6){
+                $('#error-coupon').html('');
+            }else{
+                $('#error-coupon').html('Invalid Coupon');
+                return false;
+            }
+        });
+
+        $(document).on('click', '.remove-coupon-btn', function(){
+            var session_key = $(this).attr('data-session');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to remove coupon?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, remove it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type:"get",
+                        url:"{{ url('remove-coupon') }}",
+                        data:{'session_key':session_key},
+                        success:function(data){
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'You have removed coupon successfully.',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+
+                            location.reload();
+                        },
+                        error:function (er) {
+                            console.log(er);
+                        }
+                    });
+                }
+            })
+        });
+
         $(document).on('click', '.remove-btn', function(){
             var product_id = $(this).val();
             var row = $('#pro-'+product_id);

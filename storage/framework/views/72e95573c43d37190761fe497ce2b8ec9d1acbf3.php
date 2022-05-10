@@ -1,5 +1,4 @@
-@extends('layouts.website.master')
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="inner-banner" style="background:#000;">
         <div class="container text-center">
             <h1>Check Out</h1>
@@ -11,8 +10,8 @@
                 <div class="col-lg-6 col-md-12">
                     <h3 class="details">Billing details</h3>
                     <div class="row">
-                        <form action="{{ route('billing_address.store') }}" id="regform" class="form-horizontal" enctype="multipart/form-data" method="post" accept-charset="utf-8">
-                            @csrf
+                        <form action="<?php echo e(route('billing_address.store')); ?>" id="regform" class="form-horizontal" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                            <?php echo csrf_field(); ?>
                             <div class="row">
                                 <div class="col-lg-6 col-md-12">
                                     <label>First name <span style="color: red;">*</span></label> <br>
@@ -287,46 +286,8 @@
                             <input type="text" name="town" class="form-for-us" id="text">
 
 
-                            {{--  <label>Town / City<span style="color: red;">*</span></label> <br>
-                                <select id="country-state" class="form-for-us" name="country-state"> --}}
-                                    {{--  <option value="AN">Andaman and Nicobar Islands</option>
-                                        <option value="AP">Andhra Pradesh</option>
-                                        <option value="AR">Arunachal Pradesh</option>
-                                        <option value="AS">Assam</option>
-                                        <option value="BR">Bihar</option>
-                                        <option value="CH">Chandigarh</option>
-                                        <option value="CT">Chhattisgarh</option>
-                                        <option value="DN">Dadra and Nagar Haveli</option>
-                                        <option value="DD">Daman and Diu</option>
-                                        <option value="DL">Delhi</option>
-                                        <option value="GA">Goa</option>
-                                        <option value="GJ">Gujarat</option>
-                                        <option value="HR">Haryana</option>
-                                        <option value="HP">Himachal Pradesh</option>
-                                        <option value="JK">Jammu and Kashmir</option>
-                                        <option value="JH">Jharkhand</option>
-                                        <option value="KA">Karnataka</option>
-                                        <option value="KL">Kerala</option>
-                                        <option value="LA">Ladakh</option>
-                                        <option value="LD">Lakshadweep</option>
-                                        <option value="MP">Madhya Pradesh</option>
-                                        <option value="MH">Maharashtra</option>
-                                        <option value="MN">Manipur</option>
-                                        <option value="ML">Meghalaya</option>
-                                        <option value="MZ">Mizoram</option>
-                                        <option value="NL">Nagaland</option>
-                                        <option value="OR">Odisha</option>
-                                        <option value="PY">Puducherry</option>
-                                        <option value="PB">Punjab</option>
-                                        <option value="RJ">Rajasthan</option>
-                                        <option value="SK">Sikkim</option>
-                                        <option value="TN">Tamil Nadu</option>
-                                        <option value="TG">Telangana</option>
-                                        <option value="TR">Tripura</option>
-                                        <option value="UP">Uttar Pradesh</option>
-                                        <option value="UT">Uttarakhand</option>
-                                        <option value="WB">West Bengal</option>
-                                    </select> --}}
+                            
+                                    
 
                             <label>Postcode / ZIP<span style="color: red;">*</span></label> <br>
                             <input type="number" name="postcode" class="form-for-us" id="text">
@@ -362,36 +323,38 @@
                             <p>Spring MEGA Draw × 1 <br>
                                 <strong>Answer:</strong> B.M.F.A</p>
                         </td>
-                        <th scope="col" colspan="2">£{{ number_format(Cart::getTotal(), 2) }}</th>
+                        <th scope="col" colspan="2">£<?php echo e(number_format(Cart::getTotal(), 2)); ?></th>
                     </tr>
 
                     <tr>
                         <td>
                             <p> <strong>Subtotal</strong></p>
                         </td>
-                        <th scope="col" colspan="2">£{{ number_format(Cart::getTotal(), 2) }}</th>
+                        <th scope="col" colspan="2">£<?php echo e(number_format(Cart::getTotal(), 2)); ?></th>
                     </tr>
                     <tr>
                         <td>
                             <p> <strong>Total</strong></p>
                         </td>
-                        <td>£{{ number_format(Cart::getTotal(), 2) }}</td>
+                        <td>£<?php echo e(number_format(Cart::getTotal(), 2)); ?></td>
                     </tr>
                 </tbody>
             </table>
             <div class="payment-marchant">
-                <p>Paytriot <img src="{{ asset('public/assets/website') }}/images/paytriot-small.png" alt=""> </p>
+                <p>Paytriot <img src="<?php echo e(asset('public/assets/website')); ?>/images/paytriot-small.png" alt=""> </p>
                 <p class="pay-merchant">Pay with your Paytriot payment gateway.</p>
                 <div class="personal">
                     <p class="payement-merchant">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="#privacypolicy">privacy policy</a>.</p>
-                    <form action="{{ route('order.store') }}" method="post">
-                        @csrf
+                    <form action="<?php echo e(route('order.store')); ?>" method="post">
+                        <?php echo csrf_field(); ?>
                         <button type="submit" class="button" style="cursor: pointer" name="apply_coupon" value="Apply coupon">Place Order</button>
                     </form>
-                    {{--   <button type="submit" class="button" style="cursor: pointer" name="apply_coupon" value="Apply coupon">Place Order</button> --}}
+                    
                 </div>
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
+
+<?php echo $__env->make('layouts.website.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\rc-air-craft\resources\views/website/check-out.blade.php ENDPATH**/ ?>

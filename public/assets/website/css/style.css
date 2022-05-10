@@ -964,7 +964,7 @@ input#coupon_code {
     text-align: end;
 }
 
-h3.cart-totasl {
+h3.cart-totals {
     font-size: 38px;
     font-family: rubik;
     font-weight: 400;
@@ -2144,7 +2144,7 @@ input#email::placeholder {
     .right-txt button.button {
         margin-top: -41px;
     }
-    h3.cart-totasl {
+    h3.cart-totals {
         font-size: 32px;
     }
     h3.details {

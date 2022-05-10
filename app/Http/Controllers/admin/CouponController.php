@@ -107,7 +107,6 @@ class CouponController extends Controller
      */
     public function edit($slug)
     {
-        // return $slug;
         $page_title = 'Edit Product';
         $details = Coupon::where('slug', $slug)->first();
         return View('admin.Coupon.edit', compact("details","page_title"));
@@ -131,7 +130,7 @@ class CouponController extends Controller
         $update->title = $request->title;
         $update->coupon_type = $request->coupon_type;
         $update->discount = $request->discount;
-        $update->coupon_code = '45rdfdf';
+        $update->coupon_code = $request->coupon_code;
         $update->max_purchase = $request->max_purchase;
         $update->start_date = date('Y-m-d', strtotime($request->start_date));
         $update->expire_date = date('Y-m-d', strtotime($request->expire_date));

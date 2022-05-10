@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\Coupon;
+use App\Models\CouponUsage;
+use Session;
 
 class CartController extends Controller
 {
@@ -21,6 +24,13 @@ class CartController extends Controller
     }
     public function addToCart(Request $request)
     {
+        $cart_quantity = 0;
+        if (isset($cartItems[$request->id])) {
+            $cart_quantity = $cartItems[$request->id]->quantity+$request->quantity;
+        }
+        if(isset($cartItems[$request->id]) && $cart_quantity > $cartItems[$request->id]->max_competition){
+            return redirect()->back()->with('max-error', 'The maximum allowed quantity for Popular Ones is '.$cartItems[$request->id]->max_competition.' . So you can not add '.$cart_quantity.' to your cart.');
+        }
         if(!Auth::check()){
             return redirect()->back()->with('error', 'Sorry, you must be logged in to participate in Competition.');;
         }
@@ -67,5 +77,94 @@ class CartController extends Controller
         session()->flash('success', 'All Item Cart Clear Successfully !');
 
         return redirect()->route('cart.list');
+    }
+
+    public function applyCoupon(Request $request)
+    {
+        if(!Auth::user()){
+            return response()->json([
+                'status' => 'sign',
+            ]);
+        }else{
+            $details = Coupon::where('coupon_code', $request->coupon_code)->first();
+            if($details){
+                if($details->expire_date < date('Y-m-d')){
+                    return response()->json([
+                        'status' => 'expired',
+                    ]);
+                }else if($details->status==0 ){
+                    return response()->json([
+                        'status' => 'in-active',
+                    ]);
+                }else if($details->max_purchase){
+                    // return 'good';
+                    $usages = CouponUsage::where('user_id', Auth::user()->id)->where('coupon_code', $request->coupon_code)->get();
+                    if(!empty($usages) && sizeof($usages)>=$details->max_purchase ){
+                        return response()->json([
+                            'status' => 'used',
+                        ]);
+                    }else{
+                        CouponUsage::create([
+                            'user_id' => Auth::user()->id,
+                            'coupon_code' => $request->coupon_code,
+                            'usages' => 1,
+                        ]);
+
+                        if($details->coupon_type=='fix'){
+                            $discount_details = ([
+                                'coupon_id' => $details->id,
+                                'coupon' => $details->coupon_code,
+                                'type' => $details->coupon_type,
+                                'discount' => $details->discount,
+                            ]);
+
+                            Session::put('discount', $discount_details);
+
+                            $items = \Cart::session('cart_data')->getContent('id');
+
+                            return response()->json([
+                                'status'=> 'true',
+                            ]);
+
+                        }else if($details->coupon_type=='percent'){
+                            $total = \Cart::getTotal();
+                            $discount = $total*$details->discount/100;
+
+                            $discount_details = ([
+                                'coupon_id' => $details->id,
+                                'coupon' => $details->coupon_code,
+                                'type' => $details->coupon_type,
+                                'discount' => $discount,
+                            ]);
+
+                            Session::put('discount', $discount_details);
+
+                            return response()->json([
+                                'status'=> 'true',
+                            ]);
+                        }
+                    }
+                }
+            }else{
+                return response()->json([
+                    'status' => 'not-found',
+                ]);
+            }
+        }
+    }
+
+    //remove coupon
+    public function removeCoupon(Request $request)
+    {
+        $discount = Session::get($request->session_key);
+
+        $usage = CouponUsage::orderby('id', 'desc')->where('coupon_code', $discount['coupon'])->where('user_id', Auth::user()->id)->first();
+        if($usage){
+            $usage->delete();
+            Session::forget($request->session_key);
+        }
+        return response()->json([
+            'status'=> 'true',
+        ]);
     }
 }

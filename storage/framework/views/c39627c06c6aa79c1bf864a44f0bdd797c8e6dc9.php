@@ -13,13 +13,21 @@
     <div class="single-produc">
         <div class="container">
             <?php if(session()->has('error')): ?>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="alert alert-secondary" style="display: flex;justify-content: space-between; border-top:2px solid red; align-item:center" role="alert">
-                       <p><i class="fa fa-info-circle" style="color: rgb(187, 50, 50)"></i> <?php echo e(session()->get('error')); ?></p> <a href="<?php echo e(route('login')); ?>" class="btn btn-primary btn-sm">Login <i class="fa fa-arrow-right"></i></a>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="alert alert-secondary" style="display: flex;justify-content: space-between; border-top:2px solid red; align-item:center" role="alert">
+                        <p><i class="fa fa-info-circle" style="color: rgb(187, 50, 50)"></i> <?php echo e(session()->get('error')); ?></p> <a href="<?php echo e(route('login')); ?>" class="btn btn-primary btn-sm">Login <i class="fa fa-arrow-right"></i></a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php elseif(session()->has('max-error')): ?>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="alert alert-secondary" style="display: flex;justify-content: space-between; border-top:2px solid red; align-item:center" role="alert">
+                        <p><i class="fa fa-info-circle" style="color: rgb(187, 50, 50)"></i> <?php echo e(session()->get('max-error')); ?></p>
+                        </div>
+                    </div>
+                </div>
             <?php endif; ?>
             <div class="row" >
                 <div class="col-lg-6 col-md-6 img-hover-zoom" >
@@ -47,11 +55,11 @@
                     </p>
                     <div class="bar-for-us">
                         <div class="ending">
-                            <p class="start-point"><?php echo e($product->min_competition); ?></p>
+                            <p class="start-point">0</p>
                             <p class="end-point"><?php echo e($product->max_competition); ?></p>
                         </div>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width:0%;">
                                 <span class="sr-only">25% Complete</span>
                             </div>
                         </div>
@@ -153,15 +161,22 @@
                 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
                 // Output the result in an element with id="demo"
-                document.getElementById('days-'+id).innerHTML=days;
-                document.getElementById('hours-'+id).innerHTML=hours;
-                document.getElementById('minutes-'+id).innerHTML=minutes;
-                document.getElementById('seconds-'+id).innerHTML=seconds;
+                var d = document.getElementById('days-'+id);
+                var h =document.getElementById('hours-'+id);
+                var m = document.getElementById('minutes-'+id);
+                var s = document.getElementById('seconds-'+id);
 
-                // If the count down is over, write some text
-                if (distance < 0) {
-                    clearInterval(x);
-                    document.getElementById('auction-timer_'+id).innerHTML = "EXPIRED";
+                if(d!=null){
+                    document.getElementById('days-'+id).innerHTML=days;
+                }
+                if(h!=null){
+                    document.getElementById('hours-'+id).innerHTML=hours;
+                }
+                if(m!=null){
+                    document.getElementById('minutes-'+id).innerHTML=minutes;
+                }
+                if(s!=null){
+                    document.getElementById('seconds-'+id).innerHTML=seconds;;
                 }
             }, 1000);
         }

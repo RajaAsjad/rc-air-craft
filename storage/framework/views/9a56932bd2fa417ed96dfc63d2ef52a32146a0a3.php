@@ -51,12 +51,13 @@
                                     <?php echo csrf_field(); ?>
                                    <div  class="box-body">
                                         <div class="form-group">
-                                            <label for="">Name<span class="required"></span></label> <br>
+                                            <label for="">Full Name<span class="required"></span></label> <br>
                                             <div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                                                <input type="text" id="name" class="form-control" value="<?php echo e(old('name')); ?>" name="name" placeholder="Enter user name">
+                                                <input type="text" id="name" class="form-control" value="<?php echo e(old('name')); ?>" name="name" placeholder="Enter full name">
                                                 <span style="color: red"><?php echo e($errors->first('name')); ?></span>
                                             </div>
                                         </div>
+                                       
                                         <div class="form-group">
                                             <label for="">Email address&nbsp;<span class="required"></span></label>
                                             <div class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
