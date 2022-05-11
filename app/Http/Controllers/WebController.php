@@ -221,7 +221,15 @@ class WebController extends Controller
   }
   public function checkOut ()
   {
-    return view('website.check-out');
+    $Items = \Cart::getContent();
+    if(sizeof($Items)==0){
+        if(Auth::check()){
+            return redirect()->route('index');
+        }else{
+            return redirect()->route('login');
+        }
+    }
+    return view('website.check-out', compact('Items'));
   }
   public function faqs ()
   {

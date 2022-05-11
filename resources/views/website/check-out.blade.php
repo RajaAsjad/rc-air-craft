@@ -336,9 +336,6 @@
 
                             <label>Email address<span style="color: red;">*</span></label> <br>
                             <input type="email" name="email" class="form-for-us" id="mail">
-
-                            <button type="submit" class="button">Submit</button>
-                        </form>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12">
@@ -357,26 +354,39 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    @foreach ($Items as $item)
+                    <tr id="pro-{{ $item->id }}">
                         <td>
-                            <p>Spring MEGA Draw × 1 <br>
-                                <strong>Answer:</strong> B.M.F.A</p>
+                            <h6 class="prod-title"> {{ $item->name }}</h6> <br>
+                            <p class="answer"> <strong>Answer:</strong>{{ $item->answer}}</p>
                         </td>
-                        <th scope="col" colspan="2">£{{ number_format(Cart::getTotal(), 2) }}</th>
+                        <td>£{{ number_format($item->quantity * $item->price, 2) }}</td>
                     </tr>
-
+                @endforeach
                     <tr>
                         <td>
                             <p> <strong>Subtotal</strong></p>
                         </td>
                         <th scope="col" colspan="2">£{{ number_format(Cart::getTotal(), 2) }}</th>
                     </tr>
+                    @if(Session::has('discount'))
+                    <?php
+                        $discount = Session::get('discount');
+                    ?>
                     <tr>
-                        <td>
-                            <p> <strong>Total</strong></p>
-                        </td>
+                        <td>Coupon Discount</td>
+                        <td>£{{ number_format($discount['discount'], 2) }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total</strong></td>
+                        <td colspan="2"><strong>£{{ number_format(Cart::getTotal()-$discount['discount'], 2) }}</strong></td>
+                    </tr>
+                @else
+                    <tr>
+                        <td>Total</td>
                         <td>£{{ number_format(Cart::getTotal(), 2) }}</td>
                     </tr>
+                @endif
                 </tbody>
             </table>
             <div class="payment-marchant">
@@ -384,11 +394,10 @@
                 <p class="pay-merchant">Pay with your Paytriot payment gateway.</p>
                 <div class="personal">
                     <p class="payement-merchant">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="#privacypolicy">privacy policy</a>.</p>
-                    <form action="{{ route('order.store') }}" method="post">
-                        @csrf
+
                         <button type="submit" class="button" style="cursor: pointer" name="apply_coupon" value="Apply coupon">Place Order</button>
                     </form>
-                    {{--   <button type="submit" class="button" style="cursor: pointer" name="apply_coupon" value="Apply coupon">Place Order</button> --}}
+
                 </div>
             </div>
         </div>

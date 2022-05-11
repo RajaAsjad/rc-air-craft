@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\BillingAddress;
 use Illuminate\Http\Request;
+use Session;
+use Auth;
 
 class BillingAddressController extends Controller
 {
@@ -49,6 +51,7 @@ class BillingAddressController extends Controller
             ]);
 
             $model = new BillingAddress();
+            $model->customer_id = Auth::user()->id;
             $model->first_name = $request->first_name;
             $model->last_name = $request->last_name;
             $model->date_of_birth = $request->date_of_birth;
@@ -60,7 +63,7 @@ class BillingAddressController extends Controller
             $model->phone = $request->phone;
             $model->email = $request->email;
             $model->save();
-            return redirect('check-out')->with('message', 'Successfully !');
+            return redirect('/')->with('message', 'Successfully !');
         }
 
     /**

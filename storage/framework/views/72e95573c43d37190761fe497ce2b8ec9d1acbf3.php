@@ -297,9 +297,6 @@
 
                             <label>Email address<span style="color: red;">*</span></label> <br>
                             <input type="email" name="email" class="form-for-us" id="mail">
-
-                            <button type="submit" class="button">Submit</button>
-                        </form>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12">
@@ -318,26 +315,39 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <?php $__currentLoopData = $Items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <tr id="pro-<?php echo e($item->id); ?>">
                         <td>
-                            <p>Spring MEGA Draw × 1 <br>
-                                <strong>Answer:</strong> B.M.F.A</p>
+                            <h6 class="prod-title"> <?php echo e($item->name); ?></h6> <br>
+                            <p class="answer"> <strong>Answer:</strong><?php echo e($item->answer); ?></p>
                         </td>
-                        <th scope="col" colspan="2">£<?php echo e(number_format(Cart::getTotal(), 2)); ?></th>
+                        <td>£<?php echo e(number_format($item->quantity * $item->price, 2)); ?></td>
                     </tr>
-
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <tr>
                         <td>
                             <p> <strong>Subtotal</strong></p>
                         </td>
                         <th scope="col" colspan="2">£<?php echo e(number_format(Cart::getTotal(), 2)); ?></th>
                     </tr>
+                    <?php if(Session::has('discount')): ?>
+                    <?php
+                        $discount = Session::get('discount');
+                    ?>
                     <tr>
-                        <td>
-                            <p> <strong>Total</strong></p>
-                        </td>
+                        <td>Coupon Discount</td>
+                        <td>£<?php echo e(number_format($discount['discount'], 2)); ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total</strong></td>
+                        <td colspan="2"><strong>£<?php echo e(number_format(Cart::getTotal()-$discount['discount'], 2)); ?></strong></td>
+                    </tr>
+                <?php else: ?>
+                    <tr>
+                        <td>Total</td>
                         <td>£<?php echo e(number_format(Cart::getTotal(), 2)); ?></td>
                     </tr>
+                <?php endif; ?>
                 </tbody>
             </table>
             <div class="payment-marchant">
@@ -345,11 +355,10 @@
                 <p class="pay-merchant">Pay with your Paytriot payment gateway.</p>
                 <div class="personal">
                     <p class="payement-merchant">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="#privacypolicy">privacy policy</a>.</p>
-                    <form action="<?php echo e(route('order.store')); ?>" method="post">
-                        <?php echo csrf_field(); ?>
+
                         <button type="submit" class="button" style="cursor: pointer" name="apply_coupon" value="Apply coupon">Place Order</button>
                     </form>
-                    
+
                 </div>
             </div>
         </div>
