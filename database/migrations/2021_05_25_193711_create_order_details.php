@@ -20,7 +20,7 @@ class CreateOrderDetails extends Migration
             $table->string('category_slug');
             $table->bigInteger('price');
             $table->bigInteger('quantity');
-            $table->bigInteger('discount_type')->nullable();
+            $table->string('discount_type')->nullable();
             $table->float('discount_amount')->nullable();
             $table->float('tax')->nullable();
             $table->float('sub_total');

@@ -17,9 +17,32 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    function __construct()
     {
-        //
+        $this->middleware('permission:order-list|order-create|order-edit|order-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:order-create', ['only' => ['create','store']]);
+        $this->middleware('permission:order-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:order-delete', ['only' => ['destroy']]);
+    }
+    public function index(Request $request)
+    {
+        if($request->ajax()){
+            $query = Order::orderby('id', 'desc')->where('id', '>', 0);
+            if($request['search'] != ""){
+                $query->where('name', 'like', '%'. $request['search'] .'%');
+            }
+            if($request['status']!="All"){
+                if($request['status']==2){
+                    $request['status'] = 0;
+                }
+                $query->where('status', $request['status']);
+            }
+            $models = $query->paginate(10);
+            return (string) view('admin.order.search', compact('models'));
+        }
+        $page_title = 'All Order';
+        $models = Order::orderby('id', 'desc')->paginate(10);
+        return View('admin.order.index', compact("models","page_title"));
     }
 
     /**
@@ -82,6 +105,8 @@ class OrderController extends Controller
                     'category_slug' => $product->category_slug,
                     'price' => $product->price,
                     'quantity' => $item->quantity,
+                    'discount_type' =>isset($discount)?$discount['type']:null,
+                    'discount_amount' =>isset($discount)?$discount['discount']:null,
                     'tax' => null,
                     'sub_total' => $product->price*$item->quantity,
                     'order_status' => 'succeeded',
@@ -99,9 +124,11 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show($id)
     {
-        //
+        $page_title = 'Order Details';
+        $model = OrderDetail::where('order_id', $id)->first();
+        return view('admin.order.show' , compact('model' , 'page_title'));
     }
 
     /**

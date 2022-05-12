@@ -70,12 +70,14 @@
                                         </div>
                                         <h5>0 <span>Entries Remaining</span></h5>
                                         <a href="{{route ('single-product', $product->slug) }}">Enter Now</a>
+                                        <a class="font" href="{{route ('terms-and-conditions') }}#4.8" style="font-size: 13px;background:none;">Click Here For Free Entry Terms</a>
                                         <h3>
                                             <span class="woocommerce-Price-amount amount">
                                                 <bdi><span class="woocommerce-Price-currencySymbol">£</span>{{ number_format($product->price, 2) }}</bdi>
                                             </span>
                                             <span>Per Entry</span>
                                         </h3>
+
                                     </li>
                                 </ul>
                             </div>
@@ -120,6 +122,7 @@
                                     </div>
                                     <h5>0 <span>Entries Remaining</span></h5>
                                     <a href="{{route ('single-product', $product->slug) }}">Enter Now</a>
+                                    <a class="font" href="{{route ('terms-and-conditions') }}#4.8" style="font-size: 13px;background:none;">Click Here For Free Entry Terms</a>
                                     <h3>
                                         <span class="woocommerce-Price-amount amount">
                                             <bdi><span class="woocommerce-Price-currencySymbol">£</span>{{ number_format($product->price, 2) }}</bdi>

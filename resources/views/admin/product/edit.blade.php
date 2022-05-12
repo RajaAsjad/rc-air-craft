@@ -19,7 +19,7 @@
 				<div class="box box-info">
 					<div class="box-body">
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Category<span style="color: red">*</span></label>
+                            <label for="" class="col-sm-2 control-label">Category</label>
                             <div class="col-md-9">
                                 <select name="category_slug" id="category_slug" class="form-control">
                                     <option value="" selected>Select category</option>
@@ -31,34 +31,34 @@
                             </div>
 						</div>
 						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">Name <span style="color:red">*</span></label>
+							<label for="" class="col-sm-2 control-label">Name</label>
 							<div class="col-sm-9">
 								<input type="text" autocomplete="off" class="form-control" name="name" value="{{$details->name}}">
 							</div>
 						</div>
                         <div class="form-group">
-							<label for="" class="col-sm-2 control-label">Product Price <span style="color: red">*</span></label>
+							<label for="" class="col-sm-2 control-label">Product Price</label>
 							<div class="col-sm-9">
                                 <input type="number" name="price" id="" value="{{$details->price}}" min="1" class="form-control placeholder="Enter price">
 								<span style="color: red">{{ $errors->first('price') }}</span>
 							</div>
                         </div>
                         <div class="form-group">
-							<label for="" class="col-sm-2 control-label">Min Competition<span style="color: red">*</span></label>
+							<label for="" class="col-sm-2 control-label">Min Competition</label>
 							<div class="col-sm-9">
                                 <input type="number" name="min_competition" id="" value="{{$details->min_competition}}" min="1" class="form-control placeholder="Enter min competition">
 								<span style="color: red">{{ $errors->first('min_competition') }}</span>
 							</div>
                         </div>
                         <div class="form-group">
-							<label for="" class="col-sm-2 control-label">Max Competition<span style="color: red">*</span></label>
+							<label for="" class="col-sm-2 control-label">Max Competition</label>
 							<div class="col-sm-9">
                                 <input type="number" name="max_competition" id="" value="{{$details->max_competition}}" min="1" max="190" class="form-control placeholder="Enter max competition">
 								<span style="color: red">{{ $errors->first('max_competition') }}</span>
 							</div>
                         </div>
                         <div class="form-group">
-							<label for="" class="col-sm-2 control-label">Number Of Winners<span style="color: red">*</span></label>
+							<label for="" class="col-sm-2 control-label">Number Of Winners</label>
 							<div class="col-sm-9">
                                 <input type="number" name="number_of_winners" id="" value="{{$details->number_of_winners}}" min="1" max="190" class="form-control placeholder="Enter number of winners">
 								<span style="color: red">{{ $errors->first('number_of_winners') }}</span>
@@ -66,7 +66,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Expiry Date <span style="color: red">*</span></label>
+                            <label for="" class="col-sm-2 control-label">Expiry Date</label>
                             <div class="col-sm-9">
                                 <input type="date" name="draw_ends" value="{{ $details->draw_ends }}" id="end-date"  class="form-control">
                                 <span id="error-end-date" style="color:red"></span>
@@ -75,7 +75,7 @@
                          </div>
 
                          <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Image </label>
+                            <label for="" class="col-sm-2 control-label">Image</label>
                             <div class="col-sm-6" style="padding-top:5px">
                                 <input type="file" class="form-control" accept="image*" name="image">
                             </div>
@@ -84,56 +84,80 @@
                             </div>
                          </div>
 						<div class="form-group">
-							<label for="" class="col-sm-2 control-label">Short Description <span style="color: red">*</span></label>
+							<label for="" class="col-sm-2 control-label">Short Description</label>
 							<div class="col-sm-9">
 								<textarea class="form-control texteditor" name="short_description" style="height:200px;" placeholder="Enter short_description">{!! $details->short_description !!}</textarea>
 								<span style="color: red">{{ $errors->first('short_description') }}</span>
 							</div>
 						</div>
                         <div class="form-group">
-							<label for="" class="col-sm-2 control-label">Description <span style="color: red">*</span></label>
+							<label for="" class="col-sm-2 control-label">Description</label>
 							<div class="col-sm-9">
 								<textarea class="form-control texteditor" name="description" style="height:200px;" placeholder="Enter description">{!! $details->description !!}</textarea>
 								<span style="color: red">{{ $errors->first('description') }}</span>
 							</div>
 						</div>
                         <div class="form-group">
-							<label for="" class="col-sm-2 control-label">Question <span style="color: red">*</span></label>
+							<label for="" class="col-sm-2 control-label">Question</label>
 							<div class="col-sm-9">
 								<textarea class="form-control" name="question" style="height:100px;" placeholder="Enter question">{!! isset($details->hasQuestion)?$details->hasQuestion->question:'' !!}</textarea>
 								<span style="color: red">{{ $errors->first('question') }}</span>
+                                <span style="color: red">{{ $errors->first('answers') }}</span>
 							</div>
 						</div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Answer<span style="color: red">*</span></label>
-                            <div class="col-sm-9">
-                            <input type="text" name="answer" id="" value="{!! isset($details->hasQuestion)?$details->hasQuestion->answer:'' !!}" class="form-control" placeholder="Enter answer">
-                            <span style="color: red">{{ $errors->first('answer') }}</span>
+                            <label for="" class="col-sm-2 control-label">Option#1</label>
+                            <div class="col-sm-7">
+                                <input type="text" name="choices[1]" id=""  value="{{ isset($details->hasQuestion->hasOptions[0])?$details->hasQuestion->hasOptions[0]->choices:'' }}"  class="form-control" placeholder="Enter option">
+                                <span style="color: red">{{ $errors->first('choices') }}</span>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" name="answers[1]" type="checkbox" value="1" value="{!! isset($details->hasQuestion)?$details->hasQuestion->answer:'' !!}" id="answer-1"/>
+                                    <label class="form-check-label" for="answer-1">Answer</label>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Option#1<span style="color: red">*</span></label>
-                            <div class="col-sm-9">
-                            <input type="text" name="choices[]" id="" value="{{ isset($details->hasQuestion->hasOptions[0])?$details->hasQuestion->hasOptions[0]->choices:'' }}" class="form-control" placeholder="Enter choices">
-                            <span style="color: red">{{ $errors->first('choices') }}</span>
+                            <label for="" class="col-sm-2 control-label">Option#2</label>
+                            <div class="col-sm-7">
+                                <input type="text" name="choices[2]" id="" value="{{ isset($details->hasQuestion->hasOptions[1])?$details->hasQuestion->hasOptions[1]->choices:'' }}" class="form-control" placeholder="Enter option">
+                                <span style="color: red">{{ $errors->first('choices') }}</span>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" name="answers[2]" type="checkbox" value="1" value="{!! isset($details->hasQuestion)?$details->hasQuestion->answer:'' !!}" id="answer-2"/>
+                                    <label class="form-check-label" for="answer-2">Answer</label>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Option#2<span style="color: red">*</span></label>
-                            <div class="col-sm-9">
-                            <input type="text" name="choices[]" id="" value="{{ isset($details->hasQuestion->hasOptions[1])?$details->hasQuestion->hasOptions[1]->choices:'' }}" class="form-control" placeholder="Enter choices">
-                            <span style="color: red">{{ $errors->first('choices') }}</span>
+                            <label for="" class="col-sm-2 control-label">Option#3</label>
+                            <div class="col-sm-7">
+                                <input type="text" name="choices[3]" id=""value="{{ isset($details->hasQuestion->hasOptions[2])?$details->hasQuestion->hasOptions[2]->choices:'' }}" class="form-control" placeholder="Enter option">
+                                <span style="color: red">{{ $errors->first('choices') }}</span>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" name="answers[3]" type="checkbox" value="1" value="{!! isset($details->hasQuestion)?$details->hasQuestion->answer:'' !!}" id="answer-3"/>
+                                    <label class="form-check-label" for="answer-3">Answer</label>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Option#3<span style="color: red">*</span></label>
-                            <div class="col-sm-9">
-                            <input type="text" name="choices[]" id="" value="{{ isset($details->hasQuestion->hasOptions[2])?$details->hasQuestion->hasOptions[2]->choices:'' }}" class="form-control" placeholder="Enter choices">
-                            <span style="color: red">{{ $errors->first('choices') }}</span>
+                            <label for="" class="col-sm-2 control-label">Option#4</label>
+                            <div class="col-sm-7">
+                                <input type="text" name="choices[4]" id="" value="{{ isset($details->hasQuestion->hasOptions[3])?$details->hasQuestion->hasOptions[3]->choices:'' }}" class="form-control" placeholder="Enter option">
+                                <span style="color: red">{{ $errors->first('choices') }}</span>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" name="answers[4]" type="checkbox" value="1" value="{!! isset($details->hasQuestion)?$details->hasQuestion->answer:'' !!}" id="answer-4"/>
+                                    <label class="form-check-label" for="answer-4">Answer</label>
+                                </div>
                             </div>
                         </div>
-
-						<div class="form-group">
+                      <div class="form-group">
 							<label for="" class="col-sm-2 control-label">Status</label>
 							<div class="col-sm-9">
 								<select name="status" class="form-control" id="">

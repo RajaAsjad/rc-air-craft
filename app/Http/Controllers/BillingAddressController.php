@@ -41,13 +41,6 @@ class BillingAddressController extends Controller
             $validator = $request->validate([
                 'first_name' => 'required|max:20',
                 'last_name' => 'required|max:20',
-                /* 'company' => 'required|max:50',
-                'country' => 'required|max:50',
-                'street' => 'required|max:100',
-                'town' => 'required|max:100',
-                'postcode' => 'required|max:10',
-                'phone' => 'required|max:15',
-                'email' => 'required|max:100', */
             ]);
 
             $model = new BillingAddress();
@@ -63,6 +56,7 @@ class BillingAddressController extends Controller
             $model->phone = $request->phone;
             $model->email = $request->email;
             $model->save();
+
             return redirect('/')->with('message', 'Successfully !');
         }
 

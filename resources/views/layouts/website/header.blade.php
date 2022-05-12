@@ -12,8 +12,8 @@
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
                             <a class="nav-link active" aria-current="page" href="{{route ('index')}}">HOME</a>
-                            <a class="nav-link" href="#competitions"> COMPETITION</a>
-                            <a class="nav-link" href="#mini-competitions"> MEDIUM COMPETITION</a>
+                            <a class="nav-link" href="{{route ('index')}}#competitions"> COMPETITION</a>
+                            <a class="nav-link" href="{{route ('index')}}#mini-competitions"> MEDIUM COMPETITION</a>
                             <a class="nav-link active" aria-current="page" href="{{route ('winner') }}">WINNERS </a>
                            <!-- {{-- <a class="nav-link" href="{{route ('sold-out')}}"> SOLD OUT</a> --}} -->
                            {{--  <a class="nav-link" href="{{route ('result')}}">RESULTS</a> --}}

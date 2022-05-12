@@ -190,6 +190,28 @@ class ProductController extends Controller
         $update->status = $request->status;
         $update->update();
 
+       /*  $question = Question::create([
+            'product_slug' => $update->slug,
+            'question' => $request->question,
+        ]);
+
+        if(!empty($question)){
+            foreach($request->choices as $key=>$choice){
+                $update = new Option();
+                if (!empty($choice)) {
+                    $update->question_id = $question->id;
+                    $update->choices = $choice;
+
+                    if (isset($request->answers[$key])) {
+                        $update->answer = 1;
+                    }
+
+                    $update->update();
+                }
+            }
+        } */
+
+
 
         return redirect()->route('product.index')->with('message', 'Product Updated Successfully !');
     }

@@ -10,4 +10,11 @@ class OrderDetail extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function hasCreatedBy()
+    {
+        return $this->hasOne(user::class, 'id', 'created_by');
+    }
+
+
 }

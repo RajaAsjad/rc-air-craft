@@ -6,6 +6,15 @@
                     <i class="fa fa-laptop"></i> <span>Dashboard</span>
                 </a>
             </li>
+            @can('order-list')
+            <li class="treeview">
+                <a href="{{ route('order.index') }}" class="{{ request()->is('order') || request()->is('order/create') || request()->is('order/*/show') || request()->is('order/*/edit') || request()->is('order/*') ? 'active' : '' }}">
+                    <i class="fa fa-wrench"></i> <span>orders</span>
+                </a>
+            </li>
+            @endcan
+
+
             @can('page-list')
             <li class="treeview">
                 <a href="{{ route('page.index') }}" class="{{ request()->is('page') || request()->is('page/*') || request()->is('page_setting/*') ? 'active' : '' }}">

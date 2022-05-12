@@ -131,6 +131,13 @@
                     <p>8.10 The Promoter reserves the right to amend these terms and conditions at any time. Any changes will be immediately published on the competition home page.</p>
                     <p>These Terms and Conditions have been drafted for use by R.C Aircraft Online</p>
                     <p>Plagiarism of these Terms and Conditions will result in legal action by R.C Aircraft Online.</p>
+                    <p>8.11 FREE CLUB TRAINER PACKAGE GIVEAWAY.</p>
+                    <p>From time to time R.C Aircraft Online may offer 1 complete trainer package to a B.M.F.A affiliated flying club, to be entered into this giveaway we must:</p>
+                    <p>A. Have permission from the club chairman for their club to be entered</p>
+                    <p>B. Have at least 1 active member from the club registered on our website (www.rcaircraftonline.co.uk)</p>
+                    <p>C. The club member/chairman must provide their BMFA affiliation number</p>
+                    <p>D. Have at least 1 club instructor giving lessons to new members for free</p>
+                    <p>Once a club has received a free trainer package they will be removed from our list of clubs and will not be re-entered into any further free club trainer package giveaways.</p>
                 </div>
             </div>
         </div>

@@ -13,8 +13,8 @@
             <div class="col-md-3">
                 <h4>QUICK LINKS</h4>
                 <ul>
-                    <li><a href="#competitions">Competitions</a></li>
-                    <li><a href="#mini-competitions">Medium Competitions</a></li>
+                    <li><a href="{{route ('index')}}#competitions">Competitions</a></li>
+                    <li><a href="{{route ('index')}}#mini-competitions">Medium Competitions</a></li>
                     <li><a href="{{route ('cart.list') }}">Basket</a></li>
                     <li><a href="{{route ('login') }}">My account</a></li>
                 </ul>
